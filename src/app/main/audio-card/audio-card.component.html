@@ -1,0 +1,21 @@
+<div class="flex flex-row items-center bg-slate-600 text-white p-2 rounded-xl m-2 shadow-lg"
+[ngClass]="active ? 'text-white' : 'text-gray-500'">
+
+  <div class=""
+  (click)="toggle()">
+    <i [ngClass]="'text-[3rem] p-4 ' + audioData.icon"></i>
+  </div>
+
+  <div class="flex flex-col w-full">
+    <h3 class="text-xl p-2 font-bold">{{ audioData.title }}</h3>
+
+    <mat-slider class=""
+    thumbLabel
+    [displayWith]="formatSlider"
+      min="0" max="1" step="0.01" value="1"
+      (input)="onSliderChange($event)"
+      >
+    </mat-slider>
+
+  </div>
+</div>
