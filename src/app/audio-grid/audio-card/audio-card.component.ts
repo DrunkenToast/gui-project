@@ -8,34 +8,26 @@ import { AudioService } from 'src/app/services/AudioService';
   templateUrl: './audio-card.component.html',
   styleUrls: ['./audio-card.component.css'],
   providers: [AudioService],
-  host: {'[class]': "'w-full sm:w-1/2'"}
+  host: {'[class]': "'w-full lg:w-1/2'"}
 })
-export class AudioCardComponent implements OnInit, OnChanges {
+export class AudioCardComponent implements OnInit {
   active: boolean = false;
   volume: number|null|undefined;
   audio = new AudioService();
   @Input() audioData: AudioData = {
-    id: '1',
+    id: 1,
     title: 'No sound',
     loop: true,
-    categoryID: '1',
+    categoryID: 1,
     icon: 'fa-solid fa-compact-disc',
     src: '',
   }
 
-  constructor(public auddsqdsqio: AudioService) {
-
-
-    //interval stuff
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['audioData'].currentValue) {
-      this.importData(changes['audioData'].currentValue)
-    }
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.audio.setSource('../../../assets/sounds/coffee-shop.ogg');
+    this.importData(this.audioData);
   }
 
   importData(data: AudioData) {

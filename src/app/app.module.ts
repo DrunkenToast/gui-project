@@ -7,16 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatChipsModule } from '@angular/material/chips'
+import { MatButtonModule } from '@angular/material/button'
 
-import { MainComponent } from './main/main.component';
-import { AudioCardComponent } from './main/audio-card/audio-card.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { AudioGridComponent } from './audio-grid/audio-grid.component';
+import { AudioCardComponent } from './audio-grid/audio-card/audio-card.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
+    AudioGridComponent,
     AudioCardComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     BrowserAnimationsModule,
     MatSliderModule,
     MatIconModule,
-    FontAwesomeModule
+    MatSidenavModule,
+    FontAwesomeModule,
+    MatToolbarModule,
+    MatChipsModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,10 +4,10 @@ It does include data such as loop and interval because it describes how that aud
 */
 
 export interface AudioData {
-  id: string,
+  id: number,
   title: string,
   icon: string,
-  categoryID: string,
+  categoryID: number,
   src: string,
   loop: boolean,
   interval?: {
