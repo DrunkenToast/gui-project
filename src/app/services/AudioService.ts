@@ -1,21 +1,65 @@
-// import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-// @Injectable({
-//   providedIn: 'root',
+@Injectable({
+  providedIn: 'root',
 
-// })
-
+})
 
 export class AudioService {
+  private audioPlayers = new Map<Number, AudioPlayer>();
+
+  constructor() {
+  }
+
+  /** initialises an audioplayer */
+  set(id: number): void {
+    this.audioPlayers.set(id, new AudioPlayer());
+  }
+
+  /** Grab audioplayer by id */
+  get(id: number): AudioPlayer | undefined {
+    return this.audioPlayers.get(id);
+  }
+}
+
+class AudioPlayer {
   private audio: HTMLAudioElement;
-  private status?: AudioStates = AudioStates.paused;
+  private status: AudioStates = AudioStates.paused;
 
   constructor() {
     this.audio = new Audio();
+
+    this.audio.addEventListener('playing', this.setStatus, false);
+    this.audio.addEventListener('pause', this.setStatus, false);
+    this.audio.addEventListener('waiting', this.setStatus, false);
+    this.audio.addEventListener('ended', this.setStatus, false);
+  }
+
+  private setStatus = (ev: Event) => {
+    switch (ev.type) {
+      case 'playing':
+          this.status = AudioStates.playing;
+          break;
+      case 'pause':
+          this.status = AudioStates.paused;
+          break;
+      case 'waiting':
+          this.status = AudioStates.waiting;
+          break;
+      case 'ended':
+          this.status = AudioStates.ended;
+          break;
+      default:
+          this.status = AudioStates.paused;
+          break;
+    }
+  }
+
+  getStatus(): AudioStates {
+    return this.status;
   }
 
   play() {
-    //catch errors
     console.log('playing', this.audio.volume);
     this.audio.play();
     this.status = AudioStates.playing;
@@ -30,7 +74,6 @@ export class AudioService {
   setSource(src: string) {
     this.audio.src = src
     this.audio.load();
-    console.log('Changed source:', src, this.audio.src, this.audio);
   }
 
   setLoop(loop: boolean) {
@@ -44,30 +87,6 @@ export class AudioService {
   getTime() {
     return this.audio.currentTime;
   }
-
-  // private attachEventHandlers(): void {
-  //   this.audio.addEventListener('playing', this.setAudioStatus, false);
-  //   this.audio.addEventListener('pause', this.setAudioStatus, false);
-  //   this.audio.addEventListener('waiting', this.setAudioStatus, false);
-  //   this.audio.addEventListener('ended', this.setAudioStatus, false);
-  // }
-
-  // private setAudioStatus = (e: Event) => {
-  //   switch (e.type) {
-  //     case 'playing':
-  //       this.status = AudioStates.playing;
-  //       break;
-  //     case 'pause':
-  //       this.status = AudioStates.paused;
-  //       break;
-  //     case 'waiting':
-  //       this.status = AudioStates.waiting;
-  //       break;
-  //     case 'ended':
-  //       this.status = AudioStates.ended;
-  //       break;
-  //   }
-  // }
 }
 
 export enum AudioStates {
@@ -76,6 +95,7 @@ export enum AudioStates {
   waiting,
   ended,
 }
+
 
 // export interface AudioIntervalData {
 //   minDelay: number,

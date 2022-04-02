@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { AudioData } from 'src/app/audio-data';
-import { AudioService } from 'src/app/services/AudioService';
+import { AudioService, AudioStates } from 'src/app/services/AudioService';
 
 @Component({
   selector: 'app-audio-card',
@@ -23,18 +23,14 @@ export class AudioCardComponent implements OnInit {
     src: '',
   }
 
-  constructor() {
+  constructor(private audioService: AudioService) {
   }
 
   ngOnInit(): void {
-    this.importData(this.audioData);
-  }
+    this.audioService.set(this.audioData.id);
 
-  importData(data: AudioData) {
-    console.log('changes', data.src)
-    this.audio.setSource(data.src);
-    this.audio.setLoop(data.loop);
-    console.log(this.audio)
+    this.audioService.get(this.audioData.id)?.setSource(this.audioData.src);
+    this.audioService.get(this.audioData.id)?.setLoop(this.audioData.loop);
   }
 
   //TODO: Fix static?
@@ -42,7 +38,7 @@ export class AudioCardComponent implements OnInit {
     // console.log(e.value);
     this.volume = e.value;
     if (this.volume != null)
-      this.audio.setVolume(this.volume)
+      this.audioService.get(this.audioData.id)?.setVolume(this.volume);
   }
 
   formatSlider(val: number) {
@@ -52,11 +48,15 @@ export class AudioCardComponent implements OnInit {
   toggle() {
     console.log('toggle', this.audio)
     if (this.active) {
-      this.audio.stop()
+      this.audioService.get(this.audioData.id)?.stop()
     }
     else {
-      this.audio.play();
+      this.audioService.get(this.audioData.id)?.play();
     }
     this.active = !this.active;
+  }
+
+  isActive() {
+    return this.audioService.get(this.audioData.id)?.getStatus() == AudioStates.playing
   }
 }
