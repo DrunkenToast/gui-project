@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
-
 })
-
 export class AudioService {
   private audioPlayers = new Map<Number, AudioPlayer>();
-
   constructor() {
   }
 
   /** initialises an audioplayer */
   set(id: number): void {
     this.audioPlayers.set(id, new AudioPlayer());
+    console.log(this.audioPlayers);
   }
 
   /** Grab audioplayer by id */

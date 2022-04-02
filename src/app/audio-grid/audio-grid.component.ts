@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioData } from '../audio-data';
+import { AudioService } from '../services/AudioService';
 
 @Component({
   selector: 'app-audio-grid',
@@ -8,7 +9,13 @@ import { AudioData } from '../audio-data';
 })
 export class AudioGridComponent implements OnInit {
 
-  constructor() { }
+  constructor(private audioService: AudioService) {
+    for (let sound of this.sounds) {
+      this.audioService.set(sound.id);
+      this.audioService.get(sound.id)?.setSource(sound.src);
+      this.audioService.get(sound.id)?.setLoop(sound.loop);
+    }
+  }
 
   categories = [
     {
@@ -61,7 +68,6 @@ export class AudioGridComponent implements OnInit {
 
   filterByCategoryID(sounds: AudioData[], id: number): AudioData[] {
     const filtered = sounds.filter((s) => s.categoryID == id);
-    console.log(sounds, filtered, id)
     return filtered;
   }
 
