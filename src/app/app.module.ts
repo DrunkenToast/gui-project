@@ -15,7 +15,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { AudioGridComponent } from './audio-grid/audio-grid.component';
 import { AudioCardComponent } from './audio-grid/audio-card/audio-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './navbar/navbar.component';
+import { FilterSoundsPipe } from './filter-sounds.pipe'
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NavbarComponent } from './navbar/navbar.component'
     AudioGridComponent,
     AudioCardComponent,
     NavbarComponent,
+    FilterSoundsPipe,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AudioData } from '../audio-data';
 import { AudioService } from '../services/AudioService';
 
@@ -6,8 +6,10 @@ import { AudioService } from '../services/AudioService';
   selector: 'app-audio-grid',
   templateUrl: './audio-grid.component.html',
   styleUrls: ['./audio-grid.component.css'],
+  host: {'[class]': "'bg-slate-500 rounded-lg m-2 overflow-auto'"}
 })
 export class AudioGridComponent implements OnInit {
+  @Input() categoryFilter: any;
 
   constructor(private audioService: AudioService) {
     for (let sound of this.sounds) {
@@ -66,9 +68,7 @@ export class AudioGridComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterByCategoryID(sounds: AudioData[], id: number): AudioData[] {
-    const filtered = sounds.filter((s) => s.categoryID == id);
-    return filtered;
+  filterCategories() {
+    return this.categories.filter((c) => c.id == this.categoryFilter)
   }
-
 }

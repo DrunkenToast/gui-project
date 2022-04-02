@@ -1,12 +1,6 @@
-<div>
-  <!-- <mat-chip-list class="">
-    <mat-chip *ngFor="let category of categories" [selected]="false">{{category.name}}</mat-chip>
-  </mat-chip-list> -->
-</div>
-<div *ngFor="let category of categories" class="w-full">
+<div *ngFor="let category of filterCategories()" class="w-full ">
   <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
   <div class="flex flex-row flex-wrap w-full">
-    <div></div>
-    <app-audio-card *ngFor="let data of filterByCategoryID(sounds, category.id)" [audioData]="data"></app-audio-card>
+    <app-audio-card *ngFor="let data of (sounds | filterSounds : category.id)" [audioData]="data"></app-audio-card>
   </div>
 </div>

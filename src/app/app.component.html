@@ -1,12 +1,15 @@
 <!-- <router-outlet></router-outlet> -->
 <app-navbar></app-navbar>
 <div class="flex flex-row">
-  <div class="w-1/4 p-5">
-    <h1>Presets</h1>
+  <div class="w-1/4 p-5 flex flex-col">
+    <h1>Categories</h1>
+    <button (click)="cat = 1" mat-raised-button color="primary">All</button>
+    <button (click)="cat = 2" mat-raised-button color="secondary">...</button>
+  </div>
+  <app-audio-grid [categoryFilter]="cat" class="w-2/4"></app-audio-grid>
+  <div class="w-1/4 p-5 flex flex-col">
+    <h1>Preset</h1>
     <button mat-raised-button color="primary">fsdfds</button>
     <button mat-button color="primary">fsdfds</button>
   </div>
-  <app-audio-grid class="w-2/4 bg-slate-500 rounded-lg m-2 overflow-auto"></app-audio-grid>
-  <!-- <div class="w-1/4">
-  </div> -->
 </div>
