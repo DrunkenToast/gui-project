@@ -1,5 +1,5 @@
 <mat-toolbar>
   <h1>Toolbar</h1>
   <span class="seperator"></span>
-  <h2>test</h2>
+  <h2 (click)="onPlayPauseClick()">{{this.audioService.isPlaying() ? 'Pause' : 'Play'}}</h2>
 </mat-toolbar>

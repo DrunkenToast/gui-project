@@ -17,6 +17,10 @@ import { AudioCardComponent } from './audio-grid/audio-card/audio-card.component
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FilterSoundsPipe } from './filter-sounds.pipe'
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NavigationComponent } from './navigation/navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,7 @@ import { FilterSoundsPipe } from './filter-sounds.pipe'
     AudioCardComponent,
     NavbarComponent,
     FilterSoundsPipe,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,9 @@ import { FilterSoundsPipe } from './filter-sounds.pipe'
     MatToolbarModule,
     MatChipsModule,
     MatButtonModule,
+    MatCheckboxModule,
+    LayoutModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

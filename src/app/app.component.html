@@ -1,12 +1,14 @@
 <!-- <router-outlet></router-outlet> -->
+<app-navigation></app-navigation>
 <app-navbar></app-navbar>
-<div class="flex flex-row">
+<div class="flex flex-row bg-black">
   <div class="w-1/4 p-5 flex flex-col">
     <h1>Categories</h1>
-    <button (click)="cat = 1" mat-raised-button color="primary">All</button>
-    <button (click)="cat = 2" mat-raised-button color="secondary">...</button>
+    <button mat-raised-button color="primary">All</button>
+    <button mat-raised-button color="secondary">...</button>
+    <mat-checkbox>d</mat-checkbox>
   </div>
-  <app-audio-grid [categoryFilter]="cat" class="w-2/4"></app-audio-grid>
+  <app-audio-grid class="w-2/4"></app-audio-grid>
   <div class="w-1/4 p-5 flex flex-col">
     <h1>Preset</h1>
     <button mat-raised-button color="primary">fsdfds</button>
