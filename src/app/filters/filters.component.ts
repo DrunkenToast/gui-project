@@ -14,7 +14,7 @@ export class FiltersComponent implements OnInit {
   }
 
   // Ugly code, but it works
-  toggleAllSelected() {
+  toggleAllSelected(): void {
     let toggle = !this.allCategoriesSelected();
 
     this.data.categories.forEach(category => {
@@ -22,7 +22,7 @@ export class FiltersComponent implements OnInit {
     });
   }
 
-  allCategoriesSelected() {
+  allCategoriesSelected(): boolean {
     let toggle = this.data.filters.categories.includes(false)
 
     if (this.data.filters.categories.length == 0) {

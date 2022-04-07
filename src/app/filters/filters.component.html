@@ -1,4 +1,8 @@
 <div class="p-5 flex flex-col">
+  <mat-checkbox [(ngModel)]="data.filters.currentlyPlaying">
+    Show only currently playing
+  </mat-checkbox>
+
   <h3 class="text-xl font-bold">Categories
     <button mat-raised-button color="secondary" (click)="toggleAllSelected()">Select {{allCategoriesSelected() ? 'none' : 'all'}}</button>
   </h3>

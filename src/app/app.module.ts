@@ -26,6 +26,7 @@ import { CardtestComponent } from './cardtest/cardtest.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule } from '@angular/forms';
+import { FilterCategoriesPipe } from './filter-categories.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     NavigationComponent,
     CardtestComponent,
     FiltersComponent,
+    FilterCategoriesPipe,
   ],
   imports: [
     BrowserModule,

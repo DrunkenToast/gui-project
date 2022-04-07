@@ -32,7 +32,7 @@ export class AudioService {
   }
 
   /**Stops all audio players */
-  autoStop() {
+  autoStop(): void {
     console.log(this.previousStates, this.currentStates)
     this.previousStates = new Map(this.currentStates);
     console.log(this.previousStates, this.currentStates)
@@ -43,17 +43,19 @@ export class AudioService {
   }
 
   /**Resumes all audio players that were stopped with autoStop() */
-  autoResume() {
+  autoResume(): void {
     this.loadStates(this.previousStates);
   }
 
-  isPlaying() {
+  isPlaying(): boolean {
     return this.globalStatus == AudioStatus.playing;
   }
 
-  getCurrentStates() {return this.currentStates}
+  getCurrentStates(): Map<Number, AudioStatus> {
+    return this.currentStates
+  }
 
-  loadStates(states: Map<Number, AudioStatus>) {
+  loadStates(states: Map<Number, AudioStatus>): void {
     for (let [id, state] of states) {
       console.debug(id, state);
       if (state == AudioStatus.playing)
@@ -61,7 +63,6 @@ export class AudioService {
     }
     this.globalStatus = AudioStatus.playing;
   }
-
 }
 
 class AudioPlayer {

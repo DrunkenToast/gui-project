@@ -13,8 +13,8 @@ export class DataService {
   categories: Category[] = [];
 
   filters = {
-    currentlyPlaying: false,
     categories: [] as boolean[],
+    currentlyPlaying: false,
   }
 
   constructor(private http: HttpClient, private audioService: AudioService) {
