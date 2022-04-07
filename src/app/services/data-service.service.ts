@@ -7,5 +7,5 @@ export class DataServiceService {
 
   constructor() {}
 
-  getSounds()
+  getSounds() {}
 }

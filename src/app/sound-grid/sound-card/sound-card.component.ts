@@ -4,13 +4,13 @@ import { AudioData } from 'src/app/audio-data';
 import { AudioService, AudioStatus } from 'src/app/services/audio-service.service';
 
 @Component({
-  selector: 'app-audio-card',
-  templateUrl: './audio-card.component.html',
-  styleUrls: ['./audio-card.component.css'],
+  selector: 'app-sound-card',
+  templateUrl: './sound-card.component.html',
+  styleUrls: ['./sound-card.component.css'],
   providers: [],
   host: {'[class]': "'w-full lg:w-1/2'"}
 })
-export class AudioCardComponent implements OnInit {
+export class SoundCardComponent implements OnInit {
   active: boolean = false;
   volume: number|null|undefined;
 

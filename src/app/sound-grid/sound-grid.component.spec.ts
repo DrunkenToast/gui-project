@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AudioCardComponent } from './audio-card.component';
+import { SoundGridComponent } from './sound-grid.component';
 
-describe('AudioCardComponent', () => {
-  let component: AudioCardComponent;
-  let fixture: ComponentFixture<AudioCardComponent>;
+describe('MainComponent', () => {
+  let component: SoundGridComponent;
+  let fixture: ComponentFixture<SoundGridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AudioCardComponent ]
+      declarations: [ SoundGridComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AudioCardComponent);
+    fixture = TestBed.createComponent(SoundGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

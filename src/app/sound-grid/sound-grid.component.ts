@@ -3,12 +3,12 @@ import { AudioData } from '../audio-data';
 import { AudioService } from '../services/audio-service.service';
 
 @Component({
-  selector: 'app-audio-grid',
-  templateUrl: './audio-grid.component.html',
-  styleUrls: ['./audio-grid.component.css'],
+  selector: 'app-sound-grid',
+  templateUrl: './sound-grid.component.html',
+  styleUrls: ['./sound-grid.component.css'],
   host: {'[class]': "'bg-slate-500 rounded-lg m-2 overflow-auto'"}
 })
-export class AudioGridComponent implements OnInit {
+export class SoundGridComponent implements OnInit {
   @Input() categoryFilter: any;
 
   constructor(private audioService: AudioService) {

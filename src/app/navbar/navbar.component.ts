@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AudioService } from '../services/AudioService';
+import { AudioService } from '../services/audio-service.service';
 
 @Component({
   selector: 'app-navbar',
