@@ -1,75 +1,57 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AudioData } from '../audio-data';
+import { Category } from '../models/category-data';
+import { Sound } from '../models/sound-data';
 import { AudioService } from '../services/audio-service.service';
+import { DataService } from '../services/data-service.service';
 
 @Component({
   selector: 'app-sound-grid',
   templateUrl: './sound-grid.component.html',
   styleUrls: ['./sound-grid.component.css'],
-  host: {'[class]': "'bg-slate-500 rounded-lg m-2 overflow-auto'"}
+  host: {'[class]': "'bg-slate-500 rounded-lg m-2 overflow-auto h-full'"}
 })
 export class SoundGridComponent implements OnInit {
   @Input() categoryFilter: any;
 
-  constructor(private audioService: AudioService) {
-    for (let sound of this.sounds) {
-      this.audioService.set(sound.id);
-      this.audioService.get(sound.id)?.setSource(sound.src);
-      this.audioService.get(sound.id)?.setLoop(sound.loop);
-    }
+  sounds: Sound[] = []
+  categories: Category[] = [];
+
+  constructor(private audioService: AudioService, private data: DataService) {
+    this.OnGetSounds()
   }
 
-  categories = [
-    {
-      id: 1,
-      name: 'Nature'
-    },
-    {
-      id: 2,
-      name: 'City'
-    }
-  ]
-
-  sounds = [
-    {
-      id: 1,
-      title: 'Birds',
-      loop: true,
-      categoryID: 1,
-      icon: 'fa-solid fa-dove',
-      src: 'assets/sounds/birds.ogg',
-    },
-    {
-      id: 2,
-      title: 'Boat',
-      loop: true,
-      categoryID: 2,
-      icon: 'fa-solid fa-anchor',
-      src: 'assets/sounds/boat.ogg',
-    },
-    {
-      id: 3,
-      title: 'City',
-      loop: true,
-      categoryID: 2,
-      icon: 'fa-solid fa-city',
-      src: 'assets/sounds/city.ogg',
-    },
-    {
-      id: 4,
-      title: 'Coffee shop',
-      loop: true,
-      categoryID: 2,
-      icon: 'fa-solid fa-mug-hot',
-      src: 'assets/sounds/coffee-shop.ogg',
-    },
-  ]
 
   ngOnInit(): void {
-    console.log(JSON.stringify(this.sounds))
+    this.OnGetCategories()
+    this.OnGetSounds()
   }
 
-  filterCategories() {
-    return this.categories.filter((c) => c.id == this.categoryFilter)
+  OnGetSounds() {
+    this.data.getSounds().subscribe({
+      next: (sounds: Sound[]) => {
+        this.sounds = sounds;
+        for (let sound of this.sounds) {
+          // Might cause issues later when one new sound gets added
+          this.audioService.set(sound.id);
+          this.audioService.get(sound.id)?.setSource(sound.src);
+          this.audioService.get(sound.id)?.setLoop(sound.loop);
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
+
+  OnGetCategories() {
+    this.data.getCategories().subscribe({
+      next: (categories: Category[]) => {
+        this.categories = categories;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
+  }
+
 }

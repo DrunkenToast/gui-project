@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
-import { AudioData } from 'src/app/audio-data';
+import { Sound } from 'src/app/models/sound-data';
 import { AudioService, AudioStatus } from 'src/app/services/audio-service.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class SoundCardComponent implements OnInit {
   active: boolean = false;
   volume: number|null|undefined;
 
-  @Input() audioData: AudioData = {
+  @Input() audioData: Sound = {
     id: 1,
     title: 'No sound',
     loop: true,

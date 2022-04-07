@@ -1,4 +1,26 @@
 {
+  "categories": [
+    {
+      "id": 1,
+      "name": "Nature"
+    },
+    {
+      "id": 2,
+      "name": "Travel"
+    },
+    {
+      "id": 3,
+      "name": "Interiors"
+    },
+    {
+      "id": 4,
+      "name": "Noise"
+    },
+    {
+      "id": 5,
+      "name": "Other"
+    }
+  ],
   "sounds": [
     {
       "id": 1,
@@ -6,7 +28,7 @@
       "loop": true,
       "categoryID": 1,
       "icon": "fa-solid fa-dove",
-      "src": "sounds/birds.ogg"
+      "src": "assets/sounds/birds.ogg"
     },
     {
       "id": 2,
@@ -14,7 +36,7 @@
       "loop": true,
       "categoryID": 2,
       "icon": "fa-solid fa-anchor",
-      "src": "sounds/boat.ogg"
+      "src": "assets/sounds/boat.ogg"
     },
     {
       "id": 3,
@@ -22,63 +44,63 @@
       "loop": true,
       "categoryID": 2,
       "icon": "fa-solid fa-city",
-      "src": "sounds/city.ogg"
+      "src": "assets/sounds/city.ogg"
     },
     {
       "id": 4,
       "title": "Coffee shop",
       "loop": true,
-      "categoryID": 2,
+      "categoryID": 3,
       "icon": "fa-solid fa-mug-hot",
-      "src": "sounds/coffeeshop.ogg"
+      "src": "assets/sounds/coffeeshop.ogg"
     },
     {
       "id": 5,
       "title": "Fire place",
       "loop": true,
-      "categoryID": 2,
-      "icon": "fa-solid fa-campfire",
-      "src": "sounds/fireplace.ogg"
+      "categoryID": 3,
+      "icon": "fa-solid fa-fire",
+      "src": "assets/sounds/fireplace.ogg"
     },
     {
       "id": 6,
       "title": "Pink noise",
       "loop": true,
-      "categoryID": 2,
-      "icon": "fa-solid fa-waveform-lines",
-      "src": "sounds/pinknoise.ogg"
+      "categoryID": 4,
+      "icon": "fa-solid fa-ear-listen",
+      "src": "assets/sounds/pinknoise.ogg"
     },
     {
       "id": 7,
       "title": "Rain",
       "loop": true,
-      "categoryID": 2,
-      "icon": "fa-solid fa-raindrops",
-      "src": "sounds/rain.ogg"
+      "categoryID": 1,
+      "icon": "fa-solid fa-cloud-rain",
+      "src": "assets/sounds/rain.ogg"
     },
     {
       "id": 8,
       "title": "Storm",
       "loop": true,
-      "categoryID": 2,
+      "categoryID": 1,
       "icon": "fa-solid fa-cloud-bolt",
-      "src": "sounds/storm.ogg"
+      "src": "assets/sounds/storm.ogg"
     },
     {
       "id": 9,
       "title": "Stream",
       "loop": true,
-      "categoryID": 2,
+      "categoryID": 1,
       "icon": "fa-solid fa-water",
-      "src": "sounds/stream.ogg"
+      "src": "assets/sounds/stream.ogg"
     },
     {
       "id": 10,
       "title": "Summer night",
       "loop": true,
-      "categoryID": 2,
+      "categoryID": 1,
       "icon": "fa-solid fa-moon",
-      "src": "sounds/summernight.ogg"
+      "src": "assets/sounds/summernight.ogg"
     },
     {
       "id": 11,
@@ -86,31 +108,31 @@
       "loop": true,
       "categoryID": 2,
       "icon": "fa-solid fa-train",
-      "src": "sounds/train.ogg"
+      "src": "assets/sounds/train.ogg"
     },
     {
       "id": 12,
       "title": "Waves",
       "loop": true,
-      "categoryID": 2,
-      "icon": "fa-solid fa-water-arrow-up",
-      "src": "sounds/waves.ogg"
+      "categoryID": 1,
+      "icon": "fa-solid fa-water",
+      "src": "assets/sounds/waves.ogg"
     },
     {
       "id": 13,
       "title": "White noise",
       "loop": true,
-      "categoryID": 2,
-      "icon": "fa-solid fa-waveform",
-      "src": "sounds/whitenoise.ogg"
+      "categoryID": 4,
+      "icon": "fa-solid fa-snowflake",
+      "src": "assets/sounds/whitenoise.ogg"
     },
     {
       "id": 14,
       "title": "Wind",
       "loop": true,
-      "categoryID": 2,
+      "categoryID": 1,
       "icon": "fa-solid fa-wind",
-      "src": "sounds/wind.ogg"
+      "src": "assets/sounds/wind.ogg"
     }
   ]
 }

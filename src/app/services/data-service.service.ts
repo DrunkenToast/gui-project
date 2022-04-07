@@ -1,11 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from '../models/category-data';
+import { Sound } from '../models/sound-data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataServiceService {
+export class DataService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getSounds() {}
+  getSounds(): Observable<Sound[]> {
+    return this.http.get<Sound[]>('http://localhost:3000/sounds');
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:3000/categories');
+  }
+
 }

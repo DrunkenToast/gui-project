@@ -3,7 +3,7 @@ Describes the data for an audio component. This does not include data such as vo
 It does include data such as loop and interval because it describes how that audio component should function.
 */
 
-export interface AudioData {
+export interface Sound {
   id: number,
   title: string,
   icon: string,
