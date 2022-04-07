@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { AudioData } from 'src/app/audio-data';
-import { AudioService, AudioStatus } from 'src/app/services/AudioService';
+import { AudioService, AudioStatus } from 'src/app/services/audio-service.service';
 
 @Component({
   selector: 'app-audio-card',

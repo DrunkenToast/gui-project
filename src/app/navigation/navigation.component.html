@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
@@ -9,9 +9,9 @@
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <!-- <mat-toolbar color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -21,7 +21,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>guiproject</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
+    </mat-toolbar> -->
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

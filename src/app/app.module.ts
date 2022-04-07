@@ -21,6 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { CardtestComponent } from './cardtest/cardtest.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
     NavbarComponent,
     FilterSoundsPipe,
     NavigationComponent,
+    CardtestComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     LayoutModule,
     MatListModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

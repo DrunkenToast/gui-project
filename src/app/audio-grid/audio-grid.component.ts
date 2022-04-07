@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AudioData } from '../audio-data';
-import { AudioService } from '../services/AudioService';
+import { AudioService } from '../services/audio-service.service';
 
 @Component({
   selector: 'app-audio-grid',
@@ -66,6 +66,7 @@ export class AudioGridComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    console.log(JSON.stringify(this.sounds))
   }
 
   filterCategories() {
