@@ -24,6 +24,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { CardtestComponent } from './cardtest/cardtest.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FiltersComponent } from './filters/filters.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     FilterSoundsPipe,
     NavigationComponent,
     CardtestComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     MatListModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-<div *ngFor="let category of categories" class="w-full ">
+<div *ngFor="let category of data.categories" class="w-full ">
   <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
   <div class="flex flex-row flex-wrap w-full h-full">
-    <app-sound-card *ngFor="let data of (sounds | filterSounds : category.id)" [audioData]="data"></app-sound-card>
+    <app-sound-card *ngFor="let data of (data.sounds | filterSounds : category.id)" [audioData]="data"></app-sound-card>
   </div>
 </div>

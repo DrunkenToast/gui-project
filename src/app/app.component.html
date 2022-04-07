@@ -3,15 +3,16 @@
 <app-navigation>
 
   <div class="flex flex-row">
-    <div class="w-1/4 p-5 flex flex-col">
-      <h3 class="text-xl font-bold">Categories
+    <!-- <div class="w-1/4 p-5 flex flex-col"> -->
+      <app-filters class="w-1/4"></app-filters>
+      <!-- <h3 class="text-xl font-bold">Categories
         <button mat-raised-button color="secondary">Select all/none</button>
 
       </h3>
       <mat-checkbox>Nature</mat-checkbox>
       <mat-checkbox>City</mat-checkbox>
       <mat-checkbox>...</mat-checkbox>
-    </div>
+    </div> -->
     <app-sound-grid class="w-2/4"></app-sound-grid>
     <div class="w-1/4 p-5 flex flex-col">
       <app-cardtest></app-cardtest>

@@ -134,10 +134,10 @@ class AudioPlayer {
 }
 
 export enum AudioStatus {
-  playing,
-  paused,
-  waiting,
-  ended,
+  playing = "playing",
+  paused = "paused",
+  waiting = "waiting",
+  ended = "ended",
 }
 
 

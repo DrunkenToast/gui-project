@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioService } from '../services/audio-service.service';
+import { DataService } from '../services/data-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { AudioService } from '../services/audio-service.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public audioService: AudioService) { }
+  constructor(public audioService: AudioService, private data: DataService) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +23,6 @@ export class NavbarComponent implements OnInit {
       console.log('Playing...');
       this.audioService.autoResume()
     }
+    this.data.updateSounds();
   }
 }
