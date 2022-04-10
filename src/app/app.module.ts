@@ -22,11 +22,15 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import { CardtestComponent } from './cardtest/cardtest.component';
+import { PresetCardComponent } from './presets/preset-card/preset-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule } from '@angular/forms';
 import { FilterCategoriesPipe } from './filter-categories.pipe';
+import { PresetNameDialog, PresetsComponent } from './presets/presets.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,11 @@ import { FilterCategoriesPipe } from './filter-categories.pipe';
     NavbarComponent,
     FilterSoundsPipe,
     NavigationComponent,
-    CardtestComponent,
+    PresetCardComponent,
     FiltersComponent,
     FilterCategoriesPipe,
+    PresetsComponent,
+    PresetNameDialog,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,10 @@ import { FilterCategoriesPipe } from './filter-categories.pipe';
     MatListModule,
     MatCardModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

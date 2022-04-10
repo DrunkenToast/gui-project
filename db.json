@@ -134,5 +134,31 @@
       "icon": "fa-solid fa-wind",
       "src": "assets/sounds/wind.ogg"
     }
+  ],
+  "presets": [
+    {
+      "id": 1,
+      "name": "Preset1",
+      "playerStates": [
+        {
+          "id": 1,
+          "status": "playing"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Preset numero dos",
+      "playerStates": [
+        {
+          "id": 1,
+          "status": "playing"
+        },
+        {
+          "id": 4,
+          "status": "playing"
+        }
+      ]
+    }
   ]
 }

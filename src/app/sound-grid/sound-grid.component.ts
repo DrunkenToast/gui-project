@@ -13,11 +13,20 @@ import { DataService } from '../services/data-service.service';
 export class SoundGridComponent implements OnInit {
   @Input() categoryFilter: any;
 
-  constructor(public data: DataService) {
+  constructor(public data: DataService, public audioService: AudioService) {
   }
 
 
   ngOnInit(): void {
 
+  }
+
+  filterIsPlaying(soundID: number): boolean {
+    if (this.data.filters.currentlyPlaying) {
+      return this.audioService.isPlaying(soundID);
+    }
+    else {
+      return true;
+    }
   }
 }

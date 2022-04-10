@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Name preset</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Preset name</mat-label>
+    <input matInput [(ngModel)]="data">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Name it!</button>
+</div>

@@ -1,6 +1,9 @@
-<div *ngFor="let category of data.categories | filterCategories : this.data.filters.categories" class="w-full ">
+<div *ngFor="let category of data.categories" class="w-full ">
   <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
   <div class="flex flex-row flex-wrap w-full h-full">
-    <app-sound-card *ngFor="let data of (data.sounds | filterSounds : category.id)" [audioData]="data"></app-sound-card>
+    <ng-container *ngFor="let sound of (data.sounds | filterSounds : category.id)">
+      <app-sound-card *ngIf="filterIsPlaying(sound.id)"
+      [audioData]="sound"></app-sound-card>
+    </ng-container>
   </div>
 </div>

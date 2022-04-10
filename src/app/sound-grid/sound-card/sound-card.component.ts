@@ -49,6 +49,6 @@ export class SoundCardComponent implements OnInit {
   }
 
   isActive() {
-    return this.audioService.get(this.audioData.id)?.getStatus() == AudioStatus.playing
+    return this.audioService.isPlaying(this.audioData.id)
   }
 }

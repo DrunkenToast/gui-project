@@ -8,7 +8,6 @@ export class AudioService {
   private audioPlayers = new Map<Number, AudioPlayer>();
   private currentStates = new Map<Number, AudioStatus>();
   private previousStates = new Map<Number, AudioStatus>();
-  private globalStatus: AudioStatus.paused | AudioStatus.playing = AudioStatus.paused;
 
   constructor() {
   }
@@ -16,13 +15,8 @@ export class AudioService {
   /** initialises an audioplayer */
   set(id: number): void {
     this.audioPlayers.set(id, new AudioPlayer());
-
     this.audioPlayers.get(id)?.statusChange.subscribe((status: AudioStatus) => {
       this.currentStates.set(id, status);
-
-      if (status == AudioStatus.playing) {
-        this.globalStatus = AudioStatus.playing;
-      }
     });
   }
 
@@ -33,13 +27,10 @@ export class AudioService {
 
   /**Stops all audio players */
   autoStop(): void {
-    console.log(this.previousStates, this.currentStates)
     this.previousStates = new Map(this.currentStates);
-    console.log(this.previousStates, this.currentStates)
     this.audioPlayers.forEach(player => {
       player.stop();
     });
-    this.globalStatus = AudioStatus.paused;
   }
 
   /**Resumes all audio players that were stopped with autoStop() */
@@ -47,8 +38,18 @@ export class AudioService {
     this.loadStates(this.previousStates);
   }
 
-  isPlaying(): boolean {
-    return this.globalStatus == AudioStatus.playing;
+  isPlaying(soundID?: number): boolean {
+    if (soundID) {
+      return this.currentStates.get(soundID) == AudioStatus.playing;
+    }
+    else {
+      let status = false
+      this.currentStates.forEach((state) => {
+        if (state == AudioStatus.playing)
+          status = true;
+      });
+      return status;
+    }
   }
 
   getCurrentStates(): Map<Number, AudioStatus> {
@@ -56,12 +57,11 @@ export class AudioService {
   }
 
   loadStates(states: Map<Number, AudioStatus>): void {
+    this.autoStop();
     for (let [id, state] of states) {
-      console.debug(id, state);
       if (state == AudioStatus.playing)
         this.audioPlayers.get(id)?.play()
     }
-    this.globalStatus = AudioStatus.playing;
   }
 }
 

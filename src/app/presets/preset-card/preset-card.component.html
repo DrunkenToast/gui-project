@@ -1,0 +1,18 @@
+<mat-card >
+    <mat-card-title>{{presetData.name}}</mat-card-title>
+  <mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="loadPreset()">Play</button>
+      <button mat-icon-button (click)="renamePreset()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon class="text-yellow-400">star_outline</mat-icon>
+      </button>
+    </mat-card-actions>
+
+  </mat-card-content>
+</mat-card>

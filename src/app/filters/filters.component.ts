@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { DataService } from '../services/data-service.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 
   // Ugly code, but it works
   toggleAllSelected(): void {

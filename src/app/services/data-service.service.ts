@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category-data';
+import { Preset } from '../models/preset-data';
 import { Sound } from '../models/sound-data';
 import { AudioService } from './audio-service.service';
 
@@ -11,6 +12,7 @@ export class DataService {
 
   sounds: Sound[] = [];
   categories: Category[] = [];
+  presets: Preset[] = [];
 
   filters = {
     categories: [] as boolean[],
@@ -20,6 +22,7 @@ export class DataService {
   constructor(private http: HttpClient, private audioService: AudioService) {
     this.updateCategories();
     this.updateSounds();
+    this.updatePresets();
   }
 
   updateSounds(): void {
@@ -55,4 +58,14 @@ export class DataService {
     });;
   }
 
+  updatePresets(): void {
+    this.http.get<Preset[]>('http://localhost:3000/presets').subscribe({
+      next: (presets: Preset[]) => {
+        this.presets = presets;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });;
+  }
 }
