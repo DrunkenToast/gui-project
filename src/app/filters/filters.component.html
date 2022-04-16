@@ -11,7 +11,8 @@
 
   <mat-checkbox [(ngModel)]="data.filters.categories[category.id]" [checked]="true"
   *ngFor="let category of data.categories"
-  [value]="category.id.toString()">
+  [value]="category.id.toString()"
+  class="p-1">
     {{category.name}}
   </mat-checkbox>
 </div>

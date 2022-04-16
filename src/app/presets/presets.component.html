@@ -1,4 +1,6 @@
+<h3 class="text-xl font-bold mt-5">Presets
+  <button mat-raised-button color="secondary" (click)="createPreset()">Create new preset</button>
+</h3>
 <ng-container *ngFor="let preset of this.data.presets">
   <app-preset-card [presetData]="preset"></app-preset-card>
-
 </ng-container>

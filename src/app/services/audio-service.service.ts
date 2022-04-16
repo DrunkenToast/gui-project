@@ -1,13 +1,15 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { PlayerState } from '../models/preset-data';
+import { AudioStatus } from '../models/sound-data';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AudioService {
-  private audioPlayers = new Map<Number, AudioPlayer>();
-  private currentStates = new Map<Number, AudioStatus>();
-  private previousStates = new Map<Number, AudioStatus>();
+  private audioPlayers = new Map<number, AudioPlayer>();
+  private currentStates: PlayerState[] = [];
+  private previousStates: PlayerState[] = [];
 
   constructor() {
   }
@@ -15,8 +17,27 @@ export class AudioService {
   /** initialises an audioplayer */
   set(id: number): void {
     this.audioPlayers.set(id, new AudioPlayer());
-    this.audioPlayers.get(id)?.statusChange.subscribe((status: AudioStatus) => {
-      this.currentStates.set(id, status);
+    let player = this.audioPlayers.get(id)!;
+
+    player.statusChange.subscribe((status: AudioStatus) => {
+      // this.currentStates.set(id, status);
+      let state = this.currentStates.find(state => state.id == id);
+      if (state) {
+        state.status = status;
+      }
+      else {
+        this.currentStates.push({ id: id, status: status, volume: player.getVolume() });
+      }
+    });
+
+    player.volumeChange.subscribe((val: number) => {
+      let state = this.currentStates.find(state => state.id == id);
+      if (state) {
+        state.volume = val;
+      }
+      else {
+        this.currentStates.push({ id: id, status: player.getStatus(), volume: val });
+      }
     });
   }
 
@@ -27,7 +48,9 @@ export class AudioService {
 
   /**Stops all audio players */
   autoStop(): void {
-    this.previousStates = new Map(this.currentStates);
+    this.saveCurrentStates();
+
+    // stop all players
     this.audioPlayers.forEach(player => {
       player.stop();
     });
@@ -40,35 +63,61 @@ export class AudioService {
 
   isPlaying(soundID?: number): boolean {
     if (soundID) {
-      return this.currentStates.get(soundID) == AudioStatus.playing;
+      let state = this.currentStates.find(state => state.id == soundID);
+      return state?.status == 'playing';
     }
     else {
       let status = false
       this.currentStates.forEach((state) => {
-        if (state == AudioStatus.playing)
+        if (state.status == 'playing') {
           status = true;
+        }
       });
       return status;
     }
   }
 
-  getCurrentStates(): Map<Number, AudioStatus> {
-    return this.currentStates
+  loadStates(states: PlayerState[]): void {
+
+    // Old code: this would cause a stutter.
+    // this.autoStop();
+    // states.forEach((state) => {
+    //   if (state.status == 'playing') {
+    //     this.audioPlayers.get(state.id)?.play();
+    //     this.audioPlayers.get(state.id)?.setVolume(state.volume);
+    //   }
+    // });
+
+    this.saveCurrentStates();
+
+    this.audioPlayers.forEach((player, id) => {
+      let state = states.find(state => state.id == id);
+      if (state) {
+        state.status == 'playing' ? player.play() : player.stop();
+        player.setVolume(state.volume);
+      }
+      else {
+        player.stop();
+      }
+    });
   }
 
-  loadStates(states: Map<Number, AudioStatus>): void {
-    this.autoStop();
-    for (let [id, state] of states) {
-      if (state == AudioStatus.playing)
-        this.audioPlayers.get(id)?.play()
-    }
+  exportStates(): PlayerState[] {
+    return this.currentStates.slice();
   }
+
+  private saveCurrentStates(): void {
+    // deep copy current states
+    this.previousStates = JSON.parse(JSON.stringify(this.currentStates));
+  }
+
 }
 
 class AudioPlayer {
   private audio: HTMLAudioElement;
-  private status: AudioStatus = AudioStatus.paused;
-  public statusChange = new EventEmitter();
+  private status: AudioStatus = 'paused';
+  public statusChange = new EventEmitter<AudioStatus>();
+  public volumeChange = new EventEmitter<number>();
 
   constructor() {
     this.audio = new Audio();
@@ -82,19 +131,19 @@ class AudioPlayer {
   private setStatus = (ev: Event) => {
     switch (ev.type) {
       case 'playing':
-          this.status = AudioStatus.playing;
+          this.status = 'playing';
           break;
       case 'pause':
-          this.status = AudioStatus.paused;
+          this.status = 'paused';
           break;
       case 'waiting':
-          this.status = AudioStatus.waiting;
+          this.status = 'waiting';
           break;
       case 'ended':
-          this.status = AudioStatus.ended;
+          this.status = 'ended';
           break;
       default:
-          this.status = AudioStatus.paused;
+          this.status = 'paused';
           break;
     }
     this.statusChange.emit(this.status);
@@ -107,13 +156,13 @@ class AudioPlayer {
   play() {
     console.log('playing', this.audio.volume);
     this.audio.play();
-    this.status = AudioStatus.playing;
+    this.status = 'playing';
   }
 
   stop() {
     this.audio.pause();
     this.audio.currentTime = 0;
-    this.status = AudioStatus.paused;
+    this.status = 'paused';
   }
 
   setSource(src: string) {
@@ -127,6 +176,11 @@ class AudioPlayer {
 
   setVolume(volume: number) {
     this.audio.volume = volume;
+    this.volumeChange.emit(volume);
+  }
+
+  getVolume() {
+    return this.audio.volume;
   }
 
   getTime() {
@@ -134,12 +188,12 @@ class AudioPlayer {
   }
 }
 
-export enum AudioStatus {
-  playing = "playing",
-  paused = "paused",
-  waiting = "waiting",
-  ended = "ended",
-}
+// export enum AudioStatus {
+//   playing = "playing",
+//   paused = "paused",
+//   waiting = "waiting",
+//   ended = "ended",
+// }
 
 
 // export interface AudioIntervalData {

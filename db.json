@@ -18,7 +18,7 @@
     },
     {
       "id": 5,
-      "name": "Other"
+      "name": "Custom"
     }
   ],
   "sounds": [
@@ -137,28 +137,14 @@
   ],
   "presets": [
     {
-      "id": 1,
-      "name": "Preset1",
-      "playerStates": [
-        {
-          "id": 1,
-          "status": "playing"
-        }
-      ]
+      "name": "FULL NATURE",
+      "playerStates": [],
+      "id": 5
     },
     {
-      "id": 2,
-      "name": "Preset numero dos",
-      "playerStates": [
-        {
-          "id": 1,
-          "status": "playing"
-        },
-        {
-          "id": 4,
-          "status": "playing"
-        }
-      ]
+      "name": "New preset",
+      "playerStates": [],
+      "id": 6
     }
   ]
 }

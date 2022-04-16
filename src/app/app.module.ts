@@ -31,6 +31,8 @@ import { PresetNameDialog, PresetsComponent } from './presets/presets.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +69,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule {

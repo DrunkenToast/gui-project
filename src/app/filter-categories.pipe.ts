@@ -3,7 +3,8 @@ import { Category } from './models/category-data';
 import { DataService } from './services/data-service.service';
 
 @Pipe({
-  name: 'filterCategories'
+  name: 'filterCategories',
+  pure: false
 })
 export class FilterCategoriesPipe implements PipeTransform {
 
@@ -11,7 +12,7 @@ export class FilterCategoriesPipe implements PipeTransform {
 
   transform(value: Category[], ...args: unknown[]): Category[] {
     return value.filter(category => {
-      (args[0] as Category[])[category.id] || true;
+      return (args[0] as boolean[])[category.id];
     })
   }
 

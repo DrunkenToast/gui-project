@@ -15,3 +15,5 @@ export interface Sound {
     max: number
   }
 }
+
+export type AudioStatus = 'playing' | 'paused' | 'waiting' | 'ended';

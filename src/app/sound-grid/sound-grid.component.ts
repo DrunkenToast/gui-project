@@ -8,7 +8,6 @@ import { DataService } from '../services/data-service.service';
   selector: 'app-sound-grid',
   templateUrl: './sound-grid.component.html',
   styleUrls: ['./sound-grid.component.css'],
-  host: {'[class]': "'bg-slate-500 rounded-lg m-2 overflow-auto h-full'"}
 })
 export class SoundGridComponent implements OnInit {
   @Input() categoryFilter: any;

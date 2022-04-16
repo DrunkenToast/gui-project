@@ -1,9 +1,11 @@
-<div *ngFor="let category of data.categories" class="w-full ">
-  <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
-  <div class="flex flex-row flex-wrap w-full h-full">
-    <ng-container *ngFor="let sound of (data.sounds | filterSounds : category.id)">
-      <app-sound-card *ngIf="filterIsPlaying(sound.id)"
-      [audioData]="sound"></app-sound-card>
-    </ng-container>
+<div class="bg-gray-600 rounded-lg m-6 overflow-auto shadow-xl transition-all">
+  <div *ngFor="let category of data.categories | filterCategories : data.filters.categories" class="w-full ">
+    <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
+    <div class="flex flex-row flex-wrap w-full h-full">
+      <ng-container *ngFor="let sound of (data.sounds | filterSounds : category.id)">
+        <app-sound-card *ngIf="filterIsPlaying(sound.id)"
+        [audioData]="sound"></app-sound-card>
+      </ng-container>
+    </div>
   </div>
 </div>

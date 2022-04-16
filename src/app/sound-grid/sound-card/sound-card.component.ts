@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MatSliderChange } from '@angular/material/slider';
 import { Sound } from 'src/app/models/sound-data';
-import { AudioService, AudioStatus } from 'src/app/services/audio-service.service';
+import { AudioService } from 'src/app/services/audio-service.service';
 
 @Component({
   selector: 'app-sound-card',
@@ -50,5 +50,9 @@ export class SoundCardComponent implements OnInit {
 
   isActive() {
     return this.audioService.isPlaying(this.audioData.id)
+  }
+
+  getVolume() {
+    return this.audioService.get(this.audioData.id)?.getVolume();
   }
 }
