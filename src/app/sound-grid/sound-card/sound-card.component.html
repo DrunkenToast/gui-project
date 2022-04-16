@@ -1,7 +1,8 @@
-<div class="flex flex-row items-center bg-gray-700 text-white p-2 rounded-xl m-2 shadow-lg"
+<div class="flex flex-row items-center bg-gray-700 text-white
+transition-all p-2 rounded-xl m-2 shadow-lg"
 [ngClass]="isActive() ? 'text-white' : 'text-gray-500'">
 
-  <div class=""
+  <div class="cursor-pointer"
   (click)="toggle()">
     <i [ngClass]="'text-[3rem] p-4 ' + audioData.icon"></i>
   </div>
@@ -10,10 +11,21 @@
     <div class="flex flex-row w-full">
       <span class="text-xl p-2 font-bold">{{ audioData.title }}</span>
       <div class="ml-auto text-white">
-        <button mat-icon-button>
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="editSoundCard()">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="deleteSoundCard()">
+            <mat-icon color="warn">delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+
+      </div>
     </div>
 
     <mat-slider class=""

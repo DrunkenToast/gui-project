@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data-service.service';
 import { Preset } from '../../models/preset-data';
 import { AudioService } from '../../services/audio-service.service';
-import { PresetNameDialog } from '../presets.component';
+import { PresetNameDialog } from '../../dialogs/dialogs.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

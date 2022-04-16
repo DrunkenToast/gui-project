@@ -7,7 +7,9 @@ import { Sound } from './models/sound-data';
 export class FilterSoundsPipe implements PipeTransform {
 
   transform(value: Sound[], ...args: unknown[]): Sound[] {
-    return (value as Sound[]).filter((a) => a.categoryID === args[0]);
+    return (value as Sound[])
+      .filter(sound => sound.title.toLowerCase().includes((args[0] as string).toString().toLowerCase()))
+      .filter((a) => a.categoryID === args[1]);
   }
 
 }

@@ -1,4 +1,12 @@
 <div class="p-5 flex flex-col">
+
+    <mat-form-field c>
+
+      <input type="text" matInput placeholder="Search sounds" [(ngModel)]="data.filters.soundKeyword">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+
   <mat-checkbox [(ngModel)]="data.filters.currentlyPlaying">
     Show currently playing
   </mat-checkbox>

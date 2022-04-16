@@ -5,7 +5,7 @@
     <input matInput [(ngModel)]="data">
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
+<mat-dialog-actions align="end">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
   <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Name it!</button>
-</div>
+</mat-dialog-actions>

@@ -2,7 +2,7 @@
 <app-navigation>
   <app-navbar></app-navbar>
 
-  <div class="flex flex-row">
+  <div class="flex flex-row min-h-fit">
     <!-- <div class="w-1/4 p-5 flex flex-col"> -->
       <app-filters class="w-1/4"></app-filters>
       <!-- <h3 class="text-xl font-bold">Categories
@@ -13,7 +13,7 @@
       <mat-checkbox>City</mat-checkbox>
       <mat-checkbox>...</mat-checkbox>
     </div> -->
-    <app-sound-grid class="w-2/4"></app-sound-grid>
+    <app-sound-grid class="w-2/4 overflow-auto"></app-sound-grid>
     <div class="w-1/4 p-5 flex flex-col">
       <app-presets class="w-full"></app-presets>
     </div>

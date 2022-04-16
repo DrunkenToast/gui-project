@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { DataService } from '../services/data-service.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Preset } from '../models/preset-data';
 import { AudioService } from '../services/audio-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { PresetNameDialog } from '../dialogs/dialogs.component';
 
 @Component({
   selector: 'app-presets',
@@ -19,7 +19,6 @@ export class PresetsComponent implements OnInit {
 
   createPreset(): void {
     const dialogRef = this.dialog.open(PresetNameDialog, {
-      width: '250px',
       data: 'New preset'
     });
 
@@ -37,21 +36,5 @@ export class PresetsComponent implements OnInit {
         });
       }
     });
-  }
-}
-
-@Component({
-  selector: 'preset-name-dialog',
-  templateUrl: 'dialog-preset-name.html',
-})
-
-export class PresetNameDialog {
-  constructor(
-    public dialogRef: MatDialogRef<PresetNameDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }

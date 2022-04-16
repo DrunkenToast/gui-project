@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Edit sound card</h1>
+<mat-dialog-content>
+
+  <div class="flex flex-col w-fill">
+    <mat-form-field appearance="fill">
+      <mat-label>Preset name</mat-label>
+      <input matInput [(ngModel)]="data.title">
+    </mat-form-field>
+
+    <span>Preview icon: <i [class]="data.icon"></i></span>
+    <a class="text-blue-500 underline" href="https://fontawesome.com/search?m=free&s=solid%2Cbrands" target="_blank">
+      Check out available icons here
+    </a>
+    <mat-form-field appearance="fill">
+      <mat-label>Icon</mat-label>
+      <input matInput [(ngModel)]="data.icon">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Source path</mat-label>
+      <input matInput [(ngModel)]="data.src">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select required [(value)]="data.categoryID">
+        <mat-option *ngFor="let cat of dataservice.categories" [value]="cat.id">{{ cat.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Edit it!</button>
+</mat-dialog-actions>

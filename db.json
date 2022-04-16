@@ -138,13 +138,141 @@
   "presets": [
     {
       "name": "FULL NATURE",
-      "playerStates": [],
+      "playerStates": [
+        {
+          "id": 1,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 8,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 10,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 14,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 12,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 9,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 1
+        }
+      ],
       "id": 5
     },
     {
-      "name": "New preset",
-      "playerStates": [],
+      "name": "Windy city",
+      "playerStates": [
+        {
+          "id": 1,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 8,
+          "status": "playing",
+          "volume": 0.15
+        },
+        {
+          "id": 10,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 14,
+          "status": "playing",
+          "volume": 0.44
+        },
+        {
+          "id": 12,
+          "status": "paused",
+          "volume": 0.16
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 0.18
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 0.16
+        },
+        {
+          "id": 3,
+          "status": "playing",
+          "volume": 0.57
+        }
+      ],
       "id": 6
+    },
+    {
+      "name": "Tinnitus",
+      "playerStates": [
+        {
+          "id": 1,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 8,
+          "status": "paused",
+          "volume": 0.15
+        },
+        {
+          "id": 10,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 14,
+          "status": "paused",
+          "volume": 0.44
+        },
+        {
+          "id": 12,
+          "status": "paused",
+          "volume": 0.16
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 0.18
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 0.84
+        },
+        {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.57
+        },
+        {
+          "id": 13,
+          "status": "playing",
+          "volume": 0.38
+        }
+      ],
+      "id": 7
     }
   ]
 }

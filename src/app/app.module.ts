@@ -27,11 +27,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FiltersComponent } from './filters/filters.component';
 import { FormsModule } from '@angular/forms';
 import { FilterCategoriesPipe } from './filter-categories.pipe';
-import { PresetNameDialog, PresetsComponent } from './presets/presets.component';
+import { PresetsComponent } from './presets/presets.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog } from './dialogs/dialogs.component'
 
 
 @NgModule({
@@ -47,6 +50,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     FilterCategoriesPipe,
     PresetsComponent,
     PresetNameDialog,
+    SoundEditDialog,
+    ConfirmDeleteDialog,
   ],
   imports: [
     BrowserModule,
@@ -64,10 +69,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatListModule,
     MatCardModule,
     HttpClientModule,
-    FormsModule,
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
+    MatMenuModule,
+    FormsModule,
+    MatSelectModule,
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]

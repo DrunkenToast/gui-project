@@ -1,7 +1,11 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSliderChange } from '@angular/material/slider';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Sound } from 'src/app/models/sound-data';
 import { AudioService } from 'src/app/services/audio-service.service';
+import { DataService } from 'src/app/services/data-service.service';
+import { ConfirmDeleteDialog, SoundEditDialog } from '../../dialogs/dialogs.component';
 
 @Component({
   selector: 'app-sound-card',
@@ -23,7 +27,7 @@ export class SoundCardComponent implements OnInit {
     src: '',
   }
 
-  constructor(private audioService: AudioService) {
+  constructor(private audioService: AudioService, private dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -54,5 +58,49 @@ export class SoundCardComponent implements OnInit {
 
   getVolume() {
     return this.audioService.get(this.audioData.id)?.getVolume();
+  }
+
+  editSoundCard() {
+    const dialogRef = this.dialog.open(SoundEditDialog, {
+      data: {...this.audioData}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // this.audioData = result;
+        this.data.editSound(result).then(() => {
+          this.snackbar.open(`Sound edited! 🎉`, '', {
+            duration: 2000,
+          });
+        })
+        .catch(err => {
+          this.snackbar.open(`Failed to edit: ${err}`, '', {
+            duration: 2000,
+            });
+        }
+        );
+      }
+    });
+  }
+
+  deleteSoundCard() {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.data.deleteSound(this.audioData.id)
+        .then(() => {
+          this.snackbar.open(`Sound removed`, '', {
+            duration: 2000,
+          });
+        })
+        .catch(err => {
+          this.snackbar.open(`Failed to remove: ${err}`, '', {
+            duration: 2000,
+            });
+        });
+      }
+    }
+    );
   }
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Category } from '../models/category-data';
 import { PlayerState, Preset } from '../models/preset-data';
-import { Sound } from '../models/sound-data';
+import { Sound, SoundCreate } from '../models/sound-data';
 import { AudioService } from './audio-service.service';
 
 @Injectable({
@@ -15,6 +15,7 @@ export class DataService {
   presets: Preset[] = [];
 
   filters = {
+    soundKeyword: '',
     categories: [] as boolean[],
     currentlyPlaying: false,
   }
@@ -45,6 +46,48 @@ export class DataService {
         console.log(err);
       }
     });;
+  }
+
+  editSound(sound: Sound): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.put<Sound>('http://localhost:3000/sounds/' + sound.id, sound).subscribe({
+        next: (sound: Sound) => {
+          this.updateSounds();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
+  }
+
+  createSound(sound: SoundCreate): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post<Sound>('http://localhost:3000/sounds', sound).subscribe({
+        next: (sound: Sound) => {
+          this.updateSounds();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
+  }
+
+  deleteSound(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.delete<void>('http://localhost:3000/sounds/' + id).subscribe({
+        next: () => {
+          this.updateSounds();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
   }
 
   updateCategories(): void {
@@ -88,6 +131,7 @@ export class DataService {
     });
   }
 
+  // TODO: use correct interface
   createPreset(name: string, playerStates: PlayerState[]): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Preset>('http://localhost:3000/presets', {

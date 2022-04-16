@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Category } from '../models/category-data';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Sound } from '../models/sound-data';
 import { AudioService } from '../services/audio-service.service';
 import { DataService } from '../services/data-service.service';
@@ -15,7 +15,6 @@ export class SoundGridComponent implements OnInit {
   constructor(public data: DataService, public audioService: AudioService) {
   }
 
-
   ngOnInit(): void {
 
   }
@@ -29,3 +28,4 @@ export class SoundGridComponent implements OnInit {
     }
   }
 }
+
