@@ -38,7 +38,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog } from './dialogs/dialogs.component';
-import { PillowComponent } from './pillow/pillow.component'
+import { PillowComponent } from './pillow/pillow.component';
 
 
 @NgModule({
@@ -57,7 +57,7 @@ import { PillowComponent } from './pillow/pillow.component'
     SoundEditDialog,
     ConfirmDeleteDialog,
     PillowComponent,
-    SoundAddDialog
+    SoundAddDialog,
   ],
   imports: [
     BrowserModule,

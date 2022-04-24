@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { Sound } from '../models/sound-data';
+import { Sound, SoundCreate } from '../models/sound-data';
 import { DataService } from '../services/data-service.service';
 
 @Component({
@@ -59,9 +59,16 @@ export class SoundEditDialog {
 })
 export class SoundAddDialog {
   action = 'Add';
+  data: SoundCreate = {
+    title: 'New Sound',
+    categoryID: 1,
+    icon: '',
+    src: '',
+    loop: true,
+  }
+
   constructor(
     public dialogRef: MatDialogRef<SoundEditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: Sound,
     public dataservice: DataService
   ) {}
 

@@ -1,16 +1,9 @@
 <div class="p-5 flex flex-col">
 
-  <button mat-raised-button color="primary">
-    <mat-icon>add</mat-icon>
-    Add sound
-  </button>
-
-  <mat-form-field c>
-
-      <input type="text" matInput placeholder="Search sounds" [(ngModel)]="data.filters.soundKeyword">
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-
+  <mat-form-field>
+    <input type="text" matInput placeholder="Search sounds" [(ngModel)]="data.filters.soundKeyword">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 
   <mat-checkbox [(ngModel)]="data.filters.currentlyPlaying">
     Show currently playing
@@ -19,8 +12,6 @@
   <h3 class="text-xl font-bold mt-5">Categories
     <button mat-raised-button color="secondary" (click)="toggleAllSelected()">Select {{allCategoriesSelected() ? 'none' : 'all'}}</button>
   </h3>
-
-
 
   <mat-checkbox [(ngModel)]="data.filters.categories[category.id]" [checked]="true"
   *ngFor="let category of data.categories"

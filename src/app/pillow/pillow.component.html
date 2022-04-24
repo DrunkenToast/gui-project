@@ -2,7 +2,11 @@
   but currently it loads these components twice -->
 
 <div class="flex flex-row">
-  <div class="w-1/4 hidden xl:block">
+  <div class="w-1/4 flex-col p-5 hidden xl:flex">
+    <button mat-raised-button color="primary" (click)="createSound()">
+      <mat-icon>add</mat-icon>
+      Add sound
+    </button>
 
     <app-filters></app-filters>
   </div>
