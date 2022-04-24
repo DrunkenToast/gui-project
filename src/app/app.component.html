@@ -1,23 +1,4 @@
-<!-- <router-outlet></router-outlet> -->
-<app-navigation>
+<app-navigation >
   <app-navbar></app-navbar>
-
-  <div class="flex flex-row min-h-fit">
-    <!-- <div class="w-1/4 p-5 flex flex-col"> -->
-      <app-filters class="w-1/4"></app-filters>
-      <!-- <h3 class="text-xl font-bold">Categories
-        <button mat-raised-button color="secondary">Select all/none</button>
-
-      </h3>
-      <mat-checkbox>Nature</mat-checkbox>
-      <mat-checkbox>City</mat-checkbox>
-      <mat-checkbox>...</mat-checkbox>
-    </div> -->
-    <app-sound-grid class="w-2/4 overflow-auto"></app-sound-grid>
-    <div class="w-1/4 p-5 flex flex-col">
-      <app-presets class="w-full"></app-presets>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </app-navigation>
-
-

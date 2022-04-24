@@ -137,104 +137,135 @@
   ],
   "presets": [
     {
-      "name": "FULL NATURE",
-      "playerStates": [
-        {
-          "id": 1,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 8,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 10,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 14,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 12,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 9,
-          "status": "playing",
-          "volume": 1
-        },
-        {
-          "id": 7,
-          "status": "playing",
-          "volume": 1
-        }
-      ],
-      "id": 5
-    },
-    {
       "name": "Windy city",
       "playerStates": [
         {
-          "id": 1,
-          "status": "paused",
-          "volume": 1
-        },
-        {
-          "id": 8,
-          "status": "playing",
-          "volume": 0.15
-        },
-        {
           "id": 10,
           "status": "paused",
           "volume": 1
-        },
-        {
-          "id": 14,
-          "status": "playing",
-          "volume": 0.44
-        },
-        {
-          "id": 12,
-          "status": "paused",
-          "volume": 0.16
-        },
-        {
-          "id": 9,
-          "status": "paused",
-          "volume": 0.18
-        },
-        {
-          "id": 7,
-          "status": "playing",
-          "volume": 0.16
         },
         {
           "id": 3,
           "status": "playing",
-          "volume": 0.57
+          "volume": 0.32
+        },
+        {
+          "id": 14,
+          "status": "playing",
+          "volume": 0.26
         }
       ],
       "id": 6
     },
     {
-      "name": "Tinnitus",
+      "name": "Storm at sea",
       "playerStates": [
         {
-          "id": 1,
+          "id": 10,
           "status": "paused",
           "volume": 1
         },
         {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.32
+        },
+        {
+          "id": 14,
+          "status": "paused",
+          "volume": 0.26
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 0.3
+        },
+        {
+          "id": 8,
+          "status": "playing",
+          "volume": 0.5
+        },
+        {
+          "id": 2,
+          "status": "playing",
+          "volume": 0.3
+        },
+        {
+          "id": 6,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 13,
+          "status": "paused",
+          "volume": 0.1
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 1
+        }
+      ],
+      "id": 7
+    },
+    {
+      "name": "Study",
+      "playerStates": [
+        {
+          "id": 10,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.32
+        },
+        {
+          "id": 14,
+          "status": "playing",
+          "volume": 0.3
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 0.2
+        },
+        {
           "id": 8,
           "status": "paused",
-          "volume": 0.15
+          "volume": 0.23
+        },
+        {
+          "id": 2,
+          "status": "paused",
+          "volume": 0.23
+        },
+        {
+          "id": 6,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 13,
+          "status": "paused",
+          "volume": 0.1
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 1
+        }
+      ],
+      "id": 8
+    },
+    {
+      "name": "Sleep",
+      "playerStates": [
+        {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.32
         },
         {
           "id": 10,
@@ -244,35 +275,116 @@
         {
           "id": 14,
           "status": "paused",
-          "volume": 0.44
+          "volume": 0.3
         },
         {
-          "id": 12,
+          "id": 2,
           "status": "paused",
-          "volume": 0.16
+          "volume": 0.23
         },
         {
-          "id": 9,
+          "id": 6,
           "status": "paused",
-          "volume": 0.18
+          "volume": 0
         },
         {
           "id": 7,
           "status": "playing",
-          "volume": 0.84
+          "volume": 0.1
         },
         {
-          "id": 3,
+          "id": 8,
           "status": "paused",
-          "volume": 0.57
+          "volume": 0.23
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 1
         },
         {
           "id": 13,
           "status": "playing",
-          "volume": 0.38
+          "volume": 0.3
+        },
+        {
+          "id": 1,
+          "status": "paused",
+          "volume": 0.51
+        },
+        {
+          "id": 12,
+          "status": "paused",
+          "volume": 0.1
+        },
+        {
+          "id": 4,
+          "status": "paused",
+          "volume": 1
         }
       ],
-      "id": 7
+      "id": 9
+    },
+    {
+      "name": "Lots-a-nature",
+      "playerStates": [
+        {
+          "id": 10,
+          "status": "playing",
+          "volume": 0.4
+        },
+        {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.32
+        },
+        {
+          "id": 14,
+          "status": "playing",
+          "volume": 1
+        },
+        {
+          "id": 7,
+          "status": "playing",
+          "volume": 0.44
+        },
+        {
+          "id": 8,
+          "status": "playing",
+          "volume": 0.2
+        },
+        {
+          "id": 2,
+          "status": "paused",
+          "volume": 0.23
+        },
+        {
+          "id": 6,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 13,
+          "status": "paused",
+          "volume": 0.1
+        },
+        {
+          "id": 9,
+          "status": "playing",
+          "volume": 0.22
+        },
+        {
+          "id": 1,
+          "status": "playing",
+          "volume": 0.51
+        },
+        {
+          "id": 12,
+          "status": "playing",
+          "volume": 0.1
+        }
+      ],
+      "id": 10
     }
   ]
 }

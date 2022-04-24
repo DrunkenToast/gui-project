@@ -31,8 +31,6 @@ export class DataService {
       next: (sounds: Sound[]) => {
         this.sounds = sounds.sort((a, b) => a.title.localeCompare(b.title));
         for (let sound of this.sounds) {
-          // Might cause issues later when one new sound gets added
-
           let audio = this.audioService.get(sound.id)
           if (!audio) {
             this.audioService.set(sound.id)

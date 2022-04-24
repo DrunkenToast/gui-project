@@ -1,0 +1,44 @@
+<!-- I use CSS to make filters and presets responsive
+  but currently it loads these components twice -->
+
+<div class="flex flex-row">
+  <div class="w-1/4 hidden xl:block">
+
+    <app-filters></app-filters>
+  </div>
+
+
+  <div class="xl:w-2/4">
+
+    <div class="xl:hidden">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>filter_list</mat-icon>
+            Filters
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-filters></app-filters>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>playlist_play</mat-icon>
+            Presets
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-presets></app-presets>
+      </mat-expansion-panel>
+    </div>
+
+    <app-sound-grid></app-sound-grid>
+
+  </div>
+
+  <div class="w-1/4 p-5 hidden xl:block">
+    <app-presets></app-presets>
+  </div>
+</div>

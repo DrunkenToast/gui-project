@@ -12,7 +12,7 @@ import { ConfirmDeleteDialog, SoundEditDialog } from '../../dialogs/dialogs.comp
   templateUrl: './sound-card.component.html',
   styleUrls: ['./sound-card.component.css'],
   providers: [],
-  host: {'[class]': "'w-full lg:w-1/2'"}
+  host: {'[class]': "'w-full md:w-1/2'"}
 })
 export class SoundCardComponent implements OnInit {
   active: boolean = false;

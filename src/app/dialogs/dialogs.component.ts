@@ -38,9 +38,27 @@ export class PresetNameDialog {
 
 @Component({
   selector: 'sound-edit-dialog',
-  templateUrl: 'dialog-sound-edit.html',
+  templateUrl: 'dialog-sound.html',
 })
 export class SoundEditDialog {
+  action = 'Edit';
+  constructor(
+    public dialogRef: MatDialogRef<SoundEditDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Sound,
+    public dataservice: DataService
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'sound-dialog',
+  templateUrl: 'dialog-sound.html',
+})
+export class SoundAddDialog {
+  action = 'Add';
   constructor(
     public dialogRef: MatDialogRef<SoundEditDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Sound,

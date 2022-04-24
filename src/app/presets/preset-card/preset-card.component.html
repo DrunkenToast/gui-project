@@ -1,5 +1,5 @@
-  <div class="flex flex-row items-center bg-gray-700 text-white p-2 rounded-xl m-2 shadow-lg"
-[ngClass]="true ? 'text-white' : 'text-gray-500'">
+  <div class="flex flex-row items-center bg-primary text-white p-2 rounded-xl m-2 shadow-lg"
+[ngClass]="true ? 'text-white' : 'text-disabled'">
 
   <div class="cursor-pointer"
   (click)="loadPreset()">
@@ -7,10 +7,12 @@
   </div>
     <span (click)="renamePreset()" class="text-xl p-2 font-bold cursor-pointer hover:underline">{{presetData.name}}</span>
   <div class="ml-auto">
-    <button (click)="saveCurrentState()" mat-icon-button>
+    <button (click)="saveCurrentState()" mat-icon-button
+    matTooltip="Save current states to preset" matTooltipPosition="above">
       <mat-icon>save_as</mat-icon>
     </button>
-    <button (click)="deletePreset()" mat-icon-button color="warn">
+    <button (click)="deletePreset()" mat-icon-button color="warn"
+    matTooltip="Delete preset" matTooltipPosition="above">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

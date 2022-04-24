@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data-service.service';
 import { Preset } from '../../models/preset-data';
 import { AudioService } from '../../services/audio-service.service';
-import { PresetNameDialog } from '../../dialogs/dialogs.component';
+import { ConfirmDeleteDialog, PresetNameDialog } from '../../dialogs/dialogs.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -62,16 +62,22 @@ export class PresetCardComponent implements OnInit {
   }
 
   deletePreset() {
-    this.data.deletePreset(this.presetData.id)
-    .then(() => {
-      this.snackbar.open('Preset removed', '', {
-        duration: 2000,
-      });
-    })
-    .catch(err => {
-      this.snackbar.open(`Failed to delete: ${err}`, '', {
-        duration: 2000,
+    const dialogRef = this.dialog.open(ConfirmDeleteDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.data.deletePreset(this.presetData.id)
+        .then(() => {
+          this.snackbar.open('Preset removed', '', {
+            duration: 2000,
+          });
+        })
+        .catch(err => {
+          this.snackbar.open(`Failed to delete: ${err}`, '', {
+            duration: 2000,
+            });
         });
+      }
     });
   }
 }

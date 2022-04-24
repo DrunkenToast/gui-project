@@ -34,7 +34,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog } from './dialogs/dialogs.component'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog } from './dialogs/dialogs.component';
+import { PillowComponent } from './pillow/pillow.component'
 
 
 @NgModule({
@@ -52,6 +56,8 @@ import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog } from './dialog
     PresetNameDialog,
     SoundEditDialog,
     ConfirmDeleteDialog,
+    PillowComponent,
+    SoundAddDialog
   ],
   imports: [
     BrowserModule,
@@ -75,6 +81,8 @@ import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog } from './dialog
     MatMenuModule,
     FormsModule,
     MatSelectModule,
+    MatExpansionModule,
+    MatTooltipModule,
   ],
   providers: [MatSnackBar],
   bootstrap: [AppComponent]

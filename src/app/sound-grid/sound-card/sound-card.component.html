@@ -1,6 +1,6 @@
-<div class="flex flex-row items-center bg-gray-700 text-white
+<div class="flex flex-row items-center bg-primary text-white
 transition-all p-2 rounded-xl m-2 shadow-lg"
-[ngClass]="isActive() ? 'text-white' : 'text-gray-500'">
+[ngClass]="isActive() ? 'text-white' : 'text-disabled'">
 
   <div class="cursor-pointer"
   (click)="toggle()">
@@ -29,6 +29,7 @@ transition-all p-2 rounded-xl m-2 shadow-lg"
     </div>
 
     <mat-slider class=""
+    color="accent"
     thumbLabel
     [displayWith]="formatSlider"
       min="0" max="1" step="0.01" [value]="getVolume()"

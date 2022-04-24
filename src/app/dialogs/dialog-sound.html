@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Edit sound card</h1>
+<h1 mat-dialog-title>{{action}}}} sound card</h1>
 <mat-dialog-content>
 
   <div class="flex flex-col w-fill">
@@ -33,5 +33,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Edit it!</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{action}}</button>
 </mat-dialog-actions>

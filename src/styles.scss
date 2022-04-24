@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$cyan-palette: (
+  50: #ddf1f3,
+  100: #a9dedf,
+  200: #6bc9ca,
+  300: #00b3b3,
+  400: #00a3a1,
+  500: #00928e,
+  600: #008581,
+  700: #007570,
+  800: #006560,
+  900: #004a42,
+ contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+ )
+);
+
+$cyan-palette: (
+  50: #ddf1f3,
+  100: #a9dedf,
+  200: #6bc9ca,
+  300: #00b3b3,
+  400: #00a3a1,
+  500: #00928e,
+  600: #008581,
+  700: #007570,
+  800: #006560,
+  900: #004a42,
+ contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+ )
+);
+
+$my-custom-primary: mat-palette($mat-pink-palette);
+$my-custom-accent: mat-palette($mat-gray-palette, 400);
+$my-custom-warn: mat-palette($mat-red); //Optional
+
+$my-custom-theme: mat-dark-theme(
+              $my-custom-primary,
+              $my-custom-accent,
+              $my-custom-warn);
+
+@include angular-material-theme($my-custom-theme);

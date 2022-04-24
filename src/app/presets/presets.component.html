@@ -1,5 +1,8 @@
 <h3 class="text-xl font-bold p-3">Presets
-  <button mat-raised-button color="secondary" (click)="createPreset()">Create new preset</button>
+  <button mat-raised-button color="primary" (click)="createPreset()">
+    <mat-icon>add</mat-icon>
+    Create new preset
+  </button>
 </h3>
 <div class="flex flex-col">
   <ng-container *ngFor="let preset of this.data.presets">
