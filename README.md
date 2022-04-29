@@ -1,3 +1,10 @@
 # GUI project - Pillow
 
-TODO: placement of sound add button (not in filters directly)
+## Running the project
+
+`npm i`  
+`ng serve`
+
+## Running the db
+
+`json-server --watch db.json`
