@@ -39,6 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog } from './dialogs/dialogs.component';
 import { PillowComponent } from './pillow/pillow.component';
+import { AboutComponent } from './about/about.component';
+import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { PillowComponent } from './pillow/pillow.component';
     ConfirmDeleteDialog,
     PillowComponent,
     SoundAddDialog,
+    AboutComponent,
+    StatusCodePageComponent,
   ],
   imports: [
     BrowserModule,

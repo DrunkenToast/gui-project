@@ -2,8 +2,17 @@
   <a [routerLink]="['/']">
     <img src="../../assets/img/logo(1).svg" alt="Logo" srcset="">
   </a>
-  <a [routerLink]="['/']" class="ml-3 font-bold">Pillow</a >
-  <a href="https://github.com/DrunkenToast/gui-project" class="ml-3 text-lg hover:underline">Github</a>
+  <a [routerLink]="['/']" class="ml-3 hover:underline"
+  routerLinkActive="font-bold" [routerLinkActiveOptions]="{exact: true}">
+    Pillow
+  </a >
+  <a href="https://github.com/DrunkenToast/gui-project" class="ml-3 text-lg hover:underline">
+    Github
+  </a>
+  <a [routerLink]="['about']" class="ml-3 text-lg hover:underline"
+  routerLinkActive="font-bold">
+    About
+  </a>
 
   <span class="seperator"></span>
 
