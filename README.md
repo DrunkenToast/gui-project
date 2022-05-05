@@ -15,7 +15,11 @@ Pillow is a project for my subject GUI development.
 Pillow is heavily inspired by [Blanket](https://github.com/rafaelmardojai/blanket). Pillow sets out to be web driven and allow for more customizability in terms of custom sounds and presets.  
 Presets and filters easy to use and access.
 
-![Main screen of Pillow](screenshots/pillow-main-screen.png)
+![Main screen of Pillow](screenshots/pillow-main-screen.png)  
+*Main screen interface of Pillow*
+
+![Responsive screen of Pillow](screenshots/pillow-main-screen-responsive.png)  
+*Responsive variantion of the main interface*
 
 ## Requirements
 
