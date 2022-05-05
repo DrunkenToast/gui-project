@@ -1,19 +1,30 @@
-  <div class="flex flex-row items-center bg-primary text-white p-2 rounded-xl m-2 shadow-lg"
-[ngClass]="true ? 'text-white' : 'text-disabled'">
-
+<app-card>
   <div class="cursor-pointer"
   (click)="loadPreset()">
     <i [ngClass]="'text-[3rem] p-4 fa-solid fa-play'"></i>
   </div>
-    <span (click)="renamePreset()" class="text-xl p-2 font-bold cursor-pointer hover:underline">{{presetData.name}}</span>
+    <span class="text-xl p-2 font-bold">{{presetData.name}}</span>
   <div class="ml-auto">
-    <button (click)="saveCurrentState()" mat-icon-button
-    matTooltip="Save current states to preset" matTooltipPosition="above">
-      <mat-icon>save_as</mat-icon>
+
+
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button (click)="deletePreset()" mat-icon-button color="warn"
-    matTooltip="Delete preset" matTooltipPosition="above">
-      <mat-icon>delete</mat-icon>
-    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item (click)="saveCurrentState()">
+        <mat-icon>save_as</mat-icon>
+        <span>Save current states</span>
+      </button>
+      <button mat-menu-item (click)="renamePreset()">
+        <mat-icon>edit</mat-icon>
+        <span>Rename</span>
+      </button>
+      <button mat-menu-item (click)="deletePreset()">
+        <mat-icon color="warn">delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+
   </div>
-</div>
+</app-card>

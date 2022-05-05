@@ -41,6 +41,7 @@ import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog 
 import { PillowComponent } from './pillow/pillow.component';
 import { AboutComponent } from './about/about.component';
 import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
+import { CardComponent } from './card/card.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { StatusCodePageComponent } from './status-code-page/status-code-page.com
     SoundAddDialog,
     AboutComponent,
     StatusCodePageComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

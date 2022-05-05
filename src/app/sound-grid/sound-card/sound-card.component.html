@@ -1,7 +1,4 @@
-<div class="flex flex-row items-center bg-primary text-white
-transition-all p-2 rounded-xl m-2 shadow-lg"
-[ngClass]="isActive() ? 'text-white' : 'text-disabled'">
-
+<app-card [active]="isActive()">
   <div class="cursor-pointer"
   (click)="toggle()">
     <i [ngClass]="'text-[3rem] p-4 ' + audioData.icon"></i>
@@ -24,10 +21,8 @@ transition-all p-2 rounded-xl m-2 shadow-lg"
             <span>Delete</span>
           </button>
         </mat-menu>
-
       </div>
     </div>
-
     <mat-slider class=""
     color="accent"
     thumbLabel
@@ -36,6 +31,5 @@ transition-all p-2 rounded-xl m-2 shadow-lg"
       (input)="onSliderChange($event)"
       >
     </mat-slider>
-
   </div>
-</div>
+</app-card>
