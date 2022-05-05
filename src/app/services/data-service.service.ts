@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Category } from '../models/category-data';
 import { PlayerState, Preset } from '../models/preset-data';
 import { Sound, SoundCreate } from '../models/sound-data';
@@ -27,7 +28,7 @@ export class DataService {
   }
 
   updateSounds(): void {
-    this.http.get<Sound[]>('http://localhost:3000/sounds').subscribe({
+    this.http.get<Sound[]>(environment.api_url + '/sounds').subscribe({
       next: (sounds: Sound[]) => {
         this.sounds = sounds.sort((a, b) => a.title.localeCompare(b.title));
         for (let sound of this.sounds) {
@@ -48,7 +49,7 @@ export class DataService {
 
   editSound(sound: Sound): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.put<Sound>('http://localhost:3000/sounds/' + sound.id, sound).subscribe({
+      this.http.put<Sound>(environment.api_url + '/sounds/' + sound.id, sound).subscribe({
         next: (sound: Sound) => {
           this.updateSounds();
           resolve();
@@ -62,7 +63,7 @@ export class DataService {
 
   createSound(sound: SoundCreate): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post<Sound>('http://localhost:3000/sounds', sound).subscribe({
+      this.http.post<Sound>(environment.api_url + '/sounds', sound).subscribe({
         next: (sound: Sound) => {
           this.updateSounds();
           resolve();
@@ -76,7 +77,7 @@ export class DataService {
 
   deleteSound(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.delete<void>('http://localhost:3000/sounds/' + id).subscribe({
+      this.http.delete<void>(environment.api_url + '/sounds/' + id).subscribe({
         next: () => {
           this.updateSounds();
           resolve();
@@ -89,7 +90,7 @@ export class DataService {
   }
 
   updateCategories(): void {
-    this.http.get<Category[]>('http://localhost:3000/categories').subscribe({
+    this.http.get<Category[]>(environment.api_url + '/categories').subscribe({
       next: (categories: Category[]) => {
         this.categories = categories;
 
@@ -104,7 +105,7 @@ export class DataService {
   }
 
   updatePresets(): void {
-    this.http.get<Preset[]>('http://localhost:3000/presets').subscribe({
+    this.http.get<Preset[]>(environment.api_url + '/presets').subscribe({
       next: (presets: Preset[]) => {
         this.presets = presets.sort((a, b) => a.name.localeCompare(b.name));
         console.log(this.presets);
@@ -117,7 +118,7 @@ export class DataService {
 
   editPreset(preset: Preset): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.put<Preset>('http://localhost:3000/presets/' + preset.id, preset).subscribe({
+      this.http.put<Preset>(environment.api_url + '/presets/' + preset.id, preset).subscribe({
         next: (preset: Preset) => {
           this.updatePresets();
           resolve();
@@ -132,7 +133,7 @@ export class DataService {
   // TODO: use correct interface
   createPreset(name: string, playerStates: PlayerState[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post<Preset>('http://localhost:3000/presets', {
+      this.http.post<Preset>(environment.api_url + '/presets', {
         name: name,
         playerStates: playerStates
       }).subscribe({
@@ -149,7 +150,7 @@ export class DataService {
 
   editPresetStates(preset: Preset, playerStates: PlayerState[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.put<Preset>('http://localhost:3000/presets/' + preset.id, {
+      this.http.put<Preset>(environment.api_url + '/presets/' + preset.id, {
         name: preset.name,
         playerStates: playerStates
       }).subscribe({
@@ -166,7 +167,7 @@ export class DataService {
 
   deletePreset(id: number): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.delete<Preset>('http://localhost:3000/presets/' + id).subscribe({
+      this.http.delete<Preset>(environment.api_url + '/presets/' + id).subscribe({
         next: (preset: Preset) => {
           this.updatePresets();
           resolve();
