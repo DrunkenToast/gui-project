@@ -2,7 +2,7 @@
   but currently it loads these components twice -->
 
 <div class="flex flex-row">
-  <div class="w-1/4 flex-col p-5 hidden xl:flex">
+  <div class="w-1/4 flex-col p-5 hidden lg:flex">
     <button mat-raised-button color="primary" (click)="createSound()">
       <mat-icon>add</mat-icon>
       Add sound
@@ -12,9 +12,8 @@
   </div>
 
 
-  <div class="xl:w-2/4">
-
-    <div class="xl:hidden">
+  <div class="lg:w-2/4 w-full">
+    <div class="lg:hidden">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -30,19 +29,20 @@
             <mat-icon>playlist_play</mat-icon>
             Presets
           </mat-panel-title>
-          <mat-panel-description>
-
-          </mat-panel-description>
         </mat-expansion-panel-header>
         <app-presets></app-presets>
       </mat-expansion-panel>
-    </div>
 
+      <button mat-raised-button color="primary" class="w-full" (click)="createSound()">
+        <mat-icon>add</mat-icon>
+        Add sound
+      </button>
+    </div>
     <app-sound-grid></app-sound-grid>
 
   </div>
 
-  <div class="w-1/4 p-5 hidden xl:block">
+  <div class="w-1/4 p-5 hidden lg:block">
     <app-presets></app-presets>
   </div>
 </div>
