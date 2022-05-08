@@ -23,6 +23,5 @@ export class NavbarComponent implements OnInit {
       console.log('Playing...');
       this.audioService.autoResume()
     }
-    this.data.updateSounds();
   }
 }
