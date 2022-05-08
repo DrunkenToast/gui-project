@@ -78,16 +78,6 @@ export class AudioService {
   }
 
   loadStates(states: PlayerState[]): void {
-
-    // Old code: this would cause a stutter.
-    // this.autoStop();
-    // states.forEach((state) => {
-    //   if (state.status == 'playing') {
-    //     this.audioPlayers.get(state.id)?.play();
-    //     this.audioPlayers.get(state.id)?.setVolume(state.volume);
-    //   }
-    // });
-
     this.saveCurrentStates();
 
     this.audioPlayers.forEach((player, id) => {
@@ -187,18 +177,3 @@ class AudioPlayer {
     return this.audio.currentTime;
   }
 }
-
-// export enum AudioStatus {
-//   playing = "playing",
-//   paused = "paused",
-//   waiting = "waiting",
-//   ended = "ended",
-// }
-
-
-// export interface AudioIntervalData {
-//   minDelay: number,
-//   maxDelay: number,
-//   minVolumeMod: number,
-//   maxVolumeMod: number,
-// }

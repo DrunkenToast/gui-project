@@ -1,12 +1,13 @@
 <app-card [active]="isActive()">
-  <div class="cursor-pointer"
-  (click)="toggle()">
+  <div class="cursor-pointer" (click)="toggle()">
     <i [ngClass]="'text-[3rem] p-4 ' + audioData.icon"></i>
   </div>
 
   <div class="flex flex-col w-full">
     <div class="flex flex-row w-full">
-      <span class="text-xl p-2 font-bold">{{ audioData.title }}</span>
+      <span class="text-xl p-2 font-bold cursor-pointer" (click)="toggle()">
+        {{ audioData.title }}
+      </span>
       <div class="ml-auto text-white">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>

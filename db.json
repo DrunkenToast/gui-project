@@ -140,19 +140,64 @@
       "name": "Windy city",
       "playerStates": [
         {
+          "id": 1,
+          "status": "paused",
+          "volume": 0.51
+        },
+        {
+          "id": 2,
+          "status": "paused",
+          "volume": 0.23
+        },
+        {
+          "id": 3,
+          "status": "playing",
+          "volume": 0.4
+        },
+        {
+          "id": 6,
+          "status": "paused",
+          "volume": 1
+        },
+        {
+          "id": 7,
+          "status": "paused",
+          "volume": 0.2
+        },
+        {
+          "id": 8,
+          "status": "paused",
+          "volume": 0.23
+        },
+        {
+          "id": 9,
+          "status": "paused",
+          "volume": 1
+        },
+        {
           "id": 10,
           "status": "paused",
           "volume": 1
         },
         {
-          "id": 3,
-          "status": "playing",
-          "volume": 0.32
+          "id": 12,
+          "status": "paused",
+          "volume": 0.1
+        },
+        {
+          "id": 13,
+          "status": "paused",
+          "volume": 0.1
         },
         {
           "id": 14,
           "status": "playing",
-          "volume": 0.26
+          "volume": 1
+        },
+        {
+          "id": 4,
+          "status": "paused",
+          "volume": 1
         }
       ],
       "id": 6

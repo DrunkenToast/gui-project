@@ -8,6 +8,7 @@ module.exports = {
       current: 'currentColor',
       'white': '#ffffff',
       'disabled': '#949494',
+      'hovered': '#4a4a4a',
       'accent': '#00b3b3',
       // 'primary': '#444444',
       // 'secondary': '#595959',
