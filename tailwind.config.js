@@ -9,7 +9,7 @@ module.exports = {
       'white': '#ffffff',
       'disabled': '#949494',
       'hovered': '#4a4a4a',
-      'accent': '#00b3b3',
+      'accent': '#e91e63',
       // 'primary': '#444444',
       // 'secondary': '#595959',
       // 'tertiary': '#303030'
