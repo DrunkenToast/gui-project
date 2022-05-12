@@ -4,7 +4,7 @@ import { DataService } from 'src/app/services/data-service.service';
 import { Preset } from '../../models/preset-data';
 import { AudioService } from '../../services/audio-service.service';
 import { ConfirmDeleteDialog, PresetNameDialog } from '../../dialogs/dialogs.component';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-preset-card',
@@ -14,7 +14,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class PresetCardComponent implements OnInit {
 
   @Input()
-  presetData!: Preset; // TODO: check if ! is ok
+  presetData: Preset = {
+    id: 0,
+    name: 'No preset',
+    playerStates: [],
+  }
 
   constructor(private audio: AudioService, public dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) { }
 
@@ -27,16 +31,16 @@ export class PresetCardComponent implements OnInit {
 
   saveCurrentState() {
     this.data.editPresetStates(this.presetData, this.audio.exportStates())
-    .then(() => {
-      this.snackbar.open('Current states are saved to the preset! 🎉', '', {
-        duration: 2000,
-      });
-    })
-    .catch(err => {
-      this.snackbar.open(`Failed to save: ${err}`, '', {
-        duration: 2000,
+      .then(() => {
+        this.snackbar.open('Current states are saved to the preset! 🎉', '', {
+          duration: 2000,
         });
-    });;
+      })
+      .catch(err => {
+        this.snackbar.open(`Failed to save: ${err}`, '', {
+          duration: 2000,
+        });
+      });;
   }
 
   renamePreset() {
@@ -52,11 +56,11 @@ export class PresetCardComponent implements OnInit {
             duration: 2000,
           });
         })
-        .catch(err => {
-          this.snackbar.open(`Failed to rename: ${err}`, '', {
-            duration: 2000,
+          .catch(err => {
+            this.snackbar.open(`Failed to rename: ${err}`, '', {
+              duration: 2000,
             });
-        });
+          });
       }
     });
   }
@@ -67,16 +71,16 @@ export class PresetCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.data.deletePreset(this.presetData.id)
-        .then(() => {
-          this.snackbar.open('Preset removed', '', {
-            duration: 2000,
-          });
-        })
-        .catch(err => {
-          this.snackbar.open(`Failed to delete: ${err}`, '', {
-            duration: 2000,
+          .then(() => {
+            this.snackbar.open('Preset removed', '', {
+              duration: 2000,
             });
-        });
+          })
+          .catch(err => {
+            this.snackbar.open(`Failed to delete: ${err}`, '', {
+              duration: 2000,
+            });
+          });
       }
     });
   }

@@ -8,9 +8,9 @@ describe('AudioCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SoundCardComponent ]
+      declarations: [SoundCardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

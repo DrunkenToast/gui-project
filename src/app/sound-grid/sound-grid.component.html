@@ -3,8 +3,7 @@
     <h2 class="font-bold text-xl p-3">{{category.name}}</h2>
     <div class="flex flex-row flex-wrap w-full h-full">
       <ng-container *ngFor="let sound of (data.sounds | filterSounds : data.filters.soundKeyword : category.id)">
-        <app-sound-card *ngIf="filterIsPlaying(sound.id)"
-        [audioData]="sound"></app-sound-card>
+        <app-sound-card *ngIf="filterIsPlaying(sound.id)" [audioData]="sound"></app-sound-card>
       </ng-container>
     </div>
   </div>

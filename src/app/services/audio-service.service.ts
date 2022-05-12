@@ -61,6 +61,9 @@ export class AudioService {
     this.loadStates(this.previousStates);
   }
 
+  /**Returns true if all players are stopped or one specified player is stopped
+   * @param soundID Optional player id to check
+   */
   isPlaying(soundID?: number): boolean {
     if (soundID) {
       let state = this.currentStates.find(state => state.id == soundID);
@@ -92,8 +95,9 @@ export class AudioService {
     });
   }
 
+  /**Return copy of the current playerstates */
   exportStates(): PlayerState[] {
-    return this.currentStates.slice();
+    return JSON.parse(JSON.stringify(this.currentStates));
   }
 
   private saveCurrentStates(): void {
@@ -121,20 +125,20 @@ class AudioPlayer {
   private setStatus = (ev: Event) => {
     switch (ev.type) {
       case 'playing':
-          this.status = 'playing';
-          break;
+        this.status = 'playing';
+        break;
       case 'pause':
-          this.status = 'paused';
-          break;
+        this.status = 'paused';
+        break;
       case 'waiting':
-          this.status = 'waiting';
-          break;
+        this.status = 'waiting';
+        break;
       case 'ended':
-          this.status = 'ended';
-          break;
+        this.status = 'ended';
+        break;
       default:
-          this.status = 'paused';
-          break;
+        this.status = 'paused';
+        break;
     }
     this.statusChange.emit(this.status);
   }

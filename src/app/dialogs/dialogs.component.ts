@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Sound, SoundCreate } from '../models/sound-data';
 import { DataService } from '../services/data-service.service';
 
@@ -10,7 +10,7 @@ import { DataService } from '../services/data-service.service';
 export class ConfirmDeleteDialog {
   constructor(
     public dialogRef: MatDialogRef<PresetNameDialog>,
-  ) {}
+  ) { }
 
   onCancelClick(): void {
     this.dialogRef.close(false);
@@ -29,7 +29,7 @@ export class PresetNameDialog {
   constructor(
     public dialogRef: MatDialogRef<PresetNameDialog>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -46,7 +46,7 @@ export class SoundEditDialog {
     public dialogRef: MatDialogRef<SoundEditDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Sound,
     public dataservice: DataService
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -70,7 +70,7 @@ export class SoundAddDialog {
   constructor(
     public dialogRef: MatDialogRef<SoundEditDialog>,
     public dataservice: DataService
-  ) {}
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();

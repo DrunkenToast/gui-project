@@ -130,7 +130,6 @@ export class DataService {
     });
   }
 
-  // TODO: use correct interface
   createPreset(name: string, playerStates: PlayerState[]): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Preset>(environment.api_url + '/presets', {

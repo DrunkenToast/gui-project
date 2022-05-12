@@ -8,9 +8,9 @@ describe('PillowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PillowComponent ]
+      declarations: [PillowComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

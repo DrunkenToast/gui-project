@@ -12,14 +12,14 @@ import { ConfirmDeleteDialog, SoundEditDialog } from '../../dialogs/dialogs.comp
   templateUrl: './sound-card.component.html',
   styleUrls: ['./sound-card.component.css'],
   providers: [],
-  host: {'[class]': "'w-full md:w-1/2'"}
+  host: { '[class]': "'w-full md:w-1/2'" }
 })
 export class SoundCardComponent implements OnInit {
   active: boolean = false;
-  volume: number|null|undefined;
+  volume: number | null | undefined;
 
   @Input() audioData: Sound = {
-    id: 1,
+    id: 0,
     title: 'No sound',
     loop: true,
     categoryID: 1,
@@ -62,7 +62,7 @@ export class SoundCardComponent implements OnInit {
 
   editSoundCard() {
     const dialogRef = this.dialog.open(SoundEditDialog, {
-      data: {...this.audioData}
+      data: { ...this.audioData }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -73,12 +73,12 @@ export class SoundCardComponent implements OnInit {
             duration: 2000,
           });
         })
-        .catch(err => {
-          this.snackbar.open(`Failed to edit: ${err}`, '', {
-            duration: 2000,
+          .catch(err => {
+            this.snackbar.open(`Failed to edit: ${err}`, '', {
+              duration: 2000,
             });
-        }
-        );
+          }
+          );
       }
     });
   }
@@ -89,16 +89,16 @@ export class SoundCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.data.deleteSound(this.audioData.id)
-        .then(() => {
-          this.snackbar.open(`Sound removed`, '', {
-            duration: 2000,
-          });
-        })
-        .catch(err => {
-          this.snackbar.open(`Failed to remove: ${err}`, '', {
-            duration: 2000,
+          .then(() => {
+            this.snackbar.open(`Sound removed`, '', {
+              duration: 2000,
             });
-        });
+          })
+          .catch(err => {
+            this.snackbar.open(`Failed to remove: ${err}`, '', {
+              duration: 2000,
+            });
+          });
       }
     }
     );

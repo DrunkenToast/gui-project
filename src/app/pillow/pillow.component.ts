@@ -22,16 +22,17 @@ export class PillowComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: SoundCreate) => {
       if (result) {
-        this.data.createSound(result).then(() => {
-          this.snackbar.open(`'${result}' created! 🎉`, '', {
-            duration: 2000,
-          });
-        })
-        .catch(err => {
-          this.snackbar.open(`Failed to create sound: ${err}`, '', {
-            duration: 2000,
+        this.data.createSound(result)
+          .then(() => {
+            this.snackbar.open(`'${result}' created! 🎉`, '', {
+              duration: 2000,
             });
-        });
+          })
+          .catch(err => {
+            this.snackbar.open(`Failed to create sound: ${err}`, '', {
+              duration: 2000,
+            });
+          });
       }
     });
   }

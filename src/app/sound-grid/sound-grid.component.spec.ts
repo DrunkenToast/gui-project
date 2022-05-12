@@ -8,9 +8,9 @@ describe('MainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SoundGridComponent ]
+      declarations: [SoundGridComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

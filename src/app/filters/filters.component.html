@@ -10,13 +10,13 @@
   </mat-checkbox>
 
   <h3 class="text-xl font-bold mt-5">Categories
-    <button mat-raised-button color="secondary" (click)="toggleAllSelected()">Select {{allCategoriesSelected() ? 'none' : 'all'}}</button>
+    <button mat-raised-button color="secondary" (click)="toggleAllSelected()">
+      Select {{allCategoriesSelected() ? 'none' : 'all'}}
+    </button>
   </h3>
 
   <mat-checkbox [(ngModel)]="data.filters.categories[category.id]" [checked]="true"
-  *ngFor="let category of data.categories"
-  [value]="category.id.toString()"
-  class="p-1">
+    *ngFor="let category of data.categories" [value]="category.id.toString()" class="p-1">
     {{category.name}}
   </mat-checkbox>
 </div>
