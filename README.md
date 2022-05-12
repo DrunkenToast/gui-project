@@ -31,7 +31,7 @@ Requirements for the project (excluding studies, design etc) are as following:
   - Data service to make use of the database
 - [X] Atleast 2 routes, where one has routing parameters
   - Root goes to the main app
-  - About page for more information (TODO: finnish about page)
+  - About page for more information
   - Status-code route with parameter to show the status code
 - [X] Atleast 1 self-made pipe
   - 2 pipes for filtering categories and sounds

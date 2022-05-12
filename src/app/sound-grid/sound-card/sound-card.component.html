@@ -1,6 +1,9 @@
 <app-card [active]="isActive()">
   <div class="cursor-pointer" (click)="toggle()">
-    <i [ngClass]="'text-[3rem] p-4 ' + audioData.icon"></i>
+    <i [ngClass]="'text-[3rem] p-4 ' +
+    (audioData.icon.length > 0 ? audioData.icon : 'fa-solid fa-compact-disc')">
+      <!--Missing icon will be replaced with a disc icon-->
+    </i>
   </div>
 
   <div class="flex flex-col w-full">
@@ -24,13 +27,8 @@
         </mat-menu>
       </div>
     </div>
-    <mat-slider class=""
-    color="accent"
-    thumbLabel
-    [displayWith]="formatSlider"
-      min="0" max="1" step="0.01" [value]="getVolume()"
-      (input)="onSliderChange($event)"
-      >
+    <mat-slider class="" color="accent" thumbLabel [displayWith]="formatSlider" min="0" max="1" step="0.01"
+      [value]="getVolume()" (input)="onSliderChange($event)">
     </mat-slider>
   </div>
 </app-card>
