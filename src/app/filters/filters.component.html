@@ -10,6 +10,9 @@
   </mat-checkbox>
 
   <h3 class="text-xl font-bold mt-5">Categories
+    <button mat-mini-fab color="secondary" routerLink="edit-categories">
+      <mat-icon>edit</mat-icon>
+    </button>
     <button mat-raised-button color="secondary" (click)="toggleAllSelected()">
       Select {{allCategoriesSelected() ? 'none' : 'all'}}
     </button>
@@ -19,4 +22,5 @@
     *ngFor="let category of data.categories" [value]="category.id.toString()" class="p-1">
     {{category.name}}
   </mat-checkbox>
+
 </div>

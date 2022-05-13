@@ -37,11 +37,13 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog } from './dialogs/dialogs.component';
+import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog, CategoryNameDialog } from './dialogs/dialogs.component';
 import { PillowComponent } from './pillow/pillow.component';
 import { AboutComponent } from './about/about.component';
 import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
 import { CardComponent } from './card/card.component';
+import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
+import { CategoryCardComponent } from './edit-categories/category-card/category-card.component';
 
 
 @NgModule({
@@ -61,9 +63,12 @@ import { CardComponent } from './card/card.component';
     ConfirmDeleteDialog,
     PillowComponent,
     SoundAddDialog,
+    CategoryNameDialog,
     AboutComponent,
     StatusCodePageComponent,
     CardComponent,
+    EditCategoriesComponent,
+    CategoryCardComponent,
   ],
   imports: [
     BrowserModule,

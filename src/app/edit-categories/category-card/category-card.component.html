@@ -1,0 +1,13 @@
+<app-card>
+  <span class="text-xl p-2 font-bold">
+    {{category.name}}
+  </span>
+  <div class="ml-auto">
+    <button mat-icon-button (click)="onRename()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="onDelete()">
+      <mat-icon >delete</mat-icon>
+    </button>
+  </div>
+</app-card>

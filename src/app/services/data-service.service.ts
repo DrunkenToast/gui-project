@@ -104,6 +104,49 @@ export class DataService {
     });;
   }
 
+  editCategory(category: Category): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.put<Category>(environment.api_url + '/categories/' + category.id, category).subscribe({
+        next: (category: Category) => {
+          this.updateCategories();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
+  }
+
+  createCategory(name: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post<Category>(environment.api_url + '/categories', { name: name }).subscribe({
+        next: (category: Category) => {
+          this.updateCategories();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
+  }
+
+  deleteCategory(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.delete<void>(environment.api_url + '/categories/' + id).subscribe({
+        next: () => {
+          this.updateCategories();
+          resolve();
+        },
+        error: (err: any) => {
+          reject(err);
+        }
+      });
+    });
+  }
+
+
   updatePresets(): void {
     this.http.get<Preset[]>(environment.api_url + '/presets').subscribe({
       next: (presets: Preset[]) => {

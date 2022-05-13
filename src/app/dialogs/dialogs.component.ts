@@ -22,6 +22,21 @@ export class ConfirmDeleteDialog {
 }
 
 @Component({
+  selector: 'category-name-dialog',
+  templateUrl: 'dialog-category-name.html',
+})
+export class CategoryNameDialog {
+  constructor(
+    public dialogRef: MatDialogRef<CategoryNameDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: string,
+  ) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
   selector: 'preset-name-dialog',
   templateUrl: 'dialog-preset-name.html',
 })
