@@ -1,5 +1,6 @@
 <div class="flex flex-col items-center m-5">
   <h1 class="text-6xl font-bold">{{code}}</h1>
   <h2 *ngIf="code == 404">Page not found</h2>
+  <h2 *ngIf="code == 418">I'm a teapot</h2>
   <h2 *ngIf="code == 500">Internal server error</h2>
 </div>

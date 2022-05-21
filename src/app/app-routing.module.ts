@@ -7,9 +7,9 @@ import { StatusCodePageComponent } from './status-code-page/status-code-page.com
 
 const routes: Routes = [
   {path: '', component: PillowComponent},
-  {path: 'edit-categories', component: EditCategoriesComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'status-code/:code', component: StatusCodePageComponent},
+  {path: 'edit-categories', component: EditCategoriesComponent, data: {title: 'Edit categories'}},
+  {path: 'about', component: AboutComponent, data: {title: 'About Pillow'}},
+  {path: 'status-code/:code', component: StatusCodePageComponent, data: {title: ':/'}},
   {path: '**', redirectTo: 'status-code/404'}
 ];
 

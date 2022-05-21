@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -95,7 +95,7 @@ import { CategoryCardComponent } from './edit-categories/category-card/category-
     MatExpansionModule,
     MatTooltipModule,
   ],
-  providers: [MatSnackBar],
+  providers: [MatSnackBar, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule {
