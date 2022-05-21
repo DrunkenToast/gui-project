@@ -1,4 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlayerState } from '../models/preset-data';
 import { AudioStatus } from '../models/sound-data';
 
@@ -149,7 +150,8 @@ class AudioPlayer {
 
   play() {
     console.log('playing', this.audio.volume);
-    this.audio.play();
+    this.audio.play()
+      .catch(err => console.error('Error playing audio. Error:', err));
     this.status = 'playing';
   }
 
