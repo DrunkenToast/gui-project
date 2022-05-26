@@ -1,11 +1,13 @@
 <h1 mat-dialog-title>Name preset</h1>
-<div mat-dialog-content>
-  <mat-form-field appearance="fill">
-    <mat-label>Preset name</mat-label>
-    <input matInput [(ngModel)]="data">
-  </mat-form-field>
-</div>
-<mat-dialog-actions align="end">
-  <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Name it!</button>
-</mat-dialog-actions>
+<form (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Preset name</mat-label>
+      <input name="name" matInput [(ngModel)]="data">
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button type="submit" mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Name it!</button>
+  </mat-dialog-actions>
+</form>

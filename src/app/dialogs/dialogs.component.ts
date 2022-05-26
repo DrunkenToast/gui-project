@@ -34,6 +34,10 @@ export class CategoryNameDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  onSubmit(): void {
+    this.dialogRef.close(this.data);
+  }
 }
 
 @Component({
@@ -48,6 +52,10 @@ export class PresetNameDialog {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onSubmit(): void {
+    this.dialogRef.close(this.data);
   }
 }
 

@@ -304,24 +304,19 @@
       "name": "Sleep",
       "playerStates": [
         {
-          "id": 3,
+          "id": 1,
           "status": "paused",
-          "volume": 0.32
-        },
-        {
-          "id": 10,
-          "status": "paused",
-          "volume": 1
-        },
-        {
-          "id": 14,
-          "status": "paused",
-          "volume": 0.3
+          "volume": 0.51
         },
         {
           "id": 2,
           "status": "paused",
           "volume": 0.23
+        },
+        {
+          "id": 3,
+          "status": "paused",
+          "volume": 0.32
         },
         {
           "id": 6,
@@ -331,7 +326,7 @@
         {
           "id": 7,
           "status": "playing",
-          "volume": 0.1
+          "volume": 0.3
         },
         {
           "id": 8,
@@ -344,19 +339,24 @@
           "volume": 1
         },
         {
-          "id": 13,
-          "status": "playing",
-          "volume": 0.3
-        },
-        {
-          "id": 1,
+          "id": 10,
           "status": "paused",
-          "volume": 0.51
+          "volume": 1
         },
         {
           "id": 12,
           "status": "paused",
           "volume": 0.1
+        },
+        {
+          "id": 13,
+          "status": "playing",
+          "volume": 0.3
+        },
+        {
+          "id": 14,
+          "status": "paused",
+          "volume": 0.3
         },
         {
           "id": 4,
@@ -370,9 +370,14 @@
       "name": "Lots-a-nature",
       "playerStates": [
         {
-          "id": 10,
+          "id": 1,
           "status": "playing",
-          "volume": 0.4
+          "volume": 0.51
+        },
+        {
+          "id": 2,
+          "status": "paused",
+          "volume": 0.23
         },
         {
           "id": 3,
@@ -380,8 +385,8 @@
           "volume": 0.32
         },
         {
-          "id": 14,
-          "status": "playing",
+          "id": 6,
+          "status": "paused",
           "volume": 1
         },
         {
@@ -395,14 +400,19 @@
           "volume": 0.2
         },
         {
-          "id": 2,
-          "status": "paused",
-          "volume": 0.23
+          "id": 9,
+          "status": "playing",
+          "volume": 0.3
         },
         {
-          "id": 6,
-          "status": "paused",
-          "volume": 1
+          "id": 10,
+          "status": "playing",
+          "volume": 0.15
+        },
+        {
+          "id": 12,
+          "status": "playing",
+          "volume": 0.15
         },
         {
           "id": 13,
@@ -410,19 +420,14 @@
           "volume": 0.1
         },
         {
-          "id": 9,
+          "id": 14,
           "status": "playing",
-          "volume": 0.22
+          "volume": 1
         },
         {
-          "id": 1,
-          "status": "playing",
-          "volume": 0.51
-        },
-        {
-          "id": 12,
-          "status": "playing",
-          "volume": 0.1
+          "id": 4,
+          "status": "paused",
+          "volume": 1
         }
       ],
       "id": 10

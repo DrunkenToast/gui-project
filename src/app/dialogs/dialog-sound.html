@@ -3,8 +3,8 @@
 
   <div class="flex flex-col w-fill">
     <mat-form-field appearance="fill">
-      <mat-label>Preset name</mat-label>
-      <input matInput [(ngModel)]="data.title">
+      <mat-label>Sound name</mat-label>
+      <input name="name" matInput [(ngModel)]="data.title">
     </mat-form-field>
 
     <span>Preview icon: <i [class]="data.icon"></i></span>
@@ -13,17 +13,17 @@
     </a>
     <mat-form-field appearance="fill">
       <mat-label>Icon</mat-label>
-      <input matInput [(ngModel)]="data.icon">
+      <input name="icon" matInput [(ngModel)]="data.icon">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Source path</mat-label>
-      <input matInput [(ngModel)]="data.src">
+      <input mat="source" matInput [(ngModel)]="data.src">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Category</mat-label>
-      <mat-select required [(value)]="data.categoryID">
+      <mat-select required [(ngModel)]="data.categoryID" name="category">
         <mat-option *ngFor="let cat of dataservice.categories" [value]="cat.id">{{ cat.name }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -35,3 +35,4 @@
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
   <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{action}}</button>
 </mat-dialog-actions>
+
