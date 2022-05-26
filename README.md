@@ -18,8 +18,11 @@ Presets and filters easy to use and access.
 ![Main screen of Pillow](screenshots/pillow-main-screen.png)  
 *Main screen interface of Pillow*
 
-![Responsive screen of Pillow](screenshots/pillow-responsive.png)
+![Responsive screen of Pillow](screenshots/pillow-responsive.jpg)
 *Responsive variation of the main interface*
+
+![Edit categories](screenshots/pillow-categories.png)  
+*Edit categories*
 
 ## Requirements
 
