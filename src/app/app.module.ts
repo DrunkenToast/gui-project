@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,59 +48,63 @@ import { StatusCodePageComponent } from './status-code-page/status-code-page.com
 import { CardComponent } from './card/card.component';
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 import { CategoryCardComponent } from './edit-categories/category-card/category-card.component';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SoundGridComponent,
-    SoundCardComponent,
-    NavbarComponent,
-    FilterSoundsPipe,
-    NavigationComponent,
-    PresetCardComponent,
-    FiltersComponent,
-    FilterCategoriesPipe,
-    PresetsComponent,
-    PresetNameDialog,
-    SoundEditDialog,
-    ConfirmDeleteDialog,
-    PillowComponent,
-    SoundAddDialog,
-    CategoryNameDialog,
-    AboutComponent,
-    StatusCodePageComponent,
-    CardComponent,
-    EditCategoriesComponent,
-    CategoryCardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatIconModule,
-    MatSidenavModule,
-    FontAwesomeModule,
-    MatToolbarModule,
-    MatChipsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    LayoutModule,
-    MatListModule,
-    MatCardModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatDialogModule,
-    MatInputModule,
-    MatMenuModule,
-    FormsModule,
-    MatSelectModule,
-    MatExpansionModule,
-    MatTooltipModule,
-  ],
-  providers: [MatSnackBar, Title],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SoundGridComponent,
+        SoundCardComponent,
+        NavbarComponent,
+        FilterSoundsPipe,
+        NavigationComponent,
+        PresetCardComponent,
+        FiltersComponent,
+        FilterCategoriesPipe,
+        PresetsComponent,
+        PresetNameDialog,
+        SoundEditDialog,
+        ConfirmDeleteDialog,
+        PillowComponent,
+        SoundAddDialog,
+        CategoryNameDialog,
+        AboutComponent,
+        StatusCodePageComponent,
+        CardComponent,
+        EditCategoriesComponent,
+        CategoryCardComponent,
+    ],
+    imports: [
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideFirestore(() => getFirestore()),
+        provideAuth(() => getAuth()),
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatIconModule,
+        MatSidenavModule,
+        FontAwesomeModule,
+        MatToolbarModule,
+        MatChipsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        LayoutModule,
+        MatListModule,
+        MatCardModule,
+        HttpClientModule,
+        MatFormFieldModule,
+        MatDialogModule,
+        MatInputModule,
+        MatMenuModule,
+        FormsModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatTooltipModule,
+    ],
+    providers: [MatSnackBar, Title],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

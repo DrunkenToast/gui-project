@@ -21,7 +21,6 @@ export class SoundCardComponent implements OnInit {
   @Input() audioData: Sound = {
     id: 0,
     title: 'No sound',
-    loop: true,
     categoryID: 1,
     icon: 'fa-solid fa-compact-disc',
     src: '',

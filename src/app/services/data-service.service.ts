@@ -37,7 +37,6 @@ export class DataService {
             this.audioService.set(sound.id)
             audio = this.audioService.get(sound.id)
             audio?.setSource(sound.src);
-            audio?.setLoop(sound.loop);
           }
         }
       },

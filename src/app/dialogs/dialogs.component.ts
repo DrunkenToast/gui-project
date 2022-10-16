@@ -87,7 +87,6 @@ export class SoundAddDialog {
     categoryID: 1,
     icon: '',
     src: '',
-    loop: true,
   }
 
   constructor(

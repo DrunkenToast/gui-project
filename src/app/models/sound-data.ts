@@ -8,11 +8,6 @@ export interface SoundCreate {
   icon: string,
   categoryID: number,
   src: string,
-  loop: boolean,
-  interval?: {
-    min: number,
-    max: number
-  }
 }
 
 export interface Sound extends SoundCreate {

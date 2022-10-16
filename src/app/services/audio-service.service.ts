@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { PlayerState } from '../models/preset-data';
 import { AudioStatus } from '../models/sound-data';
 
@@ -121,6 +120,8 @@ class AudioPlayer {
     this.audio.addEventListener('pause', this.setStatus, false);
     this.audio.addEventListener('waiting', this.setStatus, false);
     this.audio.addEventListener('ended', this.setStatus, false);
+
+    this.audio.loop = true;
   }
 
   private setStatus = (ev: Event) => {
@@ -164,10 +165,6 @@ class AudioPlayer {
   setSource(src: string) {
     this.audio.src = src
     this.audio.load();
-  }
-
-  setLoop(loop: boolean) {
-    this.audio.loop = loop;
   }
 
   setVolume(volume: number) {
