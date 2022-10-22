@@ -1,17 +1,12 @@
-/*
-Describes the data for an audio component. This does not include data such as volume or it's status, that's loaded seperately for presets.
-It does include data such as loop and interval because it describes how that audio component should function.
-*/
-
-export interface SoundCreate {
+export interface NewSound {
   title: string,
   icon: string,
-  categoryID: number,
+  categoryID: string,
   src: string,
 }
 
-export interface Sound extends SoundCreate {
-  id: number,
+export interface Sound extends NewSound {
+  id: string;
 }
 
 export type AudioStatus = 'playing' | 'paused' | 'waiting' | 'ended';

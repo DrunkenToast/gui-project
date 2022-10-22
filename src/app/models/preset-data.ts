@@ -1,16 +1,16 @@
 import { AudioStatus } from "./sound-data";
 
-export interface PresetCreate {
+export interface NewPreset {
   name: string,
   playerStates: PlayerState[]
 }
 
-export interface Preset extends PresetCreate {
-  id: number,
+export interface Preset extends NewPreset {
+  id: string,
 }
 
 export interface PlayerState {
-  id: number,
+  id: string,
   status: AudioStatus,
   volume: number,
 }

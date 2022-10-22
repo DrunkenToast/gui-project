@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { MatDialog } from '@angular/material/dialog';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BackendService } from 'src/app/backend.service';
 import { Sound } from 'src/app/models/sound-data';
 import { AudioService } from 'src/app/services/audio-service.service';
 import { DataService } from 'src/app/services/data-service.service';
@@ -19,14 +20,14 @@ export class SoundCardComponent implements OnInit {
   volume: number | null | undefined;
 
   @Input() audioData: Sound = {
-    id: 0,
+    id: '',
     title: 'No sound',
-    categoryID: 1,
+    categoryID: '',
     icon: 'fa-solid fa-compact-disc',
     src: '',
   }
 
-  constructor(private audioService: AudioService, private dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) {
+  constructor(private audioService: AudioService, private backend: BackendService, private dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -67,7 +68,7 @@ export class SoundCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // this.audioData = result;
-        this.data.editSound(result).then(() => {
+        this.backend.updateSound(this.audioData.id, result).then(() => { //TODO: sus
           this.snackbar.open(`Sound edited! 🎉`, '', {
             duration: 2000,
           });
@@ -87,7 +88,7 @@ export class SoundCardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.data.deleteSound(this.audioData.id)
+        this.backend.deleteSound(this.audioData.id)
           .then(() => {
             this.snackbar.open(`Sound removed`, '', {
               duration: 2000,

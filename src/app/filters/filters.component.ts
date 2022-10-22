@@ -19,9 +19,9 @@ export class FiltersComponent implements OnInit {
   toggleAllSelected(): void {
     let toggle = !this.allCategoriesSelected();
 
-    this.data.categories.forEach(category => {
-      this.data.filters.categories[category.id] = toggle;
-    });
+    // this.data.categories.forEach(category => {
+    //   this.data.filters.categories[category.id] = toggle;
+    // });
   }
 
   allCategoriesSelected(): boolean {

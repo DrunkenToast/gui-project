@@ -7,7 +7,7 @@
         Add category
       </button>
     </div>
-    <app-category-card *ngFor="let cat of dataService.categories" [category]="cat"></app-category-card>
+    <app-category-card *ngFor="let cat of this.categories" [category]="cat"></app-category-card>
   </div>
   <div class="md:w-1/4"></div>
 </div>

@@ -5,6 +5,7 @@ import { Preset } from '../../models/preset-data';
 import { AudioService } from '../../services/audio-service.service';
 import { ConfirmDeleteDialog, PresetNameDialog } from '../../dialogs/dialogs.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BackendService } from 'src/app/backend.service';
 
 @Component({
   selector: 'app-preset-card',
@@ -15,12 +16,13 @@ export class PresetCardComponent implements OnInit {
 
   @Input()
   presetData: Preset = {
-    id: 0,
+    id: "",
     name: 'No preset',
     playerStates: [],
   }
 
-  constructor(private audio: AudioService, public dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) { }
+  constructor(private audio: AudioService, private data: DataService,
+        private backend: BackendService,public dialog: MatDialog, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +32,7 @@ export class PresetCardComponent implements OnInit {
   }
 
   saveCurrentState() {
-    this.data.editPresetStates(this.presetData, this.audio.exportStates())
+    this.backend.updatePresetStates(this.presetData, this.audio.exportStates())
       .then(() => {
         this.snackbar.open('Current states are saved to the preset! 🎉', '', {
           duration: 2000,
@@ -51,7 +53,7 @@ export class PresetCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.presetData.name = result;
-        this.data.editPreset(this.presetData).then(() => {
+        this.backend.updatePreset(this.presetData.id, this.presetData).then(() => {
           this.snackbar.open(`Preset renamed to '${result}'! 🎉`, '', {
             duration: 2000,
           });
@@ -70,7 +72,7 @@ export class PresetCardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.data.deletePreset(this.presetData.id)
+        this.backend.deletePreset(this.presetData.id)
           .then(() => {
             this.snackbar.open('Preset removed', '', {
               duration: 2000,

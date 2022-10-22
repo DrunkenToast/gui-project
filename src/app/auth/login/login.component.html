@@ -1,0 +1,20 @@
+<div class="flex justify-center items-center flex-col">
+    <h1 class="text-2xl font-bold m-5">Login to pillow</h1>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="flex flex-col">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" placeholder="cool@example.com" required ngModel>
+            <mat-error *ngIf="true">e</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput name="password" [type]="hide ? 'password' : 'text'" required ngModel>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Login</button>
+        <p class="italic text-sm text-disabled">Forgot your password? Too bad.</p>
+        <button mat-stroked-button routerLink="/signup">No account? Sign up!</button>
+    </form>
+</div>

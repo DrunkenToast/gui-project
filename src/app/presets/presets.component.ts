@@ -4,38 +4,44 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AudioService } from '../services/audio-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PresetNameDialog } from '../dialogs/dialogs.component';
+import { BackendService } from '../backend.service';
 
 @Component({
-  selector: 'app-presets',
-  templateUrl: './presets.component.html',
-  styleUrls: ['./presets.component.css']
+    selector: 'app-presets',
+    templateUrl: './presets.component.html',
+    styleUrls: ['./presets.component.css']
 })
 export class PresetsComponent implements OnInit {
 
-  constructor(public data: DataService, private audio: AudioService, public dialog: MatDialog, private snackbar: MatSnackBar) { }
+    constructor(public data: DataService, private audio: AudioService,
+        private backend: BackendService, public dialog: MatDialog,
+        private snackbar: MatSnackBar) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  createPreset(): void {
-    const dialogRef = this.dialog.open(PresetNameDialog, {
-      data: 'New preset'
-    });
+    createPreset(): void {
+        const dialogRef = this.dialog.open(PresetNameDialog, {
+            data: 'New preset'
+        });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.data.createPreset(result, this.audio.exportStates())
-          .then(() => {
-            this.snackbar.open(`'${result}' created! 🎉`, '', {
-              duration: 2000,
-            });
-          })
-          .catch(err => {
-            this.snackbar.open(`Failed to create preset: ${err}`, '', {
-              duration: 2000,
-            });
-          });
-      }
-    });
-  }
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.backend.createPreset({
+                    name: result,
+                    playerStates: this.audio.exportStates()
+                })
+                    .then(() => {
+                        this.snackbar.open(`'${result}' created! 🎉`, '', {
+                            duration: 2000,
+                        });
+                    })
+                    .catch(err => {
+                        this.snackbar.open(`Failed to create preset: ${err}`, '', {
+                            duration: 2000,
+                        });
+                    });
+            }
+        });
+    }
 }

@@ -8,11 +8,13 @@ import { DataService } from './services/data-service.service';
 })
 export class FilterCategoriesPipe implements PipeTransform {
 
-  constructor(private data: DataService) { }
+  constructor() { }
 
   transform(value: Category[], ...args: unknown[]): Category[] {
     return value.filter(category => {
-      return (args[0] as boolean[])[category.id];
+            return true;
+            // TODO: fix filter
+      // return (args[0] as boolean[])[category.id];
     })
   }
 

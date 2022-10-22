@@ -1,23 +1,25 @@
 <mat-toolbar color="primary">
-  <a [routerLink]="['/']">
-    <img src="../../assets/img/logo.svg" alt="Logo" srcset="">
-  </a>
-  <a [routerLink]="['/']" class="ml-3 hover:underline"
-  routerLinkActive="font-bold" [routerLinkActiveOptions]="{exact: true}">
-    Pillow
-  </a >
-  <a href="https://github.com/DrunkenToast/gui-project" target="_blank" class="ml-3 text-lg hover:underline">
-    Github
-  </a>
-  <a [routerLink]="['about']" class="ml-3 text-lg hover:underline"
-  routerLinkActive="font-bold">
-    About
-  </a>
+    <a [routerLink]="['/']">
+        <img src="../../assets/img/logo.svg" alt="Logo" srcset="">
+    </a>
+    <a [routerLink]="['/']" class="ml-3 hover:underline" routerLinkActive="font-bold"
+        [routerLinkActiveOptions]="{exact: true}">
+        Pillow
+    </a>
+    <a href="https://github.com/DrunkenToast/gui-project" target="_blank" class="ml-3 text-lg hover:underline">
+        Github
+    </a>
+    <a [routerLink]="['about']" class="ml-3 text-lg hover:underline" routerLinkActive="font-bold">
+        About
+    </a>
 
-  <span class="seperator"></span>
+    <span class="seperator"></span>
 
-  <button mat-mini-fab color="accent" (click)="onPlayPauseClick()">
-    <mat-icon>{{this.audioService.isPlaying() ? 'pause' : 'play_arrow'}}</mat-icon>
-  </button>
+    <button mat-mini-fab color="accent" (click)="onPlayPauseClick()">
+        <mat-icon>{{this.audioService.isPlaying() ? 'pause' : 'play_arrow'}}</mat-icon>
+    </button>
+
+    <app-account></app-account>
+
 
 </mat-toolbar>

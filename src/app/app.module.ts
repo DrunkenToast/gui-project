@@ -49,6 +49,8 @@ import { CardComponent } from './card/card.component';
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 import { CategoryCardComponent } from './edit-categories/category-card/category-card.component';
 import { environment } from 'src/environments/environment';
+import { AccountComponent } from './navbar/account/account.component';
+import { AuthModule } from './auth/auth.module';
 
 
 @NgModule({
@@ -74,12 +76,11 @@ import { environment } from 'src/environments/environment';
         CardComponent,
         EditCategoriesComponent,
         CategoryCardComponent,
+        AccountComponent,
     ],
     imports: [
-        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-        provideFirestore(() => getFirestore()),
-        provideAuth(() => getAuth()),
         BrowserModule,
+        AuthModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatSliderModule,
@@ -102,6 +103,9 @@ import { environment } from 'src/environments/environment';
         MatSelectModule,
         MatExpansionModule,
         MatTooltipModule,
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideFirestore(() => getFirestore()),
+        provideAuth(() => getAuth()),
     ],
     providers: [MatSnackBar, Title],
     bootstrap: [AppComponent]

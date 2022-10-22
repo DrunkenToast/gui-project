@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Sound, SoundCreate } from '../models/sound-data';
+import { Sound, NewSound } from '../models/sound-data';
 import { DataService } from '../services/data-service.service';
 
 @Component({
@@ -82,9 +82,9 @@ export class SoundEditDialog {
 })
 export class SoundAddDialog {
   action = 'Add';
-  data: SoundCreate = {
+  data: NewSound = {
     title: 'New Sound',
-    categoryID: 1,
+    categoryID: '', // TODO: Check if this worky
     icon: '',
     src: '',
   }
