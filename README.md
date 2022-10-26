@@ -26,19 +26,44 @@ Presets and filters easy to use and access.
 
 ## Requirements
 
-Requirements for the project (excluding studies, design etc) are as following:
+We were allowed to continue working on our project but have to fulfil the following requirements:
+Angular: 
+- [ ] Authentication module
+    - [X] Service
+    - [X] Log in, out and register
+    - [X] Registration form is reactive
+        - [ ] Asynchronous validator
+        - Clear messages and visual hints when not filled in correctly
+    - [X] use firebase sdk for auth
+- [X] Lazy loaded module
+- [X] Data/backed service
+- [X] Routes
+    - 3 different routes
+    - 1 child route (does admin count?)
+    - catch incorrect routes
+- [ ] Routing guards
+    - [ ] 2 canActivate
+    - [ ] 1 canDeactive
+- [ ] Custom made directive
+- [ ] 1 pipe to sort/filter
+- [ ] 3 access levels
+    - Not logged in => restricted access (login/registration)
+    - Logged in => use of app for normal user
+    - Admin => more options
+- [ ] unit testing plan as complete as possible 1 component (negative and positive tests)
+- [ ] out of resting plan write 3 pos and 2 neg unit tests for that component
+- [ ] Deploy app via firebase
 
-- [X] At least 4 self-made angular components (excludes app-component)
-- [X] Atleast 1 self-made service
-  - Audio service to handle audio requests
-  - Data service to make use of the database
-- [X] Atleast 2 routes, where one has routing parameters
-  - Root goes to the main app
-  - About page for more information
-  - Status-code route with parameter to show the status code
-- [X] Atleast 1 self-made pipe
-  - 2 pipes for filtering categories and sounds
-- [X] Make sure to use atleast edit, add and delete functions
-  - The data service contains funtions to create, edit and delete sounds and presets
-- [X] Make use of a simple database to store information. This may be json.db but any other is also allowed
-  - For ease of use I decided to use json-server for quick development. I might switch this for an API in a fork later to support sound uploading.
+Firebase:
+- [ ] Database access with fire base sdk
+- [ ] Database rules for admin and user
+- [X] use email and pass auth firebase sdk
+- [X] storage for docs, figures ...
+- [ ] hosting app on firebase
+
+Doc:
+- [ ] readme with firebase URL
+- [ ] testing plan for component of choice
+- [ ] test results
+- [X] full code without node modules
+

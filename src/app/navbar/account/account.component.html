@@ -7,7 +7,7 @@
 </button>
 
 <mat-menu #accountMenu="matMenu">
-  <button mat-menu-item *ngIf="isAdmin">
+  <button mat-menu-item *ngIf="isAdmin" [routerLink]="['/admin/panel']">
     <mat-icon>person</mat-icon>
     <span>Admin panel</span>
   </button>

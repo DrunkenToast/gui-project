@@ -4,6 +4,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,12 +46,14 @@ import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog,
 import { PillowComponent } from './pillow/pillow.component';
 import { AboutComponent } from './about/about.component';
 import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
-import { CardComponent } from './card/card.component';
-import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
-import { CategoryCardComponent } from './edit-categories/category-card/category-card.component';
+import { CardComponent } from './card/card/card.component';
+import { EditCategoriesComponent } from './admin/edit-categories/edit-categories.component';
+import { CategoryCardComponent } from './admin/edit-categories/category-card/category-card.component';
 import { environment } from 'src/environments/environment';
 import { AccountComponent } from './navbar/account/account.component';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
+import { CardModule } from './card/card.module';
 
 
 @NgModule({
@@ -73,15 +76,13 @@ import { AuthModule } from './auth/auth.module';
         CategoryNameDialog,
         AboutComponent,
         StatusCodePageComponent,
-        CardComponent,
-        EditCategoriesComponent,
-        CategoryCardComponent,
         AccountComponent,
     ],
     imports: [
         BrowserModule,
         AuthModule,
         AppRoutingModule,
+        CardModule,
         BrowserAnimationsModule,
         MatSliderModule,
         MatIconModule,
@@ -106,9 +107,10 @@ import { AuthModule } from './auth/auth.module';
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideFirestore(() => getFirestore()),
         provideAuth(() => getAuth()),
+        provideStorage(() => getStorage()),
     ],
     providers: [MatSnackBar, Title],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

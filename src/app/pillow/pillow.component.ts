@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../auth/auth.service';
 import { SoundAddDialog } from '../dialogs/dialogs.component';
 import { NewSound } from '../models/sound-data';
 import { DataService } from '../services/data-service.service';
@@ -12,29 +13,13 @@ import { DataService } from '../services/data-service.service';
 })
 export class PillowComponent implements OnInit {
 
-  constructor(private data: DataService, public dialog: MatDialog, private snackbar: MatSnackBar) { }
+  constructor(private data: DataService, private auth: AuthService,
+        public dialog: MatDialog, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
-  createSound(): void {
-        //TODO: move to admin panel
-    // const dialogRef = this.dialog.open(SoundAddDialog);
-
-    // dialogRef.afterClosed().subscribe((result: NewSound) => {
-    //   if (result) {
-    //     this.data.createSound(result)
-    //       .then(() => {
-    //         this.snackbar.open(`'${result}' created! 🎉`, '', {
-    //           duration: 2000,
-    //         });
-    //       })
-    //       .catch(err => {
-    //         this.snackbar.open(`Failed to create sound: ${err}`, '', {
-    //           duration: 2000,
-    //         });
-    //       });
-    //   }
-    // });
-  }
+    get isAdmin() {
+        return this.auth.isAdmin;
+    }
 }

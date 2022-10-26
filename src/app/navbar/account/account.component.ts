@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -7,19 +7,29 @@ import { AuthService } from 'src/app/auth/auth.service';
     templateUrl: './account.component.html',
     styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
+    // isAdmin: boolean = false;
+    adminSubscription: Subscription | undefined;
 
     constructor(private auth: AuthService) { }
 
+    ngOnDestroy(): void {
+        this.adminSubscription?.unsubscribe();
+    }
+
     ngOnInit(): void {
+        console.log("yes")
+        // this.adminSubscription = this.auth.isAdmin().subscribe(status =>
+        //     this.isAdmin = status
+        // )
     }
 
     get isLoggedIn(): boolean {
-        return this.auth.isLoggedIn();
+        return this.auth.isLoggedIn;
     }
 
-    get isAdmin(): Observable<boolean> {
-        return this.auth.isAdmin();
+    get isAdmin(): boolean {
+        return this.auth.isAdmin;
     }
 
     logout(): void {

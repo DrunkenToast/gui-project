@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithEmailAndPassword, User, UserCredential } from '@angular/fire/auth';
 import { docData } from '@angular/fire/firestore';
+import { traceUntilFirst } from '@angular/fire/performance';
 import { Router } from '@angular/router';
-import { map, Observable, of } from 'rxjs';
+import { EMPTY, firstValueFrom, map, Observable, of, switchMap, take } from 'rxjs';
 import { BackendService } from '../backend.service';
 import { Admin } from '../models/admin-data';
 
@@ -13,11 +14,65 @@ const TOKEN_KEY = 'token';
 })
 export class AuthService {
     token?: string;
+    public readonly user: Observable<User | null> = EMPTY;
+    private admin: boolean = false;
+    // private loggedIn = true;
 
     constructor(private auth: Auth, private backend: BackendService, private router: Router) {
         const item = localStorage.getItem(TOKEN_KEY);
         if (item)
             this.token = item;
+
+        this.user = authState(this.auth);
+        this.checkAdminStatus()
+            .subscribe(isAdmin => {
+                this.admin = isAdmin
+            });
+    }
+
+    get uid(): string | undefined {
+        return this.auth.currentUser?.uid
+    }
+
+    emailSignInMethods(email: string): Promise<string[]> {
+        return fetchSignInMethodsForEmail(this.auth, email);
+    }
+
+    checkAdminStatus(): Observable<boolean> {
+        return this.user.pipe(
+            traceUntilFirst('auth'),
+            // take(1),
+            switchMap(user => {
+                if (user) { // logged in
+                    // TODO: check if this is okay
+                    return this.backend.getAdmin(user.uid).pipe(
+                        take(1),
+                        map(admin => {
+                            if (admin) {
+                                return true;
+                            }
+                            return false;
+
+                        }))
+                }
+                return of(false);
+            })
+            // map(u => !!u)
+        )
+        // .subscribe(user => {
+        //     console.log('check')
+        //     if (user) { // logged in
+        //         // TODO: check if this is okay
+        //         this.backend.getAdmin(user.uid).pipe(take(1)).subscribe(admin => {
+        //             if (admin) {
+        //                 this.admin = true;
+        //                 resolve(this.admin);
+        //             }
+        //             this.admin = false;
+        //             resolve(this.admin);
+        //         })
+        //     }
+        // })
     }
 
     signup(email: string, pw: string): Promise<UserCredential> {
@@ -47,16 +102,26 @@ export class AuthService {
         this.router.navigate(['']);
     }
 
-    isLoggedIn(): boolean {
+    get isLoggedIn(): boolean {
+        // return this.loggedIn;
         return this.token != null;
     }
 
-    isAdmin(): Observable<boolean> {
-        if (!this.auth.currentUser) return of(false);
-        return this.backend.getAdmin(this.auth.currentUser.uid).pipe(map(
-            (admin: Admin): boolean => {
-                return admin ? true : false;
-            }
-        ));
+    get isAdmin(): boolean {
+        return this.admin;
     }
+
+    // isAdmin(): Observable<boolean> {
+    //     console.log(2)
+    //     if (!this.auth.currentUser) return of(false);
+    //     console.log(3)
+    //     return this.backend.getAdmin(this.auth.currentUser.uid).pipe(
+    //         map(
+    //             (admin: Admin): boolean => {
+    //                 return admin ? true : false;
+    //             }
+    //         ),
+    //         take(1) //prevents having to unsubscribe
+    //     );
+    // }
 }

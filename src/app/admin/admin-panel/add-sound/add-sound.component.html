@@ -1,0 +1,37 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="flex flex-col w-full md:w-1/2 m-auto p-2">
+    <mat-form-field appearance="fill">
+        <mat-label>Sound title</mat-label>
+        <input name="title" matInput ngModel required>
+    </mat-form-field>
+
+    <span>Preview icon: <i [class]="f.value.icon"></i></span>
+    <a class="text-blue-500 underline" href="https://fontawesome.com/search?m=free&s=solid%2Cbrands" target="_blank">
+        Check out available icons here
+    </a>
+    <mat-form-field appearance="fill">
+        <mat-label>Icon</mat-label>
+        <input name="icon" matInput ngModel required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select ngModel required name="category">
+            <mat-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+        Choose File
+    </button>
+    <input hidden (change)="onFileSelect($event)" #fileInput type="file" required>
+    <p>
+        Selected file: {{this.selectedFile?.name ?? 'None'}}
+    </p>
+
+
+    <button mat-raised-button color="primary"
+        [disabled]="!f.valid && !!!this.selectedFile?.name">
+        <!-- TODO: doesnt work -->
+        Add sound
+    </button>
+</form>

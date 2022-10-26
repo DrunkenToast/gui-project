@@ -5,6 +5,7 @@ import { AudioService } from '../services/audio-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PresetNameDialog } from '../dialogs/dialogs.component';
 import { BackendService } from '../backend.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-presets',
@@ -14,8 +15,8 @@ import { BackendService } from '../backend.service';
 export class PresetsComponent implements OnInit {
 
     constructor(public data: DataService, private audio: AudioService,
-        private backend: BackendService, public dialog: MatDialog,
-        private snackbar: MatSnackBar) { }
+        private backend: BackendService, private auth: AuthService,
+        public dialog: MatDialog, private snackbar: MatSnackBar) { }
 
     ngOnInit(): void {
     }
@@ -27,7 +28,8 @@ export class PresetsComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.backend.createPreset({
+                if (this.auth.uid == undefined) return; // user has to be logged in
+                this.backend.createPreset(this.auth.uid, {
                     name: result,
                     playerStates: this.audio.exportStates()
                 })

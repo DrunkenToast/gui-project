@@ -3,7 +3,8 @@
 
 <div class="flex flex-row">
   <div class="w-1/4 flex-col p-5 hidden lg:flex">
-    <button mat-raised-button color="primary" (click)="createSound()">
+    <button mat-raised-button color="primary" *ngIf="this.isAdmin"
+            [routerLink]="'/admin/panel/add-sound'">
       <mat-icon>add</mat-icon>
       Add sound
     </button>
@@ -33,7 +34,7 @@
         <app-presets></app-presets>
       </mat-expansion-panel>
 
-      <button mat-raised-button color="primary" class="w-full" (click)="createSound()">
+      <button mat-raised-button color="primary" class="w-full" [routerLink]="'/admin/panel/add-sound'">
         <mat-icon>add</mat-icon>
         Add sound
       </button>

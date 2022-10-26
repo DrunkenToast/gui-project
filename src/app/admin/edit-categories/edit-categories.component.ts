@@ -2,10 +2,10 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { BackendService } from '../backend.service';
-import { CategoryNameDialog } from '../dialogs/dialogs.component';
-import { Category } from '../models/category-data';
-import { DataService } from '../services/data-service.service';
+import { BackendService } from '../../backend.service';
+import { CategoryNameDialog } from '../../dialogs/dialogs.component';
+import { Category } from '../../models/category-data';
+import { DataService } from '../../services/data-service.service';
 
 @Component({
     selector: 'app-edit-categories',

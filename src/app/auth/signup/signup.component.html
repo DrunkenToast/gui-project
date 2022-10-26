@@ -5,7 +5,7 @@
             <mat-label>Email</mat-label>
             <input matInput placeholder="cool@example.com" required
                 formControlName="email">
-            <mat-error *ngIf="true">e</mat-error>
+            <mat-error *ngIf="true">{{emailErrMsg}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
@@ -25,7 +25,7 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-        <button mat-raised-button color="primary">Create cool account</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">Create cool account</button>
         <button mat-stroked-button routerLink="/login">Already have a cool account? Login!</button>
     </form>
 </div>

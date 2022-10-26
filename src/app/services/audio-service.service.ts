@@ -15,6 +15,7 @@ export class AudioService {
     }
 
     updateAudioPlayers(sounds: Sound[]): void {
+        // TODO: Delete/stop missing audioplayers
         for (let sound of sounds) {
           let audio = this.get(sound.id);
           if (!audio) {

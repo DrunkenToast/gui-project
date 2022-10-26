@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { collection, collectionData, CollectionReference, deleteDoc, doc, docData, DocumentReference, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
-import { Observable, Subscription } from 'rxjs';
+import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { query, where } from '@firebase/firestore';
+import { getDownloadURL } from '@firebase/storage';
+import { from, Observable, take, map, tap, flatMap, mergeMap, firstValueFrom } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 import { Admin } from './models/admin-data';
 import { Category, NewCategory } from './models/category-data';
 import { NewPreset, PlayerState, Preset } from './models/preset-data';
@@ -15,10 +19,11 @@ export class BackendService {
     private readonly PRESETS = 'presets/';
     private readonly ADMINS = 'admins/';
 
-    constructor(private db: Firestore) {}
+    constructor(private db: Firestore, private storage: Storage) { }
 
     // Admin
     getAdmin(uid: string) {
+        console.log(uid)
         return docData<Admin>(
             doc(this.db, this.ADMINS + uid) as DocumentReference<Admin>
         );
@@ -32,10 +37,24 @@ export class BackendService {
         );
     }
 
-    createSound(sound: NewSound): Promise<void> {
+    async createSound(sound: NewSound, file: File): Promise<void> {
         const newID = doc(collection(this.db, 'id')).id;
+        const path = this.SOUNDS + newID + '/' + file.name;
+
         const ref = doc(this.db, this.SOUNDS + newID)
-        return setDoc(ref, sound);
+        return setDoc(ref, {
+            title: sound.title,
+            icon: sound.icon,
+            categoryID: sound.categoryID,
+            src: await this.uploadFile(path, file)
+        });
+    }
+
+    async uploadFile(path: string, file: File): Promise<string> {
+        const storageRef = ref(this.storage, path);
+        const task = uploadBytesResumable(storageRef, file);
+        await task;
+        return await getDownloadURL(storageRef);
     }
 
     updateSound(id: string, Sound: NewSound): Promise<void> {
@@ -79,17 +98,24 @@ export class BackendService {
     }
 
     // Presets
-    getPresets(): Observable<Preset[]> {
+    getPresets(uid: string): Observable<Preset[]> {
         return collectionData(
-            collection(this.db, this.PRESETS) as CollectionReference<Preset>,
+            query(
+                collection(this.db, this.PRESETS) as CollectionReference<Preset>,
+                where('userID', '==', uid)
+            ),
             { idField: 'id' }
         );
     }
 
-    createPreset(Preset: NewPreset): Promise<void> {
+    createPreset(uid: string, preset: NewPreset): Promise<void> {
         const newID = doc(collection(this.db, 'id')).id;
         const ref = doc(this.db, this.PRESETS + newID)
-        return setDoc(ref, Preset);
+        return setDoc(ref, {
+            name: preset.name,
+            playerStates: preset.playerStates,
+            userID: uid
+        });
     }
 
     updatePreset(id: string, preset: NewPreset): Promise<void> {
@@ -106,7 +132,6 @@ export class BackendService {
     }
 
     deletePreset(id: string): Promise<void> {
-        // TODO: add db rules to prevent deleting used categories
         const ref = doc(this.db, this.PRESETS + id) as DocumentReference<NewPreset>;
         return deleteDoc(ref);
     }
