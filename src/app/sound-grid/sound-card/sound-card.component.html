@@ -1,5 +1,5 @@
-<app-card [active]="isActive()">
-  <div class="cursor-pointer" (click)="toggle()">
+<app-card [active]="isActive()" class="cursor-pointer" (click)="toggle()">
+  <div>
     <i [ngClass]="'text-[3rem] p-4 ' +
     (audioData.icon.length > 0 ? audioData.icon : 'fa-solid fa-compact-disc')">
       <!--Missing icon will be replaced with a disc icon-->
@@ -8,11 +8,11 @@
 
   <div class="flex flex-col w-full">
     <div class="flex flex-row w-full">
-      <span class="text-xl p-2 font-bold cursor-pointer" (click)="toggle()">
+      <span class="text-xl p-2 font-bold">
         {{ audioData.title }}
       </span>
       <div class="ml-auto text-white">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu" click-stop-propagation>
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
@@ -27,8 +27,9 @@
         </mat-menu>
       </div>
     </div>
-    <mat-slider class="" color="accent" thumbLabel [displayWith]="formatSlider" min="0" max="1" step="0.01"
-      [value]="getVolume()" (input)="onSliderChange($event)">
+    <mat-slider class="" color="accent" thumbLabel [displayWith]="formatSlider"
+           min="0" max="1" step="0.01"
+      [value]="getVolume()" (input)="onSliderChange($event)" click-stop-propagation>
     </mat-slider>
   </div>
 </app-card>

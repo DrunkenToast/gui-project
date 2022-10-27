@@ -14,8 +14,11 @@ export class AudioService {
     constructor() {
     }
 
-    updateAudioPlayers(sounds: Sound[]): void {
-        // TODO: Delete/stop missing audioplayers
+    updateAudioPlayers(sounds: Sound[], deleted: Sound[]): void {
+        for (let delSound of deleted) {
+            this.remove(delSound.id);
+        }
+
         for (let sound of sounds) {
           let audio = this.get(sound.id);
           if (!audio) {
@@ -56,6 +59,11 @@ export class AudioService {
     /** Grab audioplayer by id */
     get(id: string): AudioPlayer | undefined {
         return this.audioPlayers.get(id);
+    }
+
+    remove(id: string): boolean {
+        this.audioPlayers.get(id)?.stop();
+        return this.audioPlayers.delete(id);
     }
 
     /**Stops all audio players */

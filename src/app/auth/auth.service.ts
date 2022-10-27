@@ -16,7 +16,6 @@ export class AuthService {
     token?: string;
     public readonly user: Observable<User | null> = EMPTY;
     private admin: boolean = false;
-    // private loggedIn = true;
 
     constructor(private auth: Auth, private backend: BackendService, private router: Router) {
         const item = localStorage.getItem(TOKEN_KEY);
@@ -57,22 +56,7 @@ export class AuthService {
                 }
                 return of(false);
             })
-            // map(u => !!u)
         )
-        // .subscribe(user => {
-        //     console.log('check')
-        //     if (user) { // logged in
-        //         // TODO: check if this is okay
-        //         this.backend.getAdmin(user.uid).pipe(take(1)).subscribe(admin => {
-        //             if (admin) {
-        //                 this.admin = true;
-        //                 resolve(this.admin);
-        //             }
-        //             this.admin = false;
-        //             resolve(this.admin);
-        //         })
-        //     }
-        // })
     }
 
     signup(email: string, pw: string): Promise<UserCredential> {
@@ -90,7 +74,7 @@ export class AuthService {
                             resolve();
                         })
                     resolve();
-                })
+                }).catch((err) => reject(err));
         })
     }
 
@@ -99,7 +83,7 @@ export class AuthService {
         this.auth.signOut();
         this.token = undefined;
         localStorage.removeItem(TOKEN_KEY);
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
     }
 
     get isLoggedIn(): boolean {

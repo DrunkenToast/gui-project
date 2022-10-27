@@ -1,29 +1,30 @@
 <div class="p-5 flex flex-col">
 
-  <mat-form-field>
-    <input type="text" matInput placeholder="Search sounds" [(ngModel)]="data.filters.soundKeyword">
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search sounds" [(ngModel)]="data.filters.soundKeyword">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
 
-  <mat-checkbox [(ngModel)]="data.filters.currentlyPlaying">
-    Show currently playing
-  </mat-checkbox>
+    <mat-checkbox [(ngModel)]="data.filters.currentlyPlaying">
+        Show currently playing
+    </mat-checkbox>
 
-  <h3 class="text-xl font-bold mt-5">Categories
-    <button mat-mini-fab color="secondary" routerLink="/admin/panel/edit-categories"
-    matTooltip="Edit categories">
-      <mat-icon>edit</mat-icon>
-    </button>
-    <button mat-raised-button color="secondary" (click)="toggleAllSelected()">
-      Select {{allCategoriesSelected() ? 'none' : 'all'}}
-    </button>
-  </h3>
+    <h3 class="text-xl font-bold mt-5">Categories
+        <button mat-mini-fab color="secondary" 
+            *ngIf="isAdmin"
+            routerLink="/admin/panel/edit-categories"
+            matTooltip="Edit categories">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button color="secondary" (click)="toggleAllSelected()">
+            Select {{allCategoriesSelected() ? 'none' : 'all'}}
+        </button>
+    </h3>
 
-        <!-- [(ngModel)]="data.filters.categories[category.id]"  -->
-  <mat-checkbox 
-        [checked]="true"
-    *ngFor="let category of data.categories" [value]="category.id.toString()" class="p-1">
-    {{category.name}}
-  </mat-checkbox>
+    <!-- [(ngModel)]="data.filters.categories[category.id]"  -->
+    <mat-checkbox [checked]="true" *ngFor="let category of data.categories" [value]="category.id.toString()"
+        class="p-1">
+        {{category.name}}
+    </mat-checkbox>
 
 </div>

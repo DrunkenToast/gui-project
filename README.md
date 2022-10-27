@@ -28,11 +28,11 @@ Presets and filters easy to use and access.
 
 We were allowed to continue working on our project but have to fulfil the following requirements:
 Angular: 
-- [ ] Authentication module
+- [X] Authentication module
     - [X] Service
     - [X] Log in, out and register
     - [X] Registration form is reactive
-        - [ ] Asynchronous validator
+        - [X] Asynchronous validator
         - Clear messages and visual hints when not filled in correctly
     - [X] use firebase sdk for auth
 - [X] Lazy loaded module
@@ -42,11 +42,12 @@ Angular:
     - 1 child route (does admin count?)
     - catch incorrect routes
 - [ ] Routing guards
-    - [ ] 2 canActivate
+    - [X] 2 canActivate
+        - canLoad for Admin counts :)
     - [ ] 1 canDeactive
-- [ ] Custom made directive
+- [X] Custom made directive
 - [ ] 1 pipe to sort/filter
-- [ ] 3 access levels
+- [X] 3 access levels
     - Not logged in => restricted access (login/registration)
     - Logged in => use of app for normal user
     - Admin => more options

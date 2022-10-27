@@ -7,9 +7,10 @@ import { EditCategoriesComponent } from './admin/edit-categories/edit-categories
 import { PillowComponent } from './pillow/pillow.component';
 import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
 import { AdminGuard } from './auth/admin.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-    { path: '', component: PillowComponent },
+    { path: '', component: PillowComponent, canActivate: [AuthGuard] },
     // {path: 'edit-categories', component: EditCategoriesComponent, data: {title: 'Edit categories'}},
     { path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),

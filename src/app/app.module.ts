@@ -54,6 +54,7 @@ import { AccountComponent } from './navbar/account/account.component';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { CardModule } from './card/card.module';
+import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { CardModule } from './card/card.module';
         AboutComponent,
         StatusCodePageComponent,
         AccountComponent,
+        ClickStopPropagationDirective,
     ],
     imports: [
         BrowserModule,

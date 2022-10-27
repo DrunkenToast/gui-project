@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
     hide = true;
+    loginFailed = false;
 
     constructor(private authService: AuthService, private router: Router) { }
 
@@ -22,10 +23,10 @@ export class LoginComponent implements OnInit {
 
         this.authService.login(email, password)
             .then(() => {
-                this.router.navigate([''])
+                this.router.navigate(['']); // TODO: sometimes doesn't navigates
             })
             .catch((err) => {
-                alert(err);
+                this.loginFailed = true
             })
     }
 }

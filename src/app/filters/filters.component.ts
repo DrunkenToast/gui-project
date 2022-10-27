@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { AuthService } from '../auth/auth.service';
 import { DataService } from '../services/data-service.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { DataService } from '../services/data-service.service';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor(public data: DataService) { }
+  constructor(public data: DataService, private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
+    get isAdmin() {
+        return this.auth.isAdmin;
+    }
 
   // Ugly code, but it works
   toggleAllSelected(): void {

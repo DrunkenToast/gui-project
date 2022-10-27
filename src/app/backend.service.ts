@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, collectionData, CollectionReference, deleteDoc, doc, docData, DocumentReference, Firestore, setDoc, updateDoc } from '@angular/fire/firestore';
+import { collection, collectionData, CollectionReference, deleteDoc, doc, docData, DocumentReference, Firestore, orderBy, setDoc, updateDoc } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { query, where } from '@firebase/firestore';
 import { getDownloadURL } from '@firebase/storage';
@@ -25,14 +25,15 @@ export class BackendService {
     getAdmin(uid: string) {
         console.log(uid)
         return docData<Admin>(
-            doc(this.db, this.ADMINS + uid) as DocumentReference<Admin>
+            doc(this.db, this.ADMINS + uid) as DocumentReference<Admin>,
         );
     }
 
     // Sounds
     getSounds(): Observable<Sound[]> {
+        const ref = collection(this.db, this.SOUNDS) as CollectionReference<Sound>;
         return collectionData(
-            collection(this.db, this.SOUNDS) as CollectionReference<Sound>,
+            query(ref, orderBy("title")),
             { idField: 'id' }
         );
     }
@@ -71,7 +72,10 @@ export class BackendService {
     // Categories
     getCategories(): Observable<Category[]> {
         return collectionData(
-            collection(this.db, this.CATEGORIES) as CollectionReference<Category>,
+            query(
+                collection(this.db, this.CATEGORIES) as CollectionReference<Category>,
+                orderBy("name")
+            ),
             { idField: 'id' }
         );
     }
@@ -102,7 +106,8 @@ export class BackendService {
         return collectionData(
             query(
                 collection(this.db, this.PRESETS) as CollectionReference<Preset>,
-                where('userID', '==', uid)
+                where('userID', '==', uid),
+                orderBy("name")
             ),
             { idField: 'id' }
         );

@@ -4,7 +4,6 @@ import { AddSoundComponent } from './admin-panel/add-sound/add-sound.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
 
-// TODO: lazy load
 const routes: Routes = [
     {
         path: 'panel', component: AdminPanelComponent,

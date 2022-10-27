@@ -67,8 +67,7 @@ export class SoundCardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.audioData = result;
-        this.backend.updateSound(this.audioData.id, result).then(() => { //TODO: sus
+        this.backend.updateSound(this.audioData.id, result).then(() => { // TODO: sus
           this.snackbar.open(`Sound edited! 🎉`, '', {
             duration: 2000,
           });

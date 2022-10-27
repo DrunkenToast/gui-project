@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BackendService } from 'src/app/backend.service';
 import { DataService } from 'src/app/services/data-service.service';
 
@@ -10,7 +11,8 @@ import { DataService } from 'src/app/services/data-service.service';
 })
 export class AddSoundComponent implements OnInit {
     selectedFile?: File;
-    constructor(private dataservice: DataService, private backend: BackendService) { }
+    constructor(private dataservice: DataService, private backend: BackendService,
+        private snackbar: MatSnackBar) { }
 
     ngOnInit(): void {
     }
@@ -34,8 +36,16 @@ export class AddSoundComponent implements OnInit {
                 title: f.value.title,
                 icon: f.value.icon,
                 categoryID: f.value.category,
-            },
-            this.selectedFile
-        )
+            }, this.selectedFile)
+            .then(() => {
+                this.snackbar.open(`Sound added`, '', {
+                    duration: 2000,
+                });
+            })
+            .catch(err => {
+                this.snackbar.open(`Failed to add sound: ${err}`, '', {
+                    duration: 2000,
+                });
+            });
     }
 }

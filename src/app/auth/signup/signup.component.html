@@ -5,13 +5,15 @@
             <mat-label>Email</mat-label>
             <input matInput placeholder="cool@example.com" required
                 formControlName="email">
-            <mat-error *ngIf="true">{{emailErrMsg}}</mat-error>
+            <mat-error *ngIf="form.touched && !form.get('email')?.valid">
+                {{emailErrMsg}}
+            </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" required
                 formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
@@ -20,10 +22,13 @@
             <mat-label>Confirm password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" required
                 formControlName="confirm_password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="form.get('confirm_password')?.hasError('matches')">
+                Passwords don't match
+            </mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" [disabled]="!form.valid">Create cool account</button>
         <button mat-stroked-button routerLink="/login">Already have a cool account? Login!</button>

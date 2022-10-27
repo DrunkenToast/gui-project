@@ -30,8 +30,7 @@
 
 
     <button mat-raised-button color="primary"
-        [disabled]="!f.valid && !!!this.selectedFile?.name">
-        <!-- TODO: doesnt work -->
+        [disabled]="!(f.valid && !!this.selectedFile?.name)">
         Add sound
     </button>
 </form>

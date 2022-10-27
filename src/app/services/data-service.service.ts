@@ -29,32 +29,51 @@ export class DataService {
     presetSubscription?: Subscription;
 
     constructor(private backend: BackendService, private auth: AuthService,
-        audioService: AudioService) {
-        this.soundsSubscription = this.backend.getSounds().subscribe(sounds => {
-            // TODO: sort on query
-            this.sounds = sounds.sort((a, b) => a.title.localeCompare(b.title));
-            audioService.updateAudioPlayers(this.sounds);
-            console.log('yes!')
-        });
+        private audioService: AudioService) {
 
+        this.auth.user.subscribe(u => {
+            if (this.soundsSubscription) this.soundsSubscription.unsubscribe();
+            if (this.categoriesSubscription) this.categoriesSubscription.unsubscribe();
+            if (this.presetSubscription) this.presetSubscription.unsubscribe();
+
+            if (u) { // logged in
+                this.onGetSounds();
+                this.onGetCategories()
+                this.onGetPresets(u.uid)
+            }
+            else { // logged out
+                this.audioService.updateAudioPlayers([], this.sounds);
+                this.sounds = [];
+                this.categories = [];
+                this.presets = [];
+            }
+        })
+    }
+    onGetSounds() {
+        this.soundsSubscription = this.backend.getSounds().subscribe(sounds => {
+            const deleted = this.sounds.filter(s => {
+                return !sounds.some(ns => ns.id == s.id)
+            });
+            this.sounds = sounds;
+
+            this.audioService.updateAudioPlayers(this.sounds, deleted);
+        });
+    }
+
+    onGetPresets(uid: string) {
+        this.presetSubscription = this.backend.getPresets(uid)
+            .subscribe(presets => {
+                this.presets = presets.sort((a, b) => a.name.localeCompare(b.name));
+            })
+    }
+
+    onGetCategories() {
         this.categoriesSubscription = this.backend.getCategories().subscribe(categories => {
             this.categories = categories;
-
             // TODO: filter categories
             // categories.forEach(category => {
             //     this.filters.categories[category.id] = true;
             // });
-        })
- 
-        this.auth.user.subscribe(u => {
-            if (this.presetSubscription) this.presetSubscription.unsubscribe();
-
-            if (u) {
-                this.presetSubscription = this.backend.getPresets(u.uid)
-                    .subscribe(presets => {
-                        this.presets = presets.sort((a, b) => a.name.localeCompare(b.name));
-                    })
-            }
         })
     }
 }
