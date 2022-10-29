@@ -56,8 +56,8 @@ Angular:
 - [ ] Deploy app via firebase
 
 Firebase:
-- [ ] Database access with fire base sdk
-- [ ] Database rules for admin and user
+- [X] Database access with fire base sdk
+- [X] Database rules for admin and user
 - [X] use email and pass auth firebase sdk
 - [X] storage for docs, figures ...
 - [ ] hosting app on firebase
