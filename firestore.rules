@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	function isAuthenticated() {
+    	return request.auth != null;
+    }
+    
+    function isAdmin() {
+    	return isAuthenticated() &&
+      	exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    
+    function isAuthorOfResource() {
+    	return isAuthenticated() &&
+      	resource != null && request.auth.uid == resource.data.userID;
+    }
+    
+    function isAuthorOfCreation() {
+    	return isAuthenticated() &&
+      	request.resource != null && request.auth.uid == request.resource.data.userID;
+    }
+    
+    match /presets/{userID} {
+    	allow read: if isAuthorOfResource()
+      allow create: if isAuthorOfCreation()
+      allow update: if isAuthorOfResource() && isAuthorOfCreation()
+      allow delete: if isAuthorOfResource()
+    }
+    
+    match /categories/{categoryid} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Logged in users can read, only admins may add and edit.
+    match /sounds/{soundid} {
+    	allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    match /admins/{adminid} {
+    	allow read: if request.auth.uid == adminid;
+    	allow read, write: if false;
+    }
+    
+    // Fallback is nothing allowed!
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

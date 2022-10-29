@@ -1,5 +1,9 @@
 # GUI project - Pillow
 
+## Live demo
+
+https://pillow-c3b4c.web.app/
+
 ## Running the project
 
 `npm i`  
@@ -53,17 +57,17 @@ Angular:
     - Admin => more options
 - [ ] unit testing plan as complete as possible 1 component (negative and positive tests)
 - [ ] out of resting plan write 3 pos and 2 neg unit tests for that component
-- [ ] Deploy app via firebase
+- [X] Deploy app via firebase
 
 Firebase:
 - [X] Database access with fire base sdk
 - [X] Database rules for admin and user
 - [X] use email and pass auth firebase sdk
 - [X] storage for docs, figures ...
-- [ ] hosting app on firebase
+- [X] hosting app on firebase
 
 Doc:
-- [ ] readme with firebase URL
+- [X] readme with firebase URL
 - [ ] testing plan for component of choice
 - [ ] test results
 - [X] full code without node modules
