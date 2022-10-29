@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -25,14 +25,20 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         return this.isLoggedInOrNavigate();
     }
 
-    private isLoggedInOrNavigate() {
-        if (this.auth.isLoggedIn) {
-            return true;
-        }
-        else {
-            this.router.navigate(['/login']);
-            return false;
-        }
+    private isLoggedInOrNavigate(): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.auth.user.pipe(take(1))
+                .subscribe((u) => {
+                    if (u) {
+                        resolve(true);
+                    }
+                    else {
+                        this.router.navigate(['/login']);
+                        resolve(false);
+                    }
+                })
+
+        })
     }
 
 }

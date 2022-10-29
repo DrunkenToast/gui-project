@@ -1,6 +1,5 @@
 <h1 mat-dialog-title>{{action}} sound card</h1>
 <mat-dialog-content>
-
   <div class="flex flex-col w-fill">
     <mat-form-field appearance="fill">
       <mat-label>Sound name</mat-label>
@@ -8,7 +7,7 @@
     </mat-form-field>
 
     <span>Preview icon: <i [class]="data.icon"></i></span>
-    <a class="text-blue-500 underline" href="https://fontawesome.com/search?m=free&s=solid%2Cbrands" target="_blank">
+    <a class="text-accent underline" href="https://fontawesome.com/search?m=free&s=solid%2Cbrands" target="_blank">
       Check out available icons here
     </a>
     <mat-form-field appearance="fill">
@@ -27,9 +26,7 @@
         <mat-option *ngFor="let cat of dataservice.categories" [value]="cat.id">{{ cat.name }}</mat-option>
       </mat-select>
     </mat-form-field>
-
   </div>
-
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>

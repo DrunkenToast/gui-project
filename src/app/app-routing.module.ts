@@ -15,6 +15,7 @@ const routes: Routes = [
     { path: 'admin',
         loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
         canLoad: [AdminGuard],
+        data: { title: 'Admin panel' },
     },
     { path: 'about', component: AboutComponent, data: { title: 'About Pillow' } },
     { path: 'status-code/:code', component: StatusCodePageComponent, data: { title: ':/' } },

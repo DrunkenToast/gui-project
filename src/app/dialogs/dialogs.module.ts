@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryNameDialog, ConfirmDeleteDialog, ConfirmDiscardDialog, PresetNameDialog, SoundAddDialog, SoundEditDialog } from './dialogs.component';
-import { MatDialogActions, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-
-
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -23,11 +22,11 @@ import { MatButtonModule } from '@angular/material/button';
         CommonModule,
         FormsModule,
         MatDialogModule,
-        MatInputModule,
         MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
         MatOptionModule,
-        MatButtonModule
-
+        MatButtonModule,
     ]
 })
 export class DialogsModule { }

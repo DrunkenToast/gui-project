@@ -8,16 +8,13 @@ import { EditCategoriesComponent } from './edit-categories/edit-categories.compo
 const routes: Routes = [
     {
         path: 'panel', component: AdminPanelComponent,
-        data: { title: 'Admin panel' },
         children: [
             {
                 path: 'add-sound', component: AddSoundComponent,
-                data: { title: 'Add sound' },
                 canDeactivate: [CanDeactivateGuard]
             },
             {
                 path: 'edit-categories', component: EditCategoriesComponent,
-                data: { title: 'Edit categories' }
             },
         ]
     },

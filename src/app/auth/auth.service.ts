@@ -7,20 +7,17 @@ import { EMPTY, firstValueFrom, map, Observable, of, switchMap, take } from 'rxj
 import { BackendService } from '../backend.service';
 import { Admin } from '../models/admin-data';
 
-const TOKEN_KEY = 'token';
-
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    token?: string;
     public readonly user: Observable<User | null> = EMPTY;
     private admin: boolean = false;
 
     constructor(private auth: Auth, private backend: BackendService, private router: Router) {
         this.auth.setPersistence(browserLocalPersistence);
-
         this.user = authState(this.auth);
+
         this.checkAdminStatus()
             .subscribe(isAdmin => {
                 this.admin = isAdmin
@@ -66,8 +63,6 @@ export class AuthService {
     logout(): void {
         console.log('logging out');
         this.auth.signOut();
-        this.token = undefined;
-        localStorage.removeItem(TOKEN_KEY);
         this.router.navigate(['/login']);
     }
 

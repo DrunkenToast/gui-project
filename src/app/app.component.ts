@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
       filter(event => event instanceof NavigationEnd),
       map(() => {
         const child = this.route.firstChild;
+                console.log(child?.snapshot)
         if (child?.snapshot.data['title']) {
           return child.snapshot.data['title'];
         }

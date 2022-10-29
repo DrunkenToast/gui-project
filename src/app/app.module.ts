@@ -42,7 +42,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { ConfirmDeleteDialog, PresetNameDialog, SoundEditDialog, SoundAddDialog, CategoryNameDialog } from './dialogs/dialogs.component';
 import { PillowComponent } from './pillow/pillow.component';
 import { AboutComponent } from './about/about.component';
 import { StatusCodePageComponent } from './status-code-page/status-code-page.component';
