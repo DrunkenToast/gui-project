@@ -55,6 +55,7 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { CardModule } from './card/card.module';
 import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
+import { DialogsModule } from './dialogs/dialogs.module';
 
 
 @NgModule({
@@ -69,12 +70,7 @@ import { ClickStopPropagationDirective } from './click-stop-propagation.directiv
         FiltersComponent,
         FilterCategoriesPipe,
         PresetsComponent,
-        PresetNameDialog,
-        SoundEditDialog,
-        ConfirmDeleteDialog,
         PillowComponent,
-        SoundAddDialog,
-        CategoryNameDialog,
         AboutComponent,
         StatusCodePageComponent,
         AccountComponent,
@@ -85,6 +81,7 @@ import { ClickStopPropagationDirective } from './click-stop-propagation.directiv
         AuthModule,
         AppRoutingModule,
         CardModule,
+        DialogsModule,
         BrowserAnimationsModule,
         MatSliderModule,
         MatIconModule,
@@ -99,7 +96,7 @@ import { ClickStopPropagationDirective } from './click-stop-propagation.directiv
         MatCardModule,
         HttpClientModule,
         MatFormFieldModule,
-        MatDialogModule,
+        // MatDialogModule,
         MatInputModule,
         MatMenuModule,
         FormsModule,

@@ -40,7 +40,6 @@ export class AuthService {
     checkAdminStatus(): Observable<boolean> {
         return this.user.pipe(
             traceUntilFirst('auth'),
-            // take(1),
             switchMap(user => {
                 if (user) { // logged in
                     // TODO: check if this is okay

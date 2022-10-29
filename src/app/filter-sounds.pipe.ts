@@ -6,10 +6,10 @@ import { Sound } from './models/sound-data';
 })
 export class FilterSoundsPipe implements PipeTransform {
 
-  transform(value: Sound[], ...args: unknown[]): Sound[] {
+  transform(value: Sound[], keyword: string, categoryID: string): Sound[] {
     return (value as Sound[])
-      .filter(sound => sound.title.toLowerCase().includes((args[0] as string).toString().toLowerCase()))
-      .filter((a) => a.categoryID === args[1]);
+      .filter(sound => sound.title.toLowerCase().includes((keyword).toString().toLowerCase()))
+      .filter((a) => a.categoryID === categoryID);
   }
 
 }

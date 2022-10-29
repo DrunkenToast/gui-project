@@ -26,10 +26,13 @@
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="form.get('confirm_password')?.hasError('matches')">
+            <!-- <mat-error> -->
+            <!--     Passwords don't match -->
+            <!-- </mat-error> -->
+        </mat-form-field>
+            <mat-error *ngIf="form.hasError('nomatch')">
                 Passwords don't match
             </mat-error>
-        </mat-form-field>
         <button mat-raised-button color="primary" [disabled]="!form.valid">Create cool account</button>
         <button mat-stroked-button routerLink="/login">Already have a cool account? Login!</button>
     </form>

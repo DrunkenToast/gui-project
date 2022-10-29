@@ -10,9 +10,7 @@
     </mat-checkbox>
 
     <h3 class="text-xl font-bold mt-5">Categories
-        <button mat-mini-fab color="secondary" 
-            *ngIf="isAdmin"
-            routerLink="/admin/panel/edit-categories"
+        <button mat-mini-fab color="secondary" *ngIf="isAdmin" routerLink="/admin/panel/edit-categories"
             matTooltip="Edit categories">
             <mat-icon>edit</mat-icon>
         </button>
@@ -21,9 +19,8 @@
         </button>
     </h3>
 
-    <!-- [(ngModel)]="data.filters.categories[category.id]"  -->
-    <mat-checkbox [checked]="true" *ngFor="let category of data.categories" [value]="category.id.toString()"
-        class="p-1">
+    <mat-checkbox [checked]="isChecked(category.id)" (change)="checkCategory($event)"
+        *ngFor="let category of data.categories" [value]="category.id" class="p-1">
         {{category.name}}
     </mat-checkbox>
 

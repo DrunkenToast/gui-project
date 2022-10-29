@@ -4,6 +4,24 @@ import { Sound, NewSound } from '../models/sound-data';
 import { DataService } from '../services/data-service.service';
 
 @Component({
+    selector: 'confirm-discard-dialog',
+    templateUrl: 'dialog-confirm-discard.html',
+})
+export class ConfirmDiscardDialog {
+    constructor(
+        public dialogRef: MatDialogRef<PresetNameDialog>,
+    ) { }
+
+    onCancelClick(): void {
+        this.dialogRef.close(false);
+    }
+
+    onDiscardClick(): void {
+        this.dialogRef.close(true);
+    }
+}
+
+@Component({
     selector: 'confirm-delete-dialog',
     templateUrl: 'dialog-confirm-delete.html',
 })
@@ -80,6 +98,7 @@ export class SoundEditDialog {
     }
 }
 
+// TODO: delete
 @Component({
     selector: 'sound-dialog',
     templateUrl: 'dialog-sound.html',

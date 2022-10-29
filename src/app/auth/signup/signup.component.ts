@@ -21,10 +21,8 @@ export class SignupComponent implements OnInit {
                 [Validators.required, Validators.email], [this.emailInUseValidator.bind(this)]
             ),
             'password': new FormControl(null, [Validators.required]),
-            'confirm_password': new FormControl(null,
-                [Validators.required, this.matchValue('password')]
-            ),
-        }, [this.matchPasswords('password', 'confirm_password')])
+            'confirm_password': new FormControl(null, [Validators.required]),
+        }, [this.matchValue('password', 'confirm_password')])
     }
 
     onSubmit(): void {
@@ -35,7 +33,7 @@ export class SignupComponent implements OnInit {
 
         this.auth.signup(email, pass)
             .then(() => {
-                this.snackbar.open(`Account succesfully registered!`, '', {
+                this.snackbar.open(`Account succesfully registered! 🎉`, '', {
                     duration: 2000,
                 });
                 this.router.navigate(['/login']);
@@ -58,38 +56,29 @@ export class SignupComponent implements OnInit {
                     }
                     resolve(null);
                 })
-                .catch((err) => {
+                .catch(() => {
                     resolve({ 'email': true });
                 })
         })
     }
 
     get emailErrMsg() {
-        console.log(this.form.hasError('matches'))
+        console.log('passwords match!', this.form.hasError('nomatch'))
+        console.log(this.form.errors);
         const email = this.form.get('email');
         return email?.hasError('email') ?
             'Invalid email address' :
             email?.hasError('emailInUse') ?
                 'Email address is already in use' : '';
-
     }
 
-    matchPasswords(password: string, confirm_password: string) {
-        return (form: FormGroup) => {
-            const pass = form.get(password)?.value;
-            const confirm = form.get(confirm_password)?.value;
+    matchValue(value1: string, value2: string) {
+        return (form: AbstractControl) => {
+            const val1 = form.get(value1)?.value;
+            const val2 = form.get(value2)?.value;
 
-
-            // return pass === confirm ?
-            //     null : { matches: false };
+            return val1 === val2 ?
+                null : { nomatch: true };
         }
     }
-}
-
-matchValue(matchTo: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-        return control.value === this.form?.get(matchTo)?.value ?
-            null : { matches: false };
-    };
-}
 }

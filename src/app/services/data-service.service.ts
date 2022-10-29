@@ -13,14 +13,13 @@ import { AudioService } from './audio-service.service';
     providedIn: 'root'
 })
 export class DataService {
-
     sounds: Sound[] = [];
     categories: Category[] = [];
     presets: Preset[] = [];
 
     filters = {
         soundKeyword: '',
-        categories: [] as boolean[], // TODO: fix category filters
+        categories: new Map<string, boolean>(), // id:state
         currentlyPlaying: false,
     }
 
@@ -41,7 +40,7 @@ export class DataService {
                 this.onGetCategories()
                 this.onGetPresets(u.uid)
             }
-            else { // logged out
+            else { // logged out, clear out everything
                 this.audioService.updateAudioPlayers([], this.sounds);
                 this.sounds = [];
                 this.categories = [];
@@ -70,10 +69,18 @@ export class DataService {
     onGetCategories() {
         this.categoriesSubscription = this.backend.getCategories().subscribe(categories => {
             this.categories = categories;
-            // TODO: filter categories
-            // categories.forEach(category => {
-            //     this.filters.categories[category.id] = true;
-            // });
+
+            for (let cat of categories) {
+                if (!this.filters.categories.has(cat.id)) {
+                    this.filters.categories.set(cat.id, true)
+                }
+            }
+
+            for (let catID of this.filters.categories.keys()) {
+                if (!categories.map(c => c.id).includes(catID)) {
+                    this.filters.categories.delete(catID);
+                }
+            }
         })
     }
 }

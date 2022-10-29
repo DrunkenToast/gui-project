@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CanDeactivateGuard } from '../can-deactivate.guard';
 import { AddSoundComponent } from './admin-panel/add-sound/add-sound.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { EditCategoriesComponent } from './edit-categories/edit-categories.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
         children: [
             {
                 path: 'add-sound', component: AddSoundComponent,
-                data: { title: 'Add sound' }
+                data: { title: 'Add sound' },
+                canDeactivate: [CanDeactivateGuard]
             },
             {
                 path: 'edit-categories', component: EditCategoriesComponent,

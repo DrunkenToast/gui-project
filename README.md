@@ -41,12 +41,12 @@ Angular:
     - 3 different routes
     - 1 child route (does admin count?)
     - catch incorrect routes
-- [ ] Routing guards
+- [X] Routing guards
     - [X] 2 canActivate
         - canLoad for Admin counts :)
-    - [ ] 1 canDeactive
+    - [X] 1 canDeactive
 - [X] Custom made directive
-- [ ] 1 pipe to sort/filter
+- [X] 1 pipe to sort/filter
 - [X] 3 access levels
     - Not logged in => restricted access (login/registration)
     - Logged in => use of app for normal user

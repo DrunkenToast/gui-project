@@ -10,9 +10,13 @@ export class FilterCategoriesPipe implements PipeTransform {
 
   constructor() { }
 
-  transform(value: Category[], ...args: unknown[]): Category[] {
+  transform(value: Category[], filterCategories: Map<string, boolean>): Category[] {
+
     return value.filter(category => {
-            return true;
+            console.log(filterCategories.get(category.id))
+            return filterCategories.get(category.id);
+
+            // return true;
             // TODO: fix filter
       // return (args[0] as boolean[])[category.id];
     })

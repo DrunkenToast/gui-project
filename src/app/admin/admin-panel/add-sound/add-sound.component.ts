@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Form, NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { BackendService } from 'src/app/backend.service';
+import { CanComponentDeactivate } from 'src/app/can-deactivate.guard';
+import { ConfirmDiscardDialog } from 'src/app/dialogs/dialogs.component';
 import { DataService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -9,10 +13,26 @@ import { DataService } from 'src/app/services/data-service.service';
     templateUrl: './add-sound.component.html',
     styleUrls: ['./add-sound.component.css']
 })
-export class AddSoundComponent implements OnInit {
+export class AddSoundComponent implements OnInit, CanComponentDeactivate {
+    @ViewChild('f') form?: NgForm;
+
     selectedFile?: File;
     constructor(private dataservice: DataService, private backend: BackendService,
-        private snackbar: MatSnackBar) { }
+        private snackbar: MatSnackBar, private dialog: MatDialog) { }
+
+    canDeactivate(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            if (!this.form?.touched) {
+                resolve(true);
+                return;
+            }
+
+            const dialogRef = this.dialog.open(ConfirmDiscardDialog);
+            dialogRef.afterClosed().subscribe(result => {
+                return resolve(result);
+            });
+        })
+    }
 
     ngOnInit(): void {
     }
