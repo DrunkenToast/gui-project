@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithEmailAndPassword, User, UserCredential } from '@angular/fire/auth';
+import { Auth, authState, browserLocalPersistence, createUserWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithEmailAndPassword, User, UserCredential } from '@angular/fire/auth';
 import { docData } from '@angular/fire/firestore';
 import { traceUntilFirst } from '@angular/fire/performance';
 import { Router } from '@angular/router';
@@ -18,9 +18,7 @@ export class AuthService {
     private admin: boolean = false;
 
     constructor(private auth: Auth, private backend: BackendService, private router: Router) {
-        const item = localStorage.getItem(TOKEN_KEY);
-        if (item)
-            this.token = item;
+        this.auth.setPersistence(browserLocalPersistence);
 
         this.user = authState(this.auth);
         this.checkAdminStatus()
@@ -45,13 +43,8 @@ export class AuthService {
                     // TODO: check if this is okay
                     return this.backend.getAdmin(user.uid).pipe(
                         take(1),
-                        map(admin => {
-                            if (admin) {
-                                return true;
-                            }
-                            return false;
-
-                        }))
+                        map(admin => !!admin)
+                    )
                 }
                 return of(false);
             })
@@ -65,15 +58,8 @@ export class AuthService {
     login(email: string, pw: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             signInWithEmailAndPassword(this.auth, email, pw)
-                .then(() => {
-                    this.auth.currentUser?.getIdToken()
-                        .then((token: string) => {
-                            this.token = token;
-                            localStorage.setItem(TOKEN_KEY, token);
-                            resolve();
-                        })
-                    resolve();
-                }).catch((err) => reject(err));
+                .then(() => resolve())
+                .catch((err) => reject(err));
         })
     }
 
@@ -86,25 +72,10 @@ export class AuthService {
     }
 
     get isLoggedIn(): boolean {
-        // return this.loggedIn;
-        return this.token != null;
+        return !!this.auth.currentUser;
     }
 
     get isAdmin(): boolean {
         return this.admin;
     }
-
-    // isAdmin(): Observable<boolean> {
-    //     console.log(2)
-    //     if (!this.auth.currentUser) return of(false);
-    //     console.log(3)
-    //     return this.backend.getAdmin(this.auth.currentUser.uid).pipe(
-    //         map(
-    //             (admin: Admin): boolean => {
-    //                 return admin ? true : false;
-    //             }
-    //         ),
-    //         take(1) //prevents having to unsubscribe
-    //     );
-    // }
 }
