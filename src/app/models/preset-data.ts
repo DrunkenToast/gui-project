@@ -6,7 +6,8 @@ export interface NewPreset {
 }
 
 export interface Preset extends NewPreset {
-  id: string,
+    id: string,
+    userID: string,
 }
 
 export interface PlayerState {

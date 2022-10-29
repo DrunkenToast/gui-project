@@ -17,9 +17,10 @@ export class PresetCardComponent implements OnInit {
 
     @Input()
     presetData: Preset = {
-        id: "",
+        id: '', 
         name: 'No preset',
         playerStates: [],
+        userID: ''
     }
 
     constructor(private audio: AudioService, private data: DataService,

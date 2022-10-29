@@ -8,20 +8,12 @@ import { AuthService } from 'src/app/auth/auth.service';
     styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit, OnDestroy {
-    // isAdmin: boolean = false;
-    adminSubscription: Subscription | undefined;
-
     constructor(private auth: AuthService) { }
 
     ngOnDestroy(): void {
-        this.adminSubscription?.unsubscribe();
     }
 
     ngOnInit(): void {
-        console.log("yes")
-        // this.adminSubscription = this.auth.isAdmin().subscribe(status =>
-        //     this.isAdmin = status
-        // )
     }
 
     get isLoggedIn(): boolean {

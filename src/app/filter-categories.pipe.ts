@@ -3,23 +3,15 @@ import { Category } from './models/category-data';
 import { DataService } from './services/data-service.service';
 
 @Pipe({
-  name: 'filterCategories',
-  pure: false
+    name: 'filterCategories',
+    pure: false
 })
 export class FilterCategoriesPipe implements PipeTransform {
+    constructor() { }
 
-  constructor() { }
-
-  transform(value: Category[], filterCategories: Map<string, boolean>): Category[] {
-
-    return value.filter(category => {
-            console.log(filterCategories.get(category.id))
+    transform(value: Category[], filterCategories: Map<string, boolean>): Category[] {
+        return value.filter(category => {
             return filterCategories.get(category.id);
-
-            // return true;
-            // TODO: fix filter
-      // return (args[0] as boolean[])[category.id];
-    })
-  }
-
+        })
+    }
 }

@@ -58,9 +58,14 @@ export class BackendService {
         return await getDownloadURL(storageRef);
     }
 
-    updateSound(id: string, Sound: NewSound): Promise<void> {
-        const ref = doc(this.db, this.SOUNDS + id) as DocumentReference<NewSound>;
-        return updateDoc(ref, Sound);
+    updateSound(id: string, sound: Sound): Promise<void> {
+        const ref = doc(this.db, this.SOUNDS + id) as DocumentReference<Sound>;
+        return updateDoc(ref, {
+            title: sound.title,
+            icon: sound.icon,
+            categoryID: sound.categoryID,
+            src: sound.src
+        });
     }
 
     deleteSound(id: string): Promise<void> {
@@ -114,6 +119,7 @@ export class BackendService {
     }
 
     createPreset(uid: string, preset: NewPreset): Promise<void> {
+        console.log(uid)
         const newID = doc(collection(this.db, 'id')).id;
         const ref = doc(this.db, this.PRESETS + newID)
         return setDoc(ref, {
@@ -123,9 +129,13 @@ export class BackendService {
         });
     }
 
-    updatePreset(id: string, preset: NewPreset): Promise<void> {
-        const ref = doc(this.db, this.PRESETS + id) as DocumentReference<NewPreset>;
-        return updateDoc(ref, preset);
+    updatePreset(id: string, preset: Preset): Promise<void> {
+        const ref = doc(this.db, this.PRESETS + id) as DocumentReference<Preset>;
+        return updateDoc(ref, {
+            name: preset.name,
+            playerStates: preset.playerStates,
+            userID: preset.userID
+        });
     }
 
     updatePresetStates(preset: Preset, states: PlayerState[]) {
@@ -133,6 +143,7 @@ export class BackendService {
         return updateDoc(ref, {
             name: preset.name,
             playerStates: states,
+            // TODO: maybe userid
         });
     }
 
