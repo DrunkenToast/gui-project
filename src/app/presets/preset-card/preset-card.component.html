@@ -1,13 +1,13 @@
-<app-card>
-  <div class="cursor-pointer" (click)="loadPreset()">
+<app-card (click)="loadPreset()">
+  <div>
     <i [ngClass]="'text-[3rem] p-4 fa-solid fa-play'"></i>
   </div>
-  <span class="text-xl p-2 font-bold cursor-pointer" (click)="loadPreset()">
+  <span class="text-xl p-2 font-bold cursor-pointer">
     {{presetData.name}}
   </span>
   <div class="ml-auto">
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" click-stop-propagation>
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="before">

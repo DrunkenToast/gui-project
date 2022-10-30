@@ -1,5 +1,7 @@
 # Sounds Licensing
 
+## Sounds from Blanket
+
 | Sound | Author | Editor* | License
 | :-:  | :-: | :-: | :-:
 | [Birds](https://freesound.org/people/kvgarlic/sounds/156826/) | kvgarlic | Porrumentzio | CC0
@@ -17,5 +19,17 @@
 | [White noise](https://commons.wikimedia.org/w/index.php?title=File%3AWhite-noise-sound-20sec-mono-44100Hz.ogg) | Jorge Stolfi | - | CC BY-SA |
 | [Wind](https://freesound.org/people/felix.blume/sounds/217506/) | felix.blume | Porrumentzio | CC0
 
+
 (*) Editing implies making the sound meet [this guidelines](https://github.com/rafaelmardojai/blanket/blob/master/CONTRIBUTING.md#sounds).
+
+## Self added sounds
  
+| Sound | Author | Editor** | License
+| :-:  | :-: | :-: | :-:
+| [Owls](https://freesound.org/people/Benboncan/sounds/63220/) | Benboncan | Peter Leconte | CC BY 4.0
+| [Rustling leaves](https://freesound.org/people/juskiddink/sounds/78955/) | justkiddink | Peter Leconte | CC BY 4.0
+| [Construction](https://freesound.org/people/Tomlija/sounds/98024/) | Tomlija | Peter Leconte | CC BY 3.0
+| [Farm](https://freesound.org/people/titi2/sounds/567523/) | titi2 | Peter Leconte | CC0
+<!-- | [Machines](https://freesound.org/people/InspectorJ/sounds/385943/) | InspectorJ | Peter Leconte | CC BY 4.0 -->
+
+(**) Editing implies trying to the meet the sound guidelines from Blanket.

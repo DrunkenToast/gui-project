@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo "$PROD_ENV" > src/environments/environment.prod.ts
+        shell: bash
+        env:
+          PROD_ENV: ${{secrets.PROD_ENV}}
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

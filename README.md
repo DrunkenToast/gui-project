@@ -39,6 +39,7 @@ Angular:
         - [X] Asynchronous validator
         - Clear messages and visual hints when not filled in correctly
     - [X] use firebase sdk for auth
+    - [X] No email verification!*
 - [X] Lazy loaded module
 - [X] Data/backed service
 - [X] Routes
@@ -72,3 +73,4 @@ Doc:
 - [ ] test results
 - [X] full code without node modules
 
+*For quick testing and fake accounts

@@ -48,7 +48,10 @@ export class SignupComponent implements OnInit {
 
     emailInUseValidator(control: AbstractControl): Promise<ValidationErrors | null> {
         return new Promise((resolve) => {
-            if (control.hasError('email')) resolve(null);
+            if (control.hasError('email')) {
+                resolve(null)
+                return;
+            }
             this.auth.emailSignInMethods(control.value)
                 .then(methods => {
                     if (methods.length > 0) {
@@ -72,6 +75,7 @@ export class SignupComponent implements OnInit {
                 'Email address is already in use' : '';
     }
 
+    // TODO: fix error message
     matchValue(value1: string, value2: string) {
         return (form: AbstractControl) => {
             const val1 = form.get(value1)?.value;

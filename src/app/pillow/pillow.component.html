@@ -34,7 +34,8 @@
         <app-presets></app-presets>
       </mat-expansion-panel>
 
-      <button mat-raised-button color="primary" class="w-full" [routerLink]="'/admin/panel/add-sound'">
+      <button mat-raised-button color="primary" class="w-full"
+                *ngIf="this.isAdmin" [routerLink]="'/admin/panel/add-sound'">
         <mat-icon>add</mat-icon>
         Add sound
       </button>

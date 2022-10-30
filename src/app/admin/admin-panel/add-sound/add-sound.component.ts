@@ -15,8 +15,9 @@ import { DataService } from 'src/app/services/data-service.service';
 })
 export class AddSoundComponent implements OnInit, CanComponentDeactivate {
     @ViewChild('f') form?: NgForm;
-
     selectedFile?: File;
+    inProgress: boolean = false;
+
     constructor(private dataservice: DataService, private backend: BackendService,
         private snackbar: MatSnackBar, private dialog: MatDialog) { }
 
@@ -51,6 +52,8 @@ export class AddSoundComponent implements OnInit, CanComponentDeactivate {
     onSubmit(f: NgForm) {
         if (!this.selectedFile) return;
 
+        this.inProgress = true;
+
         this.backend.createSound(
             {
                 title: f.value.title,
@@ -66,6 +69,7 @@ export class AddSoundComponent implements OnInit, CanComponentDeactivate {
                 this.snackbar.open(`Failed to add sound: ${err}`, '', {
                     duration: 2000,
                 });
-            });
+            })
+        .finally(() => this.inProgress = false);
     }
 }

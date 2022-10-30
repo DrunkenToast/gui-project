@@ -30,7 +30,15 @@
 
 
     <button mat-raised-button color="primary"
-        [disabled]="!(f.valid && !!this.selectedFile?.name)">
+        [disabled]="!(f.valid && !!this.selectedFile?.name) || inProgress">
         Add sound
     </button>
+    <mat-progress-spinner
+        *ngIf="this.inProgress"
+        class="mx-auto my-5"
+        diameter="50"
+        color="accent"
+        mode="indeterminate"
+        >
+    </mat-progress-spinner>
 </form>

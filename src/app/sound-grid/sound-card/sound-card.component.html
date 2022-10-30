@@ -1,4 +1,4 @@
-<app-card [active]="isActive()" class="cursor-pointer" (click)="toggle()">
+<app-card [active]="isActive()" (click)="toggle()">
   <div>
     <i [ngClass]="'text-[3rem] p-4 ' +
     (audioData.icon.length > 0 ? audioData.icon : 'fa-solid fa-compact-disc')">
