@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @include mat-core();
 
 $cyan-palette: (
