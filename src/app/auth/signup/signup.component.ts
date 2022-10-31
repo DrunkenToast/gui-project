@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -11,17 +11,17 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
     hide = true;
-    form!: FormGroup;
+    form!: UntypedFormGroup;
 
     constructor(private auth: AuthService, private router: Router, private snackbar: MatSnackBar) { }
 
     ngOnInit(): void {
-        this.form = new FormGroup({
-            'email': new FormControl(null,
+        this.form = new UntypedFormGroup({
+            'email': new UntypedFormControl(null,
                 [Validators.required, Validators.email], [this.emailInUseValidator.bind(this)]
             ),
-            'password': new FormControl(null, [Validators.required]),
-            'confirm_password': new FormControl(null, [Validators.required]),
+            'password': new UntypedFormControl(null, [Validators.required]),
+            'confirm_password': new UntypedFormControl(null, [Validators.required]),
         }, [this.matchValue('password', 'confirm_password')])
     }
 
