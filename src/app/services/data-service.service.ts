@@ -62,7 +62,7 @@ export class DataService {
     onGetPresets(uid: string) {
         this.presetSubscription = this.backend.getPresets(uid)
             .subscribe(presets => {
-                this.presets = presets.sort((a, b) => a.name.localeCompare(b.name));
+                this.presets = presets;
             })
     }
 

@@ -38,7 +38,6 @@ export class BackendService {
         );
     }
 
-    // TODO: figure out how to make admin only rule
     async createSound(sound: NewSound, file: File): Promise<void> {
         const newID = doc(collection(this.db, 'id')).id;
         const path = this.SOUNDS + newID + '/' + file.name;
@@ -144,7 +143,6 @@ export class BackendService {
         return updateDoc(ref, {
             name: preset.name,
             playerStates: states,
-            // TODO: maybe userid
         });
     }
 

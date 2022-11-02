@@ -30,10 +30,10 @@
             <!--     Passwords don't match -->
             <!-- </mat-error> -->
         </mat-form-field>
-            <mat-error *ngIf="form.hasError('nomatch')">
+            <mat-error class="text-xs mb-4" *ngIf="form.hasError('nomatch') && form.get('confirm_password')?.touched">
                 Passwords don't match
             </mat-error>
-        <button mat-raised-button color="primary" [disabled]="!form.valid">Create cool account</button>
-        <button mat-stroked-button routerLink="/login">Already have a cool account? Login!</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid">Create cool account</button>
+        <button type="button" mat-stroked-button routerLink="/login">Already have a cool account? Login!</button>
     </form>
 </div>

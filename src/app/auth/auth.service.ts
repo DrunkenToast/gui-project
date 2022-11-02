@@ -37,7 +37,6 @@ export class AuthService {
             traceUntilFirst('auth'),
             switchMap(user => {
                 if (user) { // logged in
-                    // TODO: check if this is okay
                     return this.backend.getAdmin(user.uid).pipe(
                         take(1),
                         map(admin => !!admin)

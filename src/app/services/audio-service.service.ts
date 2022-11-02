@@ -1,4 +1,6 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject } from 'rxjs';
 import { PlayerState } from '../models/preset-data';
 import { AudioStatus, Sound } from '../models/sound-data';
 
@@ -11,7 +13,7 @@ export class AudioService {
     private currentStates: PlayerState[] = [];
     private previousStates: PlayerState[] = [];
 
-    constructor() {
+    constructor(private snackbar: MatSnackBar) {
     }
 
     updateAudioPlayers(sounds: Sound[], deleted: Sound[]): void {
@@ -20,38 +22,38 @@ export class AudioService {
         }
 
         for (let sound of sounds) {
-          let audio = this.get(sound.id);
-          if (!audio) {
-            this.set(sound.id)
-            audio = this.get(sound.id)
-            audio?.setSource(sound.src);
-          }
+            let audio = this.get(sound.id);
+            if (!audio) {
+                this.set(sound.id)
+                audio = this.get(sound.id)
+                audio?.setSource(sound.src);
+            }
         }
     }
 
     /** initialises an audioplayer */
     set(id: string): void {
-        this.audioPlayers.set(id, new AudioPlayer());
+        this.audioPlayers.set(id, new AudioPlayer(this.snackbar));
         let player = this.audioPlayers.get(id)!;
 
-        player.statusChange.subscribe((status: AudioStatus) => {
+        player.status.subscribe((status: AudioStatus) => {
             // this.currentStates.set(id, status);
             let state = this.currentStates.find(state => state.id == id);
             if (state) {
                 state.status = status;
             }
             else {
-                this.currentStates.push({ id: id, status: status, volume: player.getVolume() });
+                this.currentStates.push({ id: id, status: status, volume: player.volume.getValue() });
             }
         });
 
-        player.volumeChange.subscribe((val: number) => {
+        player.volume.subscribe((val: number) => {
             let state = this.currentStates.find(state => state.id == id);
             if (state) {
                 state.volume = val;
             }
             else {
-                this.currentStates.push({ id: id, status: player.getStatus(), volume: val });
+                this.currentStates.push({ id: id, status: player.status.getValue(), volume: val });
             }
         });
     }
@@ -107,7 +109,7 @@ export class AudioService {
             let state = states.find(state => state.id == id);
             if (state) {
                 state.status == 'playing' ? player.play() : player.stop();
-                player.setVolume(state.volume);
+                player.volume.next(state.volume);
             }
             else {
                 player.stop();
@@ -129,12 +131,13 @@ export class AudioService {
 
 class AudioPlayer {
     private audio: HTMLAudioElement;
-    private status: AudioStatus = 'paused';
-    public statusChange = new EventEmitter<AudioStatus>();
-    public volumeChange = new EventEmitter<number>();
+    public status: BehaviorSubject<AudioStatus>;
+    public volume: BehaviorSubject<number>;
 
-    constructor() {
+    constructor(private snackbar: MatSnackBar) {
         this.audio = new Audio();
+        this.status = new BehaviorSubject<AudioStatus>('paused');
+        this.volume = new BehaviorSubject(1);
 
         this.audio.addEventListener('playing', this.setStatus, false);
         this.audio.addEventListener('pause', this.setStatus, false);
@@ -142,61 +145,51 @@ class AudioPlayer {
         this.audio.addEventListener('ended', this.setStatus, false);
 
         this.audio.loop = true;
+
+        this.volume.subscribe(vol => {
+            this.audio.volume = vol;
+        })
     }
 
     private setStatus = (ev: Event) => {
         switch (ev.type) {
             case 'playing':
-                this.status = 'playing';
+                this.status.next('playing');
                 break;
             case 'pause':
-                this.status = 'paused';
+                this.status.next('paused');
                 break;
             case 'waiting':
-                this.status = 'waiting';
+                this.status.next('waiting');
                 break;
             case 'ended':
-                this.status = 'ended';
+                this.status.next('ended');
                 break;
             default:
-                this.status = 'paused';
+                this.status.next('paused');
                 break;
         }
-        this.statusChange.emit(this.status);
-    }
-
-    getStatus(): AudioStatus {
-        return this.status;
     }
 
     play() {
         console.log('playing', this.audio.volume);
         this.audio.play()
-            .catch(err => console.error('Error playing audio. Error:', err));
-        this.status = 'playing';
+            .catch(_err => {
+                this.snackbar.open(`Failed to play audio`, '', {
+                    duration: 1000,
+                });
+            });
+        this.status.next('playing');
     }
 
     stop() {
         this.audio.pause();
         this.audio.currentTime = 0;
-        this.status = 'paused';
+        this.status.next('paused');
     }
 
     setSource(src: string) {
         this.audio.src = src
         this.audio.load();
-    }
-
-    setVolume(volume: number) {
-        this.audio.volume = volume;
-        this.volumeChange.emit(volume);
-    }
-
-    getVolume() {
-        return this.audio.volume;
-    }
-
-    getTime() {
-        return this.audio.currentTime;
     }
 }

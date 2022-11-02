@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -16,12 +16,12 @@ export class SignupComponent implements OnInit {
     constructor(private auth: AuthService, private router: Router, private snackbar: MatSnackBar) { }
 
     ngOnInit(): void {
-        this.form = new UntypedFormGroup({
-            'email': new UntypedFormControl(null,
+        this.form = new FormGroup({
+            'email': new FormControl<string>('',
                 [Validators.required, Validators.email], [this.emailInUseValidator.bind(this)]
             ),
-            'password': new UntypedFormControl(null, [Validators.required]),
-            'confirm_password': new UntypedFormControl(null, [Validators.required]),
+            'password': new FormControl<string>('', [Validators.required]),
+            'confirm_password': new FormControl<string>('', [Validators.required]),
         }, [this.matchValue('password', 'confirm_password')])
     }
 
@@ -66,8 +66,6 @@ export class SignupComponent implements OnInit {
     }
 
     get emailErrMsg() {
-        console.log('passwords match!', this.form.hasError('nomatch'))
-        console.log(this.form.errors);
         const email = this.form.get('email');
         return email?.hasError('email') ?
             'Invalid email address' :
@@ -75,7 +73,6 @@ export class SignupComponent implements OnInit {
                 'Email address is already in use' : '';
     }
 
-    // TODO: fix error message
     matchValue(value1: string, value2: string) {
         return (form: AbstractControl) => {
             const val1 = form.get(value1)?.value;

@@ -52,12 +52,13 @@ Angular:
     - [X] 1 canDeactive
 - [X] Custom made directive
 - [X] 1 pipe to sort/filter
+- [ ] 1 subject
 - [X] 3 access levels
     - Not logged in => restricted access (login/registration)
     - Logged in => use of app for normal user
     - Admin => more options
 - [ ] unit testing plan as complete as possible 1 component (negative and positive tests)
-- [ ] out of resting plan write 3 pos and 2 neg unit tests for that component
+- [ ] out of testing plan write 3 pos and 2 neg unit tests for that component
 - [X] Deploy app via firebase
 
 Firebase:

@@ -108,7 +108,7 @@ export class SoundAddDialog {
     data: Sound = {
         id: '',
         title: 'New Sound',
-        categoryID: '', // TODO: Check if this worky
+        categoryID: '',
         icon: '',
         src: '',
     }

@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/auth/auth.service';
     styleUrls: ['./preset-card.component.css']
 })
 export class PresetCardComponent implements OnInit {
-    // TODO: click through prop
     @Input()
     presetData: Preset = {
         id: '', 

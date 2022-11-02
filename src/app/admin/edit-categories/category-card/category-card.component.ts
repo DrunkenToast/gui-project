@@ -49,7 +49,6 @@ export class CategoryCardComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                //TODO: database rules, maybe dont check client side?
                 let foundSounds = this.data.sounds.filter(sound => sound.categoryID === this.category.id)
 
                 if (foundSounds.length > 0) {
