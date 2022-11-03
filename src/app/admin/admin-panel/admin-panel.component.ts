@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BackendService } from 'src/app/backend.service';
-import { SoundAddDialog } from 'src/app/dialogs/dialogs.component';
-import { NewSound } from 'src/app/models/sound-data';
 
 @Component({
     selector: 'app-admin-panel',

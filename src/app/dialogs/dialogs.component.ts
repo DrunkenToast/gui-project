@@ -98,27 +98,3 @@ export class SoundEditDialog {
     }
 }
 
-// TODO: delete
-@Component({
-    selector: 'sound-dialog',
-    templateUrl: 'dialog-sound.html',
-})
-export class SoundAddDialog {
-    action = 'Add';
-    data: Sound = {
-        id: '',
-        title: 'New Sound',
-        categoryID: '',
-        icon: '',
-        src: '',
-    }
-
-    constructor(
-        public dialogRef: MatDialogRef<SoundEditDialog>,
-        public dataservice: DataService
-    ) { }
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-}

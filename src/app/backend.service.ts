@@ -69,7 +69,6 @@ export class BackendService {
     }
 
     deleteSound(id: string): Promise<void> {
-        // TODO: add db rules to prevent deleting used categories
         const ref = doc(this.db, this.SOUNDS + id) as DocumentReference<NewSound>;
         return deleteDoc(ref);
     }
@@ -101,7 +100,6 @@ export class BackendService {
     }
 
     deleteCategory(id: string): Promise<void> {
-        // TODO: add db rules to prevent deleting used categories
         const ref = doc(this.db, this.CATEGORIES + id) as DocumentReference<NewCategory>;
         return deleteDoc(ref);
     }

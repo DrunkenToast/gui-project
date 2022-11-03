@@ -43,7 +43,6 @@ export class AddSoundComponent implements OnInit, CanComponentDeactivate {
     }
 
     onFileSelect(event: Event) {
-        // TODO: check file type
         const t = event.target as HTMLInputElement;
         if (t.files)
             this.selectedFile = t.files[0] ?? null;

@@ -23,7 +23,8 @@
     <button type="button" mat-raised-button (click)="fileInput.click()">
         Choose File
     </button>
-    <input hidden (change)="onFileSelect($event)" #fileInput type="file" required>
+    <input hidden (change)="onFileSelect($event)" #fileInput type="file"
+        required accept="audio/*">
     <p>
         Selected file: {{this.selectedFile?.name ?? 'None'}}
     </p>
