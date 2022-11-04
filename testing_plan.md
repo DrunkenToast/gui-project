@@ -38,13 +38,17 @@ Requirements for the password and confirm password fields:
 - Cannot be empty
 - Password and password confirm values have to be the same
 - Indicate to the user what is wrong with a message and/or colors
+- Minimum length is 8 (6 for just firebase)
 
 | Test type | Input password | Input confirm password | Expectation |
 |---|---|---|---|
 | Positive | test1234 | test1234 | Fields are valid |
+| Positive | T_3@st1234567098 | T_3@st1234567098 | Fields are valid |
 | Negative | | | Fields are invalid |
 | Negative | test1234 | 123test | Fields are invalid and message is shown to indicate that the passwords don't match |
-| Negative | | 123test | Fields are invalid and message is shown to indicate that the passwords don't match |
+| Negative | | 1234test | Fields are invalid and message is shown to indicate that the passwords don't match |
+| Negative | test1 | test2 | Fields are invalid and message is shown to indicate that the minimum length is 8 and the passwords don't match |
+| Negative | test1 | test1 | Fields are invalid and message is shown to indicate that the minimum length is 8 |
 | ... | More variations on inputs in input fields, testing edge cases | |
 
 ## Toggle password view button
@@ -52,9 +56,11 @@ Requirements for the password and confirm password fields:
 Requirements:
 - Clicking the button toggles the view from text to password
 - Icon changes depending on state
+- Passwords start out hidden
 
 | Test type | Action | Expectation |
 |---|---|---|
+| Positive | First click on password toggle | Input field types of the password fields go from password to text (default is hidden first) |
 | Positive | Click on button when password is hidden | Input field types of the password fields go from password to text |
 | Positive | Click on button when password is visible | Input field types of the password fields go from text to password |
 

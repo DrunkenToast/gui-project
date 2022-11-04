@@ -22,10 +22,12 @@ TOTAL: 6 SUCCESS
 
 ## Positive tests
 
-### Password fields should match
+### Password fields should match and be valid
 
 This test will try all the values of `validPasswords`, set their values in both
-password fields and then check if the form contains an error.
+password fields and then check if the form contains an error.  
+In `validPasswords` we also test the edge case of the minimum length requirement.  
+Namely exactly a length of 8 and longer.
 
 All these values passed.
 
@@ -47,7 +49,7 @@ Afterwards we check if the field is actually valid.
 
 ## Negative tests
 
-### Form should be invalid when password don't match
+### Form should be invalid when passwords don't match
 
 We enter a value in the password field and a different value in the confirm
 password field.

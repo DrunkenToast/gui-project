@@ -6,8 +6,26 @@ https://pillow-c3b4c.web.app/
 
 ## Running the project
 
-`npm i`  
-`ng serve`
+```bash
+npm i
+ng serve
+```
+
+Make sure to enter your firebase config in src/environments files:
+
+```ts
+export const environment = {
+    production: false,
+    firebaseConfig: {
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: ""
+    }
+};
+```
 
 ## Deploying the app
 
@@ -40,6 +58,7 @@ Presets and filters easy to use and access.
 
 We were allowed to continue working on our project but have to fulfil the following requirements:
 Angular: 
+- [X] 2 feature modules
 - [X] Authentication module
     - [X] Service
     - [X] Log in, out and register
@@ -52,7 +71,7 @@ Angular:
 - [X] Data/backed service
 - [X] Routes
     - 3 different routes
-    - 1 child route (does admin count?)
+    - 1 child route
     - catch incorrect routes
 - [X] Routing guards
     - [X] 2 canActivate
@@ -60,13 +79,15 @@ Angular:
     - [X] 1 canDeactive
 - [X] Custom made directive
 - [X] 1 pipe to sort/filter
-- [ ] 1 subject
+- [X] 1 subject
 - [X] 3 access levels
     - Not logged in => restricted access (login/registration)
     - Logged in => use of app for normal user
     - Admin => more options
-- [ ] unit testing plan as complete as possible 1 component (negative and positive tests)
-- [ ] out of testing plan write 3 pos and 2 neg unit tests for that component
+        - Add/edit sounds
+        - Edit categories
+- [X] unit testing plan as complete as possible 1 component (negative and positive tests)
+- [X] out of testing plan write 3 pos and 2 neg unit tests for that component
 - [X] Deploy app via firebase
 
 Firebase:
@@ -78,8 +99,8 @@ Firebase:
 
 Doc:
 - [X] readme with firebase URL
-- [ ] testing plan for component of choice
-- [ ] test results
+- [X] testing plan for component of choice
+- [X] test results
 - [X] full code without node modules
 
 *For quick testing and fake accounts

@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
     hide = true;
     form!: UntypedFormGroup;
+    passLength = 8;
 
     constructor(private auth: AuthService, private router: Router, private snackbar: MatSnackBar) { }
 
@@ -20,8 +21,10 @@ export class SignupComponent implements OnInit {
             'email': new FormControl<string>('',
                 [Validators.required, Validators.email], [this.emailInUseValidator.bind(this)]
             ),
-            'password': new FormControl<string>('', [Validators.required]),
-            'confirm_password': new FormControl<string>('', [Validators.required]),
+            'password': new FormControl<string>('', [Validators.required,
+                Validators.minLength(this.passLength)]),
+            'confirm_password': new FormControl<string>('', [Validators.required,
+                Validators.minLength(this.passLength)]),
         }, [this.matchValue('password', 'confirm_password')])
     }
 

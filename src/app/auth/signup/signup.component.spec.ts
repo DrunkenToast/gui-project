@@ -30,7 +30,11 @@ describe('SignupComponent', () => {
         'bob@telenet.be',
         'usedemail@example.com'
     ]
-    const validPasswords = ['T@st+123ab4', 'test1234', 'These-passwords_match !']
+    const validPasswords = [
+        'T@st+123ab4',
+        'test1234', // edge case, length 8 
+        'These-passwords_match !'
+    ]
 
     class MockRouter { };
     class MockAuthService {
@@ -78,12 +82,16 @@ describe('SignupComponent', () => {
     })
 
     // Positive test cases for valid password matching
-    it('Password fields should match', () => {
+    it('Password fields should match and be valid', () => {
         for (const pass of validPasswords) {
             component.form.get('password')?.setValue(pass)
             component.form.get('confirm_password')?.setValue(pass)
 
             expect(component.form.hasError('nomatch')).toBeFalsy()
+            expect(component.form.get('password')
+                ?.hasError('minlength')).toBeFalsy()
+            expect(component.form.get('confirm_password')
+                ?.hasError('minlength')).toBeFalsy()
         }
     });
 
@@ -116,7 +124,8 @@ describe('SignupComponent', () => {
     }));
 
     // Negative test for checking if the form is invalid when pwds don't match
-    it('Form should invalid when passwords don\'t match', () => {
+    // We only test if the passwords don't match, we don't hold minimum length in mind here
+    it('Form should be invalid when passwords don\'t match', () => {
         component.form.get('password')?.setValue('test1234')
         component.form.get('confirm_password')?.setValue('test12345')
 
