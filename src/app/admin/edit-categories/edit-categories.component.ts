@@ -42,7 +42,6 @@ export class EditCategoriesComponent implements OnInit, OnDestroy {
             data: 'New category'
         });
         dialogRef.afterClosed().subscribe(result => {
-            console.log('result:', result)
             if (result) {
                 this.backend.createCategory(result).then(() => {
                     this.snackbar.open(`'${result}' category created! 🎉`, '', {

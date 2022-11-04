@@ -23,7 +23,6 @@ export class BackendService {
 
     // Admin
     getAdmin(uid: string) {
-        console.log(uid)
         return docData<Admin>(
             doc(this.db, this.ADMINS + uid) as DocumentReference<Admin>,
         );
@@ -117,7 +116,6 @@ export class BackendService {
     }
 
     createPreset(uid: string, preset: NewPreset): Promise<void> {
-        console.log(uid)
         const newID = doc(collection(this.db, 'id')).id;
         const ref = doc(this.db, this.PRESETS + newID)
         return setDoc(ref, {

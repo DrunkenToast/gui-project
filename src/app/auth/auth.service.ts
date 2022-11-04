@@ -60,7 +60,6 @@ export class AuthService {
     }
 
     logout(): void {
-        console.log('logging out');
         this.auth.signOut();
         this.router.navigate(['/login']);
     }

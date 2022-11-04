@@ -31,12 +31,10 @@ export class ConfirmDeleteDialog {
     ) { }
 
     onCancelClick(): void {
-        console.log('cancel')
         this.dialogRef.close(false);
     }
 
     onDeleteClick(): void {
-        console.log('delete')
         this.dialogRef.close(true);
     }
 }
@@ -52,12 +50,10 @@ export class CategoryNameDialog {
     ) { }
 
     onNoClick(): void {
-        console.log('on no')
         this.dialogRef.close(false);
     }
 
     onSubmit(): void {
-        console.log('submit')
         this.dialogRef.close(this.data);
     }
 }

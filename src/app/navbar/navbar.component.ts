@@ -15,11 +15,9 @@ export class NavbarComponent implements OnInit {
 
     onPlayPauseClick() {
         if (this.audioService.isPlaying()) {
-            console.log('Stopping...');
             this.audioService.autoStop()
         }
         else {
-            console.log('Playing...');
             this.audioService.autoResume()
         }
     }

@@ -172,7 +172,6 @@ class AudioPlayer {
     }
 
     play() {
-        console.log('playing', this.audio.volume);
         this.audio.play()
             .catch(_err => {
                 this.snackbar.open(`Failed to play audio`, '', {
