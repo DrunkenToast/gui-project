@@ -1,4 +1,4 @@
-<app-card [active]="isActive()" (click)="toggle()">
+<app-card [active]="isActive" (click)="toggle()">
   <div>
     <i [ngClass]="'text-[3rem] p-4 ' +
     (audioData.icon.length > 0 ? audioData.icon : 'fa-solid fa-compact-disc')">
@@ -12,7 +12,7 @@
         {{ audioData.title }}
       </span>
       <div class="ml-auto text-white">
-        <button mat-icon-button [matMenuTriggerFor]="menu" click-stop-propagation>
+        <button *ngIf="isAdmin" mat-icon-button [matMenuTriggerFor]="menu" click-stop-propagation>
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">

@@ -9,9 +9,17 @@ https://pillow-c3b4c.web.app/
 `npm i`  
 `ng serve`
 
-## Running the db
+## Deploying the app
 
-`json-server --watch db.json`
+The app was built with:
+```bash
+ng build --configuration production --aot
+```
+
+and deployed using:
+```bash
+firebase deploy
+```
 
 ## What is Pillow?
 

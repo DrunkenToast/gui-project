@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSliderChange } from '@angular/material/slider';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { BackendService } from 'src/app/backend.service';
 import { Sound } from 'src/app/models/sound-data';
 import { AudioService } from 'src/app/services/audio-service.service';
-import { DataService } from 'src/app/services/data-service.service';
 import { ConfirmDeleteDialog, SoundEditDialog } from '../../dialogs/dialogs.component';
 
 @Component({
@@ -29,7 +29,9 @@ export class SoundCardComponent implements OnInit, OnDestroy {
         src: '',
     }
 
-    constructor(private audioService: AudioService, private backend: BackendService, private dialog: MatDialog, private data: DataService, private snackbar: MatSnackBar) {
+    constructor(private audioService: AudioService, private auth: AuthService,
+        private backend: BackendService, private dialog: MatDialog,
+        private snackbar: MatSnackBar) {
     }
 
     ngOnDestroy(): void {
@@ -54,7 +56,7 @@ export class SoundCardComponent implements OnInit, OnDestroy {
     }
 
     toggle() {
-        if (this.isActive()) {
+        if (this.isActive) {
             this.audioService.get(this.audioData.id)?.stop()
         }
         else {
@@ -62,8 +64,12 @@ export class SoundCardComponent implements OnInit, OnDestroy {
         }
     }
 
-    isActive(): boolean {
+    get isActive(): boolean {
         return this.audioService.isPlaying(this.audioData.id)
+    }
+
+    get isAdmin() {
+        return this.auth.isAdmin;
     }
 
     getVolume(): number | null | undefined {
